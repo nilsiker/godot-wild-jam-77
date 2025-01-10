@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="godot_wild_jam_77"
+config/name="GodotWildJam77"
 run/main_scene="res://src/Main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.png"
 
 [dotnet]
 
-project/assembly_name="godot_wild_jam_77"
+project/assembly_name="GodotWildJam77"
 
 [rendering]
 

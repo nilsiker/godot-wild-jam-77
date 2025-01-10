@@ -17,7 +17,7 @@ jobs:
       - name: '📝 Change Version'
         uses: vers-one/dotnet-project-version-updater@v1.7
         with:
-          file: "godot_wild_jam_77.csproj"
+          file: "GodotWildJam77.csproj"
           version: ${{ github.event.inputs.version }}
 
       - name: '⤴️ Create Pull Request'

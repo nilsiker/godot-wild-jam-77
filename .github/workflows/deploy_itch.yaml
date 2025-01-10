@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: godot-wild-jam-77
+  EXPORT_NAME: GodotWildJam77
   PROJECT_PATH: "."
 
 jobs:

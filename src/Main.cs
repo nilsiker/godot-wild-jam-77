@@ -1,4 +1,4 @@
-namespace godot_wild_jam_77;
+namespace GodotWildJam77;
 
 using Godot;
 
