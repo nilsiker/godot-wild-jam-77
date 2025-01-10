@@ -10,14 +10,14 @@ env:
 
 jobs:
   deploy_to_platform:
-    name: Deploy to Itch (${{matrix.platform}})
+    name: ${{matrix.platform}}
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.3
     strategy:
       fail-fast: false
       matrix:
-        platform: [web, mac, linux, windows] # Platforms for export
+        platform: [mac, linux, windows] # Platforms for export
     steps:
       - name: Checkout
         uses: actions/checkout@v4
