@@ -1,0 +1,47 @@
+name: "🚀 Deploy to Itch"
+on: workflow_dispatch
+
+# NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
+
+env:
+  GODOT_VERSION: 4.3
+  EXPORT_NAME: godot-wild-jam-77
+  PROJECT_PATH: "."
+
+jobs:
+  deploy_to_platform:
+    name: Deploy to Itch (${{matrix.platform}})
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.3
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [web, mac, linux, windows] # Platforms for export
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: ${{matrix.platform}} Build
+        run: |
+          mkdir -v -p build/${{matrix.platform}}
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "${{matrix.platform}} Desktop" "$EXPORT_DIR/${{matrix.platform}}/$EXPORT_NAME.exe"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.platform}}
+          path: build/${{matrix.platform}}
+      - name: Deploy to itch.io
+        run: |
+          butler push ./build/${{matrix.platform}}/ nilsiker/${EXPORT_NAME}:${{matrix.platform}}
+        env:
+          BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
