@@ -34,7 +34,7 @@ jobs:
           mkdir -v -p build/${{matrix.platform}}
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "${{matrix.platform}} Desktop" "$EXPORT_DIR/${{matrix.platform}}/$EXPORT_NAME.exe"
+          godot --headless --verbose --export-release ${{matrix.platform}} "$EXPORT_DIR/${{matrix.platform}}/$EXPORT_NAME.exe"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
