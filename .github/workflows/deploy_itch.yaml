@@ -31,7 +31,8 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
       - name: Install .NET 8.0
         run: |
-          apt install snapd -y
+          apt-get update
+          apt-get install snapd -y
           snap install dotnet-sdk --classic -y
       - name: ${{matrix.platform}} Build
         run: |
