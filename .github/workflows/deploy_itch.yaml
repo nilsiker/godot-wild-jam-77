@@ -32,8 +32,7 @@ jobs:
       - name: Install .NET 8.0
         run: |
           apt-get update
-          apt-get install snapd -y
-          snap install dotnet-sdk --classic -y
+          apt-get install dotnet-sdk-8.0
       - name: ${{matrix.platform}} Build
         run: |
           mkdir -v -p build/${{matrix.platform}}
