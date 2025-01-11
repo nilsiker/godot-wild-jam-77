@@ -42,7 +42,7 @@ jobs:
           path: build/${{matrix.platform}}
       - name: Deploy to itch.io
         run: |
-          butler upgrade
+          butler upgrade --assume-yes
           butler push ./build/${{matrix.platform}}/ nilsiker/${EXPORT_NAME}:${{matrix.platform}}
         env:
           BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
