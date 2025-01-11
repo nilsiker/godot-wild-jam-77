@@ -1,0 +1,33 @@
+@startuml AppLogic
+state "AppLogic State" as Nevergreen_AppLogic_State {
+  state "ClosingApplication" as Nevergreen_AppLogic_State_ClosingApplication
+  state "InGame" as Nevergreen_AppLogic_State_InGame
+  state "InMainMenu" as Nevergreen_AppLogic_State_InMainMenu
+  state "LeavingGame" as Nevergreen_AppLogic_State_LeavingGame
+  state "LeavingMenu" as Nevergreen_AppLogic_State_LeavingMenu
+  state "StartingNewGame" as Nevergreen_AppLogic_State_StartingNewGame
+}
+
+Nevergreen_AppLogic_State_ClosingApplication --> Nevergreen_AppLogic_State_ClosingApplication : FadeOutFinished
+Nevergreen_AppLogic_State_InGame --> Nevergreen_AppLogic_State_ClosingApplication : QuitApp
+Nevergreen_AppLogic_State_InGame --> Nevergreen_AppLogic_State_LeavingGame : BackToMainMenu
+Nevergreen_AppLogic_State_InMainMenu --> Nevergreen_AppLogic_State_ClosingApplication : QuitApp
+Nevergreen_AppLogic_State_InMainMenu --> Nevergreen_AppLogic_State_LeavingMenu : StartGame
+Nevergreen_AppLogic_State_LeavingGame --> Nevergreen_AppLogic_State_ClosingApplication : FadeOutFinished
+Nevergreen_AppLogic_State_LeavingGame --> Nevergreen_AppLogic_State_InMainMenu : FadeOutFinished
+Nevergreen_AppLogic_State_LeavingMenu --> Nevergreen_AppLogic_State_StartingNewGame : FadeOutFinished
+Nevergreen_AppLogic_State_StartingNewGame --> Nevergreen_AppLogic_State_InGame : GameReady
+
+Nevergreen_AppLogic_State_ClosingApplication : OnEnter → FadeOut
+Nevergreen_AppLogic_State_ClosingApplication : OnFadeOutFinished → CloseApplication
+Nevergreen_AppLogic_State_InGame : OnEnter → ShowGame
+Nevergreen_AppLogic_State_InMainMenu : OnEnter → ShowMainMenu
+Nevergreen_AppLogic_State_LeavingGame : OnEnter → FadeOut
+Nevergreen_AppLogic_State_LeavingGame : OnExit → FadeIn, RemoveGame
+Nevergreen_AppLogic_State_LeavingMenu : OnEnter → FadeOut
+Nevergreen_AppLogic_State_LeavingMenu : OnExit → HideMainMenu
+Nevergreen_AppLogic_State_LeavingMenu : OnFadeOutFinished → FadeIn
+Nevergreen_AppLogic_State_StartingNewGame : OnEnter → SetupGame
+
+[*] --> Nevergreen_AppLogic_State_InMainMenu
+@enduml

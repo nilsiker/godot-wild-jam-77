@@ -1,0 +1,4 @@
+@startuml GameLogic
+state "GameLogic State" as Nevergreen_GameLogic_State
+[*] --> Nevergreen_GameLogic_State
+@enduml

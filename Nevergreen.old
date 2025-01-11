@@ -1,10 +1,10 @@
-<Project Sdk="Godot.NET.Sdk/4.3.0">
+<Project Sdk="Godot.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <RootNamespace>GodotWildJam77</RootNamespace>
+    <RootNamespace>Nevergreen</RootNamespace>
     <!-- Required for some nuget packages to work -->
     <!-- godotengine/godot/issues/42271#issuecomment-751423827 -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -15,9 +15,9 @@
     -->
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <Title>GodotWildJam77</Title>
+    <Title>Nevergreen</Title>
     <Version>1.0.0</Version>
-    <Description>GodotWildJam77</Description>
+    <Description>Nevergreen</Description>
     <Copyright>© 2024 Chickensoft Organization</Copyright>
     <Authors>Chickensoft Organization</Authors>
     <Company>Chickensoft Organization</Company>

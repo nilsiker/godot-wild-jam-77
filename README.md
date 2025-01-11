@@ -1,19 +1,23 @@
-# Godot Wild Jam 77 
+# Nevergreen
 
 ![line coverage](badges/line_coverage.svg) ![branch coverage](badges/branch_coverage.svg)
 
-C# game template for Godot Wild Jam 77. At the current time, it just contains scaffolding and CI/CD tooling in preparation of the jam.
+Nevergreen is a game about a forest gnome.
 
----
+With an axe.
+
+And a vengeance.
+
+Made for the Godot Wild Jam 77.
 
 <p align="center">
-<img alt="Cardboard Box with Chickensoft Logo" src="icon.png" width="200">
+<img alt="Cardboard Box with Chickensoft Logo" src="docs/player.gif" width="200">
 </p>
 
 ## 🥚 Getting Started
 
 TODO...
 
----
+## Attributions
 
 🐣 Game template generated from a 🐤 Chickensoft Template — <https://chickensoft.games>

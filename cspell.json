@@ -3,6 +3,7 @@
     "**/*.*"
   ],
   "ignorePaths": [
+    "**/*.puml",
     "**/*.tscn",
     "**/*.import",
     "badges/**/*.*",
@@ -49,6 +50,7 @@
     "multisample",
     "nameof",
     "netstandard",
+    "Nevergreen",
     "NOLOGO",
     "nupkg",
     "occluder",

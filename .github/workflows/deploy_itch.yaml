@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: GodotWildJam77
+  EXPORT_NAME: Nevergreen
   PROJECT_PATH: "."
 
 jobs:

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://7g0ikydwv3vm"]
+
+[ext_resource type="Script" path="res://src/app/App.cs" id="1_1ypil"]
+[ext_resource type="PackedScene" uid="uid://cywpu6lxdjhuu" path="res://src/game/Game.tscn" id="1_6cyag"]
+
+[node name="App" type="CanvasLayer"]
+script = ExtResource("1_1ypil")
+
+[node name="GameContainer" parent="." instance=ExtResource("1_6cyag")]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="MainMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

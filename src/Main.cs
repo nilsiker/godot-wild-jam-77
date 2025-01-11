@@ -1,4 +1,4 @@
-namespace GodotWildJam77;
+namespace Nevergreen;
 
 using Godot;
 
@@ -38,5 +38,5 @@ public partial class Main : Node2D {
 #endif
 
   private void RunScene()
-    => GetTree().ChangeSceneToFile("res://src/Game.tscn");
+    => GetTree().ChangeSceneToFile("res://src/app/App.tscn");
 }

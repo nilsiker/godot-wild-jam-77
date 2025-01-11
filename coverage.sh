@@ -45,7 +45,7 @@ reportgenerator \
   -reports:"./coverage/coverage.xml" \
   -targetdir:"./coverage/report" \
   "-assemblyfilters:$ASSEMBLIES_TO_REMOVE" \
-  "-classfilters:-GodotPlugins.Game.Main;-GodotWildJam77.Main" \
+  "-classfilters:-GodotPlugins.Game.Main;-Nevergreen.Main" \
   -reporttypes:"Html;Badges"
 
 # Copy badges into their own folder. The badges folder should be included in
