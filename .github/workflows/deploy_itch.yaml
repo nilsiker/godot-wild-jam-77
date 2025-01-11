@@ -29,6 +29,10 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+      - name: Install .NET 8.0
+        run: |
+          apt-get update
+          apt-get install -y dotnet-sdk-8.0 dotnet-runtime-8.0
       - name: ${{matrix.platform}} Build
         run: |
           mkdir -v -p build/${{matrix.platform}}
