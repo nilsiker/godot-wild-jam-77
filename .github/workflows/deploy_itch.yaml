@@ -13,7 +13,7 @@ jobs:
     name: ${{matrix.platform}}
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.3
+      image: barichello/godot-ci:mono-4.3
     strategy:
       fail-fast: false
       matrix:
