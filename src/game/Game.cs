@@ -1,7 +1,6 @@
 namespace Nevergreen;
 
 using Chickensoft.AutoInject;
-using Chickensoft.GoDotLog;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
@@ -14,7 +13,6 @@ public interface IGame : INode2D, IProvide<IGameRepo> {
 
 [Meta(typeof(IAutoNode))]
 public partial class Game : Node2D, IGame {
-  private readonly GDLog _log = new(nameof(Game));
   #region State
   public IGameRepo GameRepo { get; set; } = default!;
   public IGameLogic Logic { get; set; } = default!;
@@ -23,13 +21,14 @@ public partial class Game : Node2D, IGame {
 
   #region Provisions
 
-  public IGameRepo Value => GameRepo;
+  IGameRepo IProvide<IGameRepo>.Value() => GameRepo;
   #endregion
 
   #region Dependencies
   [Dependency]
   private IAppRepo AppRepo => this.DependOn<IAppRepo>();
   #endregion
+
 
   #region Dependency Lifecycle
   public void Setup() => Logic = new GameLogic();

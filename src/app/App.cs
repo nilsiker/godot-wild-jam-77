@@ -40,6 +40,7 @@ public partial class App : Node, IApp {
   #region IStateDebugInfo
   string IStateDebugInfo.Name => Name;
   public string State => Logic.Value.GetType().Name;
+
   #endregion
 
   #endregion

@@ -2,7 +2,6 @@ namespace Nevergreen;
 
 using System;
 using Chickensoft.AutoInject;
-using Chickensoft.GoDotLog;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
@@ -12,7 +11,6 @@ public interface IPlayer : ICharacterBody2D, IStateDebugInfo { }
 
 [Meta(typeof(IAutoNode))]
 public partial class Player : CharacterBody2D, IPlayer {
-  private readonly GDLog _log = new(nameof(Player));
 
   #region Exports
   #endregion

@@ -9,10 +9,8 @@
     <!-- godotengine/godot/issues/42271#issuecomment-751423827 -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- To show generated files -->
-    <!-- <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles> -->
-    <!--
-      <CompilerGeneratedFilesOutputPath>.generated</CompilerGeneratedFilesOutputPath>
-    -->
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>.generated</CompilerGeneratedFilesOutputPath>
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Title>Nevergreen</Title>
@@ -45,7 +43,7 @@
     <PackageReference Include="EnvironmentAbstractions" Version="5.0.0" />
     <PackageReference Include="GodotSharp.SourceGenerators" Version="2.5.0" PrivateAssets="all"
       OutputItemType="analyzer" />
-    <PackageReference Include="Chickensoft.AutoInject" Version="2.5.0" PrivateAssets="all" />
+    <PackageReference Include="Chickensoft.AutoInject" Version="2.4.0" PrivateAssets="all" />
     <PackageReference Include="Chickensoft.Collections" Version="1.12.7" />
     <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.4.0" />
     <PackageReference Include="Chickensoft.Introspection" Version="2.2.0" />
