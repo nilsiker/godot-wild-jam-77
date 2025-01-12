@@ -9,6 +9,7 @@ using System;
 
 public interface IAttacker : IArea2D {
   public void Attack(Vector2 direction);
+  public void SetActive(bool active);
 }
 
 
@@ -68,8 +69,9 @@ public partial class Attacker : Area2D, IAttacker {
     GlobalRotation = direction.Angle() + ((float)Math.PI / 2.0f);
     FX.Play("attack");
   }
-  #endregion
 
+  public void SetActive(bool active) => Monitoring = active;
+  #endregion
 
   #region Output Callbacks
   #endregion

@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfm3fmg27ks41"]
+[gd_scene load_steps=8 format=3 uid="uid://bfm3fmg27ks41"]
 
 [ext_resource type="Script" path="res://src/attacker/Attacker.cs" id="1_h2pdf"]
 [ext_resource type="Texture2D" uid="uid://c5wmrgtnx1isa" path="res://src/attacker/FX.png" id="2_qnuyn"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vuxst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjniq"]
 atlas = ExtResource("2_qnuyn")
@@ -148,14 +146,17 @@ animations = [{
 [node name="Attacker" type="Area2D"]
 script = ExtResource("1_h2pdf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vuxst")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.0999985, -5.4)
+polygon = PackedVector2Array(-22, 8, -19, -4, -12, -11, -4, -14, 4, -14, 11, -11, 16, -7, 19, -2, 22, 10, 26, 3, 27, 0, 27, -11, 21, -23, 13, -30, 6, -32, -5, -32, -11, -30, -19, -23, -25, -14, -26, 0)
 
 [node name="FX" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+position = Vector2(-0.0999985, -5.4)
 sprite_frames = SubResource("SpriteFrames_wpa4y")
-animation = &"idle"
+animation = &"attack"
+frame = 1
 offset = Vector2(-2.73, 0)
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,

@@ -16,7 +16,6 @@ public partial class PlayerLogic
   public override Transition GetInitialState() => To<State.Idle>();
 
   public class Data {
-    public Vector2 CurrentVelocity { get; set; }
     public float Speed { get; set; }
     public Vector2 AttackDirection { get; set; }
   }
@@ -31,7 +30,7 @@ public partial class PlayerLogic
   }
 
   public static class Output {
-    public record struct VelocityUpdated(Vector2 Velocity);
+    public record struct ForceApplied(Vector2 Force, bool IsImpulse);
     public record struct Attacked(Vector2 Direction);
     public record struct Damaged(float Amount);
     public record struct AnimationUpdated(StringName Animation);

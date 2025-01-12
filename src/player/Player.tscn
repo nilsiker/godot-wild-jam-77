@@ -116,7 +116,10 @@ _data = {
 "zzz": SubResource("Animation_mjnm2")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="RigidBody2D"]
+position = Vector2(1, 0)
+gravity_scale = 0.0
+linear_damp = 10.0
 script = ExtResource("1_0m8kc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -163,3 +166,4 @@ pitch_scale = 1.5
 [node name="Attacker" parent="." instance=ExtResource("4_lb4cf")]
 unique_name_in_owner = true
 show_behind_parent = true
+position = Vector2(0, -6)

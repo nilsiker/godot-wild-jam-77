@@ -1,16 +1,16 @@
 namespace Nevergreen;
 
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
 
 
-public interface IPlayer : ICharacterBody2D, IStateDebugInfo { }
+public interface IPlayer : IRigidBody2D, IStateDebugInfo {
+}
 
 [Meta(typeof(IAutoNode))]
-public partial class Player : CharacterBody2D, IPlayer {
+public partial class Player : RigidBody2D, IPlayer {
 
   #region Exports
   #endregion
@@ -46,30 +46,24 @@ public partial class Player : CharacterBody2D, IPlayer {
 
     // Bind functions to state outputs here
     Binding.Handle(
-      (in PlayerLogic.Output.VelocityUpdated output) => OnOutputVelocityUpdated(output.Velocity)
+      (in PlayerLogic.Output.ForceApplied output) => OnOutputForceApplied(output.Force, output.IsImpulse)
     ).Handle(
       (in PlayerLogic.Output.AnimationUpdated output) => OnOutputAnimationUpdated(output.Animation)
     ).Handle(
       (in PlayerLogic.Output.FlipSprite output) => OnOutputFlipSprite(output.Flip)
-    )
-    .Handle(
+    ).Handle(
       (in PlayerLogic.Output.Attacked output) => OnOutputAttacked(output.Direction)
     );
 
-
     Logic.Set(GameRepo);
     Logic.Set(new PlayerLogic.Data() {
-      Speed = 100f
+      Speed = 1000f
     });
 
     AddToGroup("state_debug");
     Logic.Start();
   }
   #endregion
-
-
-
-
 
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
@@ -88,7 +82,6 @@ public partial class Player : CharacterBody2D, IPlayer {
     Move(inputDirection);
 
     Logic.Input(new PlayerLogic.Input.UpdateGlobalPosition(GlobalPosition));
-    MoveAndSlide();
   }
 
   public void OnExitTree() {
@@ -106,19 +99,25 @@ public partial class Player : CharacterBody2D, IPlayer {
   }
   #endregion
 
-
-
   #region Input Callbacks
   private void OnAnimationFinished(StringName animName) => Logic.Input(new PlayerLogic.Input.AnimationFinished(animName));
   private void Move(Vector2 direction) => Logic.Input(new PlayerLogic.Input.Move(direction));
   #endregion
 
   #region Output Callbacks
-  private void OnOutputVelocityUpdated(Vector2 velocity) => Velocity = velocity;
+  private void OnOutputForceApplied(Vector2 velocity, bool isImpulse = false) {
+    if (isImpulse) {
+      ApplyImpulse(velocity);
+    }
+    else {
+      ApplyForce(velocity);
+    }
+  }
   private void OnOutputAnimationUpdated(StringName animation) => AnimationPlayer.Play(animation);
   private void OnOutputFlipSprite(bool flip) => PlayerModel.FlipH = flip;
-  private void OnOutputAttacked(Vector2 direction) => Attacker.Attack(direction);
-
-
+  private void OnOutputAttacked(Vector2 direction) {
+    Attacker.Attack(direction);
+    Attacker.SetActive(true);
+  }
   #endregion
 }

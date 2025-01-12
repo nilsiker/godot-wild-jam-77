@@ -16,16 +16,13 @@ public partial class PlayerLogic {
         var data = Get<Data>();
         var velocity = input.Direction * data.Speed;
 
-        if (data.CurrentVelocity != velocity) {
-          data.CurrentVelocity = velocity;
-          Output(new Output.VelocityUpdated(data.CurrentVelocity));
+        Output(new Output.ForceApplied(velocity, false));
 
-          if (data.CurrentVelocity.X < 0) {
-            Output(new Output.FlipSprite(true));
-          }
-          else if (data.CurrentVelocity.X > 0) {
-            Output(new Output.FlipSprite(false));
-          }
+        if (velocity.X < 0) {
+          Output(new Output.FlipSprite(true));
+        }
+        else if (velocity.X > 0) {
+          Output(new Output.FlipSprite(false));
         }
 
         return velocity.IsZeroApprox()
