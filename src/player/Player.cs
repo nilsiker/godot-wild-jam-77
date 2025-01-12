@@ -7,6 +7,7 @@ using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
 using Godot;
 
+
 public interface IPlayer : ICharacterBody2D, IStateDebugInfo { }
 
 [Meta(typeof(IAutoNode))]
@@ -26,6 +27,7 @@ public partial class Player : CharacterBody2D, IPlayer {
   #endregion
 
   #region Dependencies
+  [Dependency] private IGameRepo GameRepo => this.DependOn<IGameRepo>();
   #endregion
 
   #region State
@@ -53,6 +55,8 @@ public partial class Player : CharacterBody2D, IPlayer {
       (in PlayerLogic.Output.FlipSprite output) => OnOutputFlipSprite(output.Flip)
     );
 
+
+    Logic.Set(GameRepo);
     Logic.Set(new PlayerLogic.Data() {
       Speed = 100f
     });
@@ -80,7 +84,7 @@ public partial class Player : CharacterBody2D, IPlayer {
     var inputDirection = Input.GetVector(Inputs.Left, Inputs.Right, Inputs.Up, Inputs.Down);
     Move(inputDirection);
 
-
+    Logic.Input(new PlayerLogic.Input.UpdateGlobalPosition(GlobalPosition));
     MoveAndSlide();
   }
 
@@ -119,6 +123,7 @@ public partial class PlayerLogic
   }
 
   public static class Input {
+    public record struct UpdateGlobalPosition(Vector2 GlobalPosition);
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
     public record struct Damage(float Amount); // TODO maybe int?
@@ -132,10 +137,15 @@ public partial class PlayerLogic
     public record struct FlipSprite(bool Flip);
   }
 
-  public partial record State : StateLogic<State> {
+  public partial record State : StateLogic<State>, IGet<Input.UpdateGlobalPosition> {
     public State() {
       OnAttach(() => { });
       OnDetach(() => { });
+    }
+
+    public Transition On(in Input.UpdateGlobalPosition input) {
+      Get<IGameRepo>().UpdatePlayerGlobalPosition(input.GlobalPosition);
+      return ToSelf();
     }
 
     public partial record Idle : State, IGet<Input.Move> {

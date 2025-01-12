@@ -4,6 +4,7 @@ state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
   state "Moving" as Nevergreen_PlayerLogic_State_Moving
 }
 
+Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosition
 Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Idle : Move
 Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Moving : Move
 Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Idle : Move

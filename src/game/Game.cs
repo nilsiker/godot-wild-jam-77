@@ -39,7 +39,7 @@ public partial class Game : Node2D, IGame {
     Logic.Set(AppRepo);
 
     Binding = Logic.Bind();
-    Binding.Handle((in GameLogic.Output.SetPauseMode output) => SetGamePaused(output.IsPaused));
+    // Binding.Handle((in GameLogic.Output.SetPauseMode output) => SetGamePaused(output.IsPaused));
 
     this.Provide();
   }

@@ -74,6 +74,7 @@ texture = ExtResource("1_o6871")
 offset = Vector2(0, -15)
 hframes = 4
 vframes = 4
+frame = 9
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}
@@ -99,3 +100,5 @@ libraries = {
 "": SubResource("AnimationLibrary_qy3de")
 }
 autoplay = "idle"
+
+[node name="FootstepAudio" type="AudioStreamPlayer2D" parent="."]

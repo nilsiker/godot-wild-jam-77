@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=5 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
 [ext_resource type="Texture2D" uid="uid://d43sw60ib1iq" path="res://icon.png" id="2_tglgq"]
+[ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/Enemy.tscn" id="4_nqd2y"]
 
 [node name="Game" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_17mmo")
 
 [node name="DebugBG" type="ColorRect" parent="."]
@@ -26,3 +28,6 @@ texture = ExtResource("2_tglgq")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
+
+[node name="Enemy" parent="." instance=ExtResource("4_nqd2y")]
+position = Vector2(110, -70)
