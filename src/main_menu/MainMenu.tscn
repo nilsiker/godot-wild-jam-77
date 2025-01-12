@@ -1,22 +1,19 @@
-[gd_scene load_steps=71 format=3 uid="uid://gnfeiowom8ok"]
+[gd_scene load_steps=32 format=3 uid="uid://gnfeiowom8ok"]
 
 [ext_resource type="Script" path="res://src/main_menu/MainMenu.cs" id="1_hxhey"]
-[ext_resource type="Texture2D" uid="uid://px6q02r4x4t6" path="res://src/app/player.png" id="1_kmki8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_avwyo"]
 noise_type = 0
-offset = Vector3(0, 0, 51.75)
+offset = Vector3(0, 0, 367.54)
+fractal_type = 3
+domain_warp_type = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pngyo"]
-width = 32
-height = 32
+width = 128
+height = 128
 in_3d_space = true
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_avwyo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iou3o"]
-texture = SubResource("NoiseTexture2D_pngyo")
-modulate_color = Color(0.32844, 0.371053, 0.187529, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dsl3o"]
 load_path = "res://.godot/imported/player.png-7c4d057edcab8f8126ffb130fd0df8aa.ctex"
@@ -241,254 +238,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n6sa1")
 }],
-"loop": true,
+"loop": false,
 "name": &"zzz",
 "speed": 8.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_487fq"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(192, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clera"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(256, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhqg4"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(320, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcwdw"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_46y2j"]
-length = 0.56
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.28, 0.42),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("AtlasTexture_487fq"), SubResource("AtlasTexture_clera"), SubResource("AtlasTexture_rhqg4"), SubResource("AtlasTexture_qcwdw")]
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yay8u"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_avryb"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0fjr"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m8mb7"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(128, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2gbp"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(192, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uegh"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(256, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_0pmp0"]
-length = 0.84
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("AtlasTexture_yay8u"), SubResource("AtlasTexture_avryb"), SubResource("AtlasTexture_e0fjr"), SubResource("AtlasTexture_m8mb7"), SubResource("AtlasTexture_j2gbp"), SubResource("AtlasTexture_5uegh")]
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aovpg"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(320, 0, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gn5g0"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyj64"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rccg7"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(128, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_prnk1"]
-length = 0.56
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.28, 0.42),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("AtlasTexture_aovpg"), SubResource("AtlasTexture_gn5g0"), SubResource("AtlasTexture_jyj64"), SubResource("AtlasTexture_rccg7")]
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ajk3k"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_urx75"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 256, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tynsw"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78k1f"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 256, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqahe"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sj0dn"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 256, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_o5kl4"]
-length = 1.9
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.48, 0.62, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("AtlasTexture_ajk3k"), SubResource("AtlasTexture_urx75"), SubResource("AtlasTexture_tynsw"), SubResource("AtlasTexture_78k1f"), SubResource("AtlasTexture_hqahe"), SubResource("AtlasTexture_sj0dn")]
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ceapy"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7us1"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(128, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gi0qb"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(192, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gfc5"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(256, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wuasy"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(320, 128, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bi2u7"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(0, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m7kcp"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(64, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ivt61"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(128, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bxlvh"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(192, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_al87j"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(256, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l3gxl"]
-atlas = ExtResource("1_kmki8")
-region = Rect2(320, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_tw45l"]
-length = 1.54
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98, 1.12, 1.26, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("AtlasTexture_ceapy"), SubResource("AtlasTexture_r7us1"), SubResource("AtlasTexture_gi0qb"), SubResource("AtlasTexture_2gfc5"), SubResource("AtlasTexture_wuasy"), SubResource("AtlasTexture_bi2u7"), SubResource("AtlasTexture_m7kcp"), SubResource("AtlasTexture_ivt61"), SubResource("AtlasTexture_bxlvh"), SubResource("AtlasTexture_al87j"), SubResource("AtlasTexture_l3gxl")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dv2a"]
-_data = {
-"attack": SubResource("Animation_46y2j"),
-"idle": SubResource("Animation_0pmp0"),
-"run": SubResource("Animation_prnk1"),
-"wake_up": SubResource("Animation_o5kl4"),
-"zzz": SubResource("Animation_tw45l")
-}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -499,67 +252,72 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hxhey")
 
-[node name="Background" type="PanelContainer" parent="."]
-unique_name_in_owner = true
+[node name="Container" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_iou3o")
 
-[node name="Margins" type="MarginContainer" parent="Background"]
+[node name="Background" type="TextureRect" parent="Container"]
+unique_name_in_owner = true
+modulate = Color(0.439207, 0.487659, 0.309457, 1)
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_pngyo")
+stretch_mode = 6
+
+[node name="Margins" type="MarginContainer" parent="Container"]
 layout_mode = 2
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 
-[node name="VBox" type="VBoxContainer" parent="Background/Margins"]
+[node name="VBox" type="VBoxContainer" parent="Container/Margins"]
 layout_mode = 2
 size_flags_horizontal = 0
 alignment = 1
 
-[node name="Title" type="Label" parent="Background/Margins/VBox"]
+[node name="Title" type="Label" parent="Container/Margins/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "NEVERGREEN"
 
-[node name="HSeparator" type="HSeparator" parent="Background/Margins/VBox"]
+[node name="HSeparator" type="HSeparator" parent="Container/Margins/VBox"]
 layout_mode = 2
 
-[node name="StartGameButton" type="Button" parent="Background/Margins/VBox"]
+[node name="StartGameButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Start Game"
 
-[node name="OptionsButton" type="Button" parent="Background/Margins/VBox"]
+[node name="OptionsButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="Background/Margins/VBox"]
+[node name="CreditsButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="Background/Margins/VBox"]
+[node name="QuitButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
-[node name="SleepingVättri" type="AnimatedSprite2D" parent="."]
+[node name="SleepingVättri" type="AnimatedSprite2D" parent="Container"]
 texture_filter = 1
-position = Vector2(790, 319)
+position = Vector2(790, 342)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_2yj34")
 animation = &"zzz"
-autoplay = "zzz"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}
@@ -575,9 +333,3 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://src/player/player.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "1c34e9d6a01672845f8cfd43123675df"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SleepingVättri"]
-root_node = NodePath("")
-libraries = {
-"": SubResource("AnimationLibrary_5dv2a")
-}

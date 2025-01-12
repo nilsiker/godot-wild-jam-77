@@ -1,10 +1,8 @@
 namespace Nevergreen;
 
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
-using Chickensoft.LogicBlocks;
 using Godot;
 
 
@@ -105,93 +103,4 @@ public partial class Player : CharacterBody2D, IPlayer {
   private void OnOutputFlipSprite(bool flip) => PlayerModel.FlipH = flip;
 
   #endregion
-}
-
-public interface IPlayerLogic : ILogicBlock<PlayerLogic.State>;
-
-[Meta]
-[LogicBlock(typeof(State), Diagram = true)]
-public partial class PlayerLogic
-  : LogicBlock<PlayerLogic.State>,
-    IPlayerLogic {
-  protected override void HandleError(Exception e) => throw e;
-  public override Transition GetInitialState() => To<State.Idle>();
-
-  public class Data {
-    public Vector2 CurrentVelocity { get; set; }
-    public float Speed { get; set; }
-  }
-
-  public static class Input {
-    public record struct UpdateGlobalPosition(Vector2 GlobalPosition);
-    public record struct Move(Vector2 Direction);
-    public record struct Attack(Vector2 Direction);
-    public record struct Damage(float Amount); // TODO maybe int?
-  }
-
-  public static class Output {
-    public record struct VelocityUpdated(Vector2 Velocity);
-    public record struct Attacked(Vector2 Direction);
-    public record struct Damaged(float Amount);
-    public record struct AnimationUpdated(StringName Animation);
-    public record struct FlipSprite(bool Flip);
-  }
-
-  public partial record State : StateLogic<State>, IGet<Input.UpdateGlobalPosition> {
-    public State() {
-      OnAttach(() => { });
-      OnDetach(() => { });
-    }
-
-    public Transition On(in Input.UpdateGlobalPosition input) {
-      Get<IGameRepo>().UpdatePlayerGlobalPosition(input.GlobalPosition);
-      return ToSelf();
-    }
-
-    public partial record Idle : State, IGet<Input.Move> {
-      public Idle() {
-        OnAttach(() => { });
-        OnDetach(() => { });
-
-        this.OnEnter(() => Output(new Output.AnimationUpdated("idle")));
-        this.OnExit(() => { });
-      }
-
-      public Transition On(in Input.Move input) =>
-        input.Direction.IsZeroApprox()
-          ? ToSelf()
-          : To<Moving>();
-    }
-
-    public partial record Moving : State, IGet<Input.Move> {
-      public Moving() {
-        OnAttach(() => { });
-        OnDetach(() => { });
-
-        this.OnEnter(() => Output(new Output.AnimationUpdated("run")));
-        this.OnExit(() => { });
-      }
-
-      public Transition On(in Input.Move input) {
-        var data = Get<Data>();
-        var velocity = input.Direction * data.Speed;
-
-        if (data.CurrentVelocity != velocity) {
-          data.CurrentVelocity = velocity;
-          Output(new Output.VelocityUpdated(data.CurrentVelocity));
-
-          if (data.CurrentVelocity.X < 0) {
-            Output(new Output.FlipSprite(true));
-          }
-          else if (data.CurrentVelocity.X > 0) {
-            Output(new Output.FlipSprite(false));
-          }
-        }
-
-        return velocity.IsZeroApprox()
-          ? To<Idle>()
-          : ToSelf();
-      }
-    }
-  }
 }

@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://8lvg1ijru155"]
+
+[ext_resource type="AudioStream" uid="uid://bdymjft3xwt1c" path="res://src/player/footstep_test.ogg" id="1_66k6n"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("1_66k6n")

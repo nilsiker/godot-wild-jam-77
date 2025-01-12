@@ -5,7 +5,6 @@ using Godot;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
-using Chickensoft.LogicBlocks;
 
 public interface IMainMenu : IControl { }
 
@@ -16,30 +15,32 @@ public partial class MainMenu : Control, IMainMenu {
 
   #region Nodes
   [Node]
-  private PanelContainer Background { get; set; }
+  private ITextureRect Background { get; set; } = default!;
+  [Node]
+  private IButton StartGameButton { get; set; } = default!;
+  [Node]
+  private IButton OptionsButton { get; set; } = default!;
+  [Node]
+  private IButton CreditsButton { get; set; } = default!;
+  [Node]
+  private IButton QuitButton { get; set; } = default!;
   #endregion
 
   #region Provisions
   #endregion
 
   #region Dependencies
+  [Dependency] IAppRepo AppRepo => this.DependOn<IAppRepo>();
   #endregion
 
   #region State
-  private MainMenuLogic Logic { get; set; } = default!;
-  private MainMenuLogic.IBinding Binding { get; set; } = default!;
   #endregion
 
   #region Dependency Lifecycle
-  public void Setup() => Logic = new();
-
+  public void Setup() { }
   public void OnResolved() {
-    Binding = Logic.Bind();
 
-    // Bind functions to state outputs here
-
-
-    Logic.Start();
+    QuitButton.Pressed += AppRepo.RequestQuitApp;
   }
   #endregion
 
@@ -51,13 +52,15 @@ public partial class MainMenu : Control, IMainMenu {
     SetPhysicsProcess(true);
   }
 
-  public void OnProcess(double delta) { }
+  public void OnProcess(double delta) {
+    var offset = ((FastNoiseLite)((NoiseTexture2D)Background.Texture).Noise).Offset;
+    offset.Z += (float)delta;
+    ((FastNoiseLite)((NoiseTexture2D)Background.Texture).Noise).Offset = offset;
+  }
 
   public void OnPhysicsProcess(double delta) { }
 
   public void OnExitTree() {
-    Logic.Stop();
-    Binding.Dispose();
   }
   #endregion
 
@@ -66,25 +69,4 @@ public partial class MainMenu : Control, IMainMenu {
 
   #region Output Callbacks
   #endregion
-}
-
-public interface IMainMenuLogic : ILogicBlock<MainMenuLogic.State>;
-
-[Meta]
-[LogicBlock(typeof(State), Diagram = true)]
-public partial class MainMenuLogic
-  : LogicBlock<MainMenuLogic.State>,
-    IMainMenuLogic {
-  public override Transition GetInitialState() => To<State>();
-
-  public static class Input { }
-
-  public static class Output { }
-
-  public partial record State : StateLogic<State> {
-    public State() {
-      OnAttach(() => { });
-      OnDetach(() => { });
-    }
-  }
 }
