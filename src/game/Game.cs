@@ -23,7 +23,7 @@ public partial class Game : Node2D, IGame {
 
   #region Provisions
 
-  public IGameRepo Value() => GameRepo;
+  public IGameRepo Value => GameRepo;
   #endregion
 
   #region Dependencies

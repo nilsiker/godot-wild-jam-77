@@ -5,7 +5,7 @@ using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
 
-public interface IApp : INode, IProvide<IAppRepo>;
+public interface IApp : INode, IProvide<IAppRepo>, IStateDebugInfo;
 
 [Meta(typeof(IAutoNode))]
 public partial class App : Node, IApp {
@@ -24,13 +24,12 @@ public partial class App : Node, IApp {
   #endregion
 
   #region Provisions
-  IAppRepo IProvide<IAppRepo>.Value() => AppRepo;
-
+  public IAppRepo Value => AppRepo;
   #endregion
 
   #region Nodes
   [Node]
-  private Node2D GameContainer { get; set; } = default!;
+  private IGame Game { get; set; } = default!;
 
   [Node]
   private Control MainMenu { get; set; } = default!;
@@ -38,7 +37,11 @@ public partial class App : Node, IApp {
   [Node]
   private AnimationPlayer AnimationPlayer { get; set; } = default!;
 
-  private IGame Game { get; set; } = default!;
+  #region IStateDebugInfo
+  string IStateDebugInfo.Name => Name;
+  public string State => Logic.Value.GetType().Name;
+  #endregion
+
   #endregion
 
   #region Dependency Lifecycle
@@ -56,7 +59,7 @@ public partial class App : Node, IApp {
     Binding
       .Handle((in AppLogic.Output.CloseApplication _) => OnOutputQuitApp())
       .Handle((in AppLogic.Output.SetupGame _) => OnOutputSetupGame())
-      .Handle((in AppLogic.Output.HideGame _) => GameContainer.Visible = false)
+      .Handle((in AppLogic.Output.HideGame _) => Game.Visible = false)
       .Handle((in AppLogic.Output.RemoveGame _) => OnOutputRemoveGame())
       .Handle((in AppLogic.Output.ShowMainMenu _) => CallDeferred(nameof(OnOutputShowMainMenu)))
       .Handle((in AppLogic.Output.HideMainMenu _) => MainMenu.Visible = false)
@@ -66,6 +69,7 @@ public partial class App : Node, IApp {
       .When<AppLogic.State>(state => GD.Print(state.GetType().Name));
 
     Logic.Start();
+    AddToGroup("state_debug");
     this.Provide();
   }
   #endregion
@@ -103,20 +107,20 @@ public partial class App : Node, IApp {
   #region Output Callbacks
   private void OnOutputSetupGame() {
     Game = _gameScene.Instantiate<IGame>();
-    GameContainer.AddChildEx(Game);
+    Game.AddChildEx(Game);
   }
 
   private void OnOutputRemoveGame() {
-    if (GameContainer.GetChildCount() == 0) {
+    if (Game.GetChildCount() == 0) {
       return;
     }
 
-    var game = GameContainer.GetChild(0);
-    GameContainer.RemoveChildEx(game);
+    var game = Game.GetChild(0);
+    Game.RemoveChildEx(game);
     game.QueueFree();
   }
 
-  private void OnOutputShowGame() => GameContainer.Visible = true;
+  private void OnOutputShowGame() => Game.Visible = true;
 
   private void OnOutputShowMainMenu() => MainMenu.Visible = true;
 

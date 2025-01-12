@@ -1,0 +1,17 @@
+@startuml PlayerLogic
+state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
+  state "Idle" as Nevergreen_PlayerLogic_State_Idle
+  state "Moving" as Nevergreen_PlayerLogic_State_Moving
+}
+
+Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Idle : Move
+Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Moving : Move
+Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Idle : Move
+Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Moving : Move
+
+Nevergreen_PlayerLogic_State_Idle : OnEnter → AnimationUpdated
+Nevergreen_PlayerLogic_State_Moving : OnEnter → AnimationUpdated
+Nevergreen_PlayerLogic_State_Moving : OnMove → FlipSprite, VelocityUpdated
+
+[*] --> Nevergreen_PlayerLogic_State_Idle
+@enduml
