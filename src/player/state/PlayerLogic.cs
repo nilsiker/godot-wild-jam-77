@@ -18,10 +18,13 @@ public partial class PlayerLogic
   public class Data {
     public Vector2 CurrentVelocity { get; set; }
     public float Speed { get; set; }
+    public Vector2 AttackDirection { get; set; }
   }
 
   public static class Input {
+    public record struct AnimationFinished(StringName Animation);
     public record struct UpdateGlobalPosition(Vector2 GlobalPosition);
+    public record struct Aim(Vector2 Direction);
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
     public record struct Damage(float Amount); // TODO maybe int?

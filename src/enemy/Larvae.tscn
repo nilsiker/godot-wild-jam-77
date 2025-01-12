@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://wf1ljc1aox3r"]
+[gd_scene load_steps=11 format=3 uid="uid://b5716skygfhq"]
 
-[ext_resource type="Script" path="res://src/enemy/Enemy.cs" id="1_l0b1l"]
-[ext_resource type="Texture2D" uid="uid://x4fa1q0yolow" path="res://src/enemy/enemy_broodmother.png" id="1_ocpiv"]
+[ext_resource type="Script" path="res://src/enemy/Enemy.cs" id="1_2p51t"]
+[ext_resource type="Texture2D" uid="uid://ba1nendcfuddu" path="res://src/enemy/enemy_larvae.png" id="2_gt6gw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpqv2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_448ed"]
 radius = 4.0
-height = 52.0
+height = 32.0
 
 [sub_resource type="Animation" id="Animation_yes4f"]
 length = 0.001
@@ -41,7 +41,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_2uikp"]
-length = 1.2
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,10 +50,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_pe25m"]
@@ -97,15 +97,16 @@ _data = {
 "idle": SubResource("Animation_cxs1l")
 }
 
-[node name="Enemy" type="Area2D"]
-script = ExtResource("1_l0b1l")
+[node name="Larvae" type="Area2D"]
+script = ExtResource("1_2p51t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
 texture_filter = 1
-texture = ExtResource("1_ocpiv")
+position = Vector2(6, 7)
+texture = ExtResource("2_gt6gw")
 offset = Vector2(0, -27.895)
-hframes = 3
+hframes = 2
 vframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -120,9 +121,9 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": false,
 "player": "AnimationPlayer",
 "slice": "",
-"source": "res://src/enemy/enemy_broodmother.aseprite"
+"source": "res://src/enemy/enemy_larvae.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "3e79586a256fed641e65f54389e65bb0"
+metadata/_aseprite_wizard_source_file_hash_ = "cce35ad637a4d8dc956aa2e696fed84e"
 
 [node name="Whiteout" type="ColorRect" parent="Sprite2D"]
 modulate = Color(1, 1, 1, 0)
@@ -144,3 +145,4 @@ libraries = {
 "": SubResource("AnimationLibrary_mr0qe")
 }
 autoplay = "crawl"
+speed_scale = 0.2

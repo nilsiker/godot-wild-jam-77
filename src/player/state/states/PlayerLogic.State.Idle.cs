@@ -1,5 +1,6 @@
 namespace Nevergreen;
 using Chickensoft.LogicBlocks;
+using Shouldly;
 
 public partial class PlayerLogic {
   public partial record State {

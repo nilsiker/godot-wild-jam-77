@@ -1,0 +1,174 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfm3fmg27ks41"]
+
+[ext_resource type="Script" path="res://src/attacker/Attacker.cs" id="1_h2pdf"]
+[ext_resource type="Texture2D" uid="uid://c5wmrgtnx1isa" path="res://src/attacker/FX.png" id="2_qnuyn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vuxst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjniq"]
+atlas = ExtResource("2_qnuyn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi6cr"]
+atlas = ExtResource("2_qnuyn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h0vw"]
+atlas = ExtResource("2_qnuyn")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1pbp"]
+atlas = ExtResource("2_qnuyn")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpa4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi6cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h0vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1pbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.16667,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 2.33333,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 8.33333,
+"texture": SubResource("AtlasTexture_kjniq")
+}],
+"loop": true,
+"name": &"wake_up",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjniq")
+}],
+"loop": true,
+"name": &"zzz",
+"speed": 8.0
+}]
+
+[node name="Attacker" type="Area2D"]
+script = ExtResource("1_h2pdf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vuxst")
+
+[node name="FX" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wpa4y")
+animation = &"idle"
+offset = Vector2(-2.73, 0)
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": ["FX"],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://src/player/art/player.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c77f214eb481de66138b5903c7c8db3e"

@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -15,10 +16,9 @@ public partial class Player : CharacterBody2D, IPlayer {
   #endregion
 
   #region Nodes
-  [Node]
-  private ISprite2D PlayerModel { get; set; } = default!;
-  [Node]
-  private IAnimationPlayer AnimationPlayer { get; set; } = default!;
+  [Node] private ISprite2D PlayerModel { get; set; } = default!;
+  [Node] private IAnimationPlayer AnimationPlayer { get; set; } = default!;
+  [Node] private IAttacker Attacker { get; set; } = default!;
   #endregion
 
   #region Provisions
@@ -51,6 +51,9 @@ public partial class Player : CharacterBody2D, IPlayer {
       (in PlayerLogic.Output.AnimationUpdated output) => OnOutputAnimationUpdated(output.Animation)
     ).Handle(
       (in PlayerLogic.Output.FlipSprite output) => OnOutputFlipSprite(output.Flip)
+    )
+    .Handle(
+      (in PlayerLogic.Output.Attacked output) => OnOutputAttacked(output.Direction)
     );
 
 
@@ -62,8 +65,8 @@ public partial class Player : CharacterBody2D, IPlayer {
     AddToGroup("state_debug");
     Logic.Start();
   }
-
   #endregion
+
 
 
 
@@ -74,6 +77,8 @@ public partial class Player : CharacterBody2D, IPlayer {
   public void OnReady() {
     SetProcess(true);
     SetPhysicsProcess(true);
+
+    AnimationPlayer.AnimationFinished += OnAnimationFinished;
   }
 
   public void OnProcess(double delta) { }
@@ -90,10 +95,21 @@ public partial class Player : CharacterBody2D, IPlayer {
     Logic.Stop();
     Binding.Dispose();
   }
+
+  public override void _UnhandledInput(InputEvent @event) {
+    if (@event is InputEventMouseMotion motion) {
+    }
+    if (@event.IsActionPressed(Inputs.Attack)) {
+      var direction = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+      Logic.Input(new PlayerLogic.Input.Attack(direction));
+    }
+  }
   #endregion
 
 
+
   #region Input Callbacks
+  private void OnAnimationFinished(StringName animName) => Logic.Input(new PlayerLogic.Input.AnimationFinished(animName));
   private void Move(Vector2 direction) => Logic.Input(new PlayerLogic.Input.Move(direction));
   #endregion
 
@@ -101,6 +117,8 @@ public partial class Player : CharacterBody2D, IPlayer {
   private void OnOutputVelocityUpdated(Vector2 velocity) => Velocity = velocity;
   private void OnOutputAnimationUpdated(StringName animation) => AnimationPlayer.Play(animation);
   private void OnOutputFlipSprite(bool flip) => PlayerModel.FlipH = flip;
+  private void OnOutputAttacked(Vector2 direction) => Attacker.Attack(direction);
+
 
   #endregion
 }

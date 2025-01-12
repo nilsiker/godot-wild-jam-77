@@ -1,0 +1,4 @@
+@startuml AttackerLogic
+state "AttackerLogic State" as Nevergreen_AttackerLogic_State
+[*] --> Nevergreen_AttackerLogic_State
+@enduml

@@ -1,15 +1,20 @@
 @startuml PlayerLogic
 state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
+  state "Attacking" as Nevergreen_PlayerLogic_State_Attacking
   state "Idle" as Nevergreen_PlayerLogic_State_Idle
   state "Moving" as Nevergreen_PlayerLogic_State_Moving
 }
 
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosition
+Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Attacking : Attack
+Nevergreen_PlayerLogic_State_Attacking --> Nevergreen_PlayerLogic_State_Attacking : AnimationFinished
+Nevergreen_PlayerLogic_State_Attacking --> Nevergreen_PlayerLogic_State_Idle : AnimationFinished
 Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Idle : Move
 Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Moving : Move
 Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Idle : Move
 Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Moving : Move
 
+Nevergreen_PlayerLogic_State_Attacking : OnEnter → AnimationUpdated, Attacked
 Nevergreen_PlayerLogic_State_Idle : OnEnter → AnimationUpdated
 Nevergreen_PlayerLogic_State_Moving : OnEnter → AnimationUpdated
 Nevergreen_PlayerLogic_State_Moving : OnMove → FlipSprite, VelocityUpdated

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x4fa1q0yolow"
-path="res://.godot/imported/enemy_broodmother.png-12ffb1d20e1a390f9ab7056785c93742.ctex"
+uid="uid://c5wmrgtnx1isa"
+path="res://.godot/imported/FX.png-135e6f675f6f6d4347de4abc5fe45f5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/enemy/enemy_broodmother.png"
-dest_files=["res://.godot/imported/enemy_broodmother.png-12ffb1d20e1a390f9ab7056785c93742.ctex"]
+source_file="res://src/attacker/FX.png"
+dest_files=["res://.godot/imported/FX.png-135e6f675f6f6d4347de4abc5fe45f5d.ctex"]
 
 [params]
 

@@ -5,9 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://gnfeiowom8ok" path="res://src/main_menu/MainMenu.tscn" id="3_juyav"]
 [ext_resource type="PackedScene" uid="uid://bfxhx3gxw1vm2" path="res://src/state_debug/StateDebug.tscn" id="4_ul32o"]
 
-[sub_resource type="Animation" id="Animation_gx0jh"]
-resource_name = "fade_out"
-length = 0.3
+[sub_resource type="Animation" id="Animation_3o22p"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,10 +14,10 @@ tracks/0/path = NodePath("UI/Fadeout:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_a4rk1"]
@@ -37,8 +36,9 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_3o22p"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_gx0jh"]
+resource_name = "fade_out"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +46,10 @@ tracks/0/path = NodePath("UI/Fadeout:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05mnn"]
