@@ -14,23 +14,18 @@ public partial class MainMenu : Control, IMainMenu {
   #endregion
 
   #region Nodes
-  [Node]
-  private ITextureRect Background { get; set; } = default!;
-  [Node]
-  private IButton StartGameButton { get; set; } = default!;
-  [Node]
-  private IButton OptionsButton { get; set; } = default!;
-  [Node]
-  private IButton CreditsButton { get; set; } = default!;
-  [Node]
-  private IButton QuitButton { get; set; } = default!;
+  [Node] private ITextureRect Background { get; set; } = default!;
+  [Node] private IButton StartGameButton { get; set; } = default!;
+  [Node] private IButton OptionsButton { get; set; } = default!;
+  [Node] private IButton CreditsButton { get; set; } = default!;
+  [Node] private IButton QuitButton { get; set; } = default!;
   #endregion
 
   #region Provisions
   #endregion
 
   #region Dependencies
-  [Dependency] IAppRepo AppRepo => this.DependOn<IAppRepo>();
+  [Dependency] private IAppRepo AppRepo => this.DependOn<IAppRepo>();
   #endregion
 
   #region State
@@ -39,7 +34,7 @@ public partial class MainMenu : Control, IMainMenu {
   #region Dependency Lifecycle
   public void Setup() { }
   public void OnResolved() {
-
+    StartGameButton.Pressed += () => Visible = false;
     QuitButton.Pressed += AppRepo.RequestQuitApp;
   }
   #endregion
