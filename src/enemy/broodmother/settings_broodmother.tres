@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemySettings" load_steps=2 format=3 uid="uid://dhvb6n6k8r202"]
+
+[ext_resource type="Script" path="res://src/enemy/EnemySettings.cs" id="1_olfkm"]
+
+[resource]
+script = ExtResource("1_olfkm")
+Health = 5
+Speed = 50
+Damage = 2

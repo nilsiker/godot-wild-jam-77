@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwmmt8orgaa8b"]
+
+[ext_resource type="Script" path="res://src/enemy/broodmother/Spit.cs" id="1_fjhyq"]
+[ext_resource type="PackedScene" uid="uid://cvo4ln7ipydcu" path="res://src/enemy/broodmother/SpitExplosion.tscn" id="2_x1itk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exdv8"]
+
+[node name="Spit" type="Node2D"]
+script = ExtResource("1_fjhyq")
+
+[node name="Model" type="Sprite2D" parent="."]
+
+[node name="SprayParticles" type="CPUParticles2D" parent="."]
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+
+[node name="SpitExplosion" parent="." instance=ExtResource("2_x1itk")]
+visible = false
+
+[node name="Area" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_exdv8")

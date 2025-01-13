@@ -1,0 +1,23 @@
+@startuml EnemyLogic
+state "EnemyLogic State" as Nevergreen_EnemyLogic_State {
+  state "Alive" as Nevergreen_EnemyLogic_State_Alive {
+    state "Aggroed" as Nevergreen_EnemyLogic_State_Alive_Aggroed
+    state "Wandering" as Nevergreen_EnemyLogic_State_Alive_Wandering
+  }
+  state "Dead" as Nevergreen_EnemyLogic_State_Dead
+}
+
+Nevergreen_EnemyLogic_State_Alive --> Nevergreen_EnemyLogic_State_Alive : Damage
+Nevergreen_EnemyLogic_State_Alive --> Nevergreen_EnemyLogic_State_Dead : Damage
+Nevergreen_EnemyLogic_State_Alive_Aggroed --> Nevergreen_EnemyLogic_State_Alive_Aggroed : Move
+Nevergreen_EnemyLogic_State_Alive_Wandering --> Nevergreen_EnemyLogic_State_Alive_Aggroed : PlayerInRange
+Nevergreen_EnemyLogic_State_Dead --> Nevergreen_EnemyLogic_State_Dead : AnimationFinished
+
+Nevergreen_EnemyLogic_State_Alive : OnDamage → Damaged, ForceApplied
+Nevergreen_EnemyLogic_State_Alive_Aggroed : OnMove → ForceApplied
+Nevergreen_EnemyLogic_State_Alive_Aggroed : OnPlayerGlobalPositionSync() → PlayerTrackedAt
+Nevergreen_EnemyLogic_State_Dead : OnAnimationFinished → Died
+Nevergreen_EnemyLogic_State_Dead : OnEnter → AnimationUpdated
+
+[*] --> Nevergreen_EnemyLogic_State_Alive_Wandering
+@enduml

@@ -9,7 +9,8 @@
 radius = 8.0
 
 [sub_resource type="Animation" id="Animation_ttrln"]
-length = 0.7
+length = 0.55
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,10 +18,27 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56),
+"times": PackedFloat32Array(0, 0.18, 0.3, 0.42, 0.54),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [9, 10, 11, 12, 12]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PlayerModel/..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.18, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"StartHitting"
+}, {
+"args": [],
+"method": &"StopHitting"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6te0l"]
@@ -117,8 +135,8 @@ _data = {
 }
 
 [node name="Player" type="RigidBody2D"]
-position = Vector2(1, 0)
 gravity_scale = 0.0
+lock_rotation = true
 linear_damp = 10.0
 script = ExtResource("1_0m8kc")
 
@@ -128,11 +146,12 @@ shape = SubResource("CircleShape2D_4nwmd")
 [node name="PlayerModel" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+rotation = 0.00371415
 texture = ExtResource("4_hkctq")
 offset = Vector2(0, -15)
 hframes = 6
 vframes = 5
-frame = 9
+frame = 10
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -150,7 +169,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://src/player/art/player.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "f54963ecf661a85bc259cbfa40c61244"
+metadata/_aseprite_wizard_source_file_hash_ = "e6909ce3c02a01ea51558805f5201f2e"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -165,5 +184,5 @@ pitch_scale = 1.5
 
 [node name="Attacker" parent="." instance=ExtResource("4_lb4cf")]
 unique_name_in_owner = true
-show_behind_parent = true
-position = Vector2(0, -6)
+z_index = 1
+position = Vector2(0, -9)

@@ -6,10 +6,13 @@ using Chickensoft.AutoInject;
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
 using System;
+using Nevergreen.Traits;
+
 
 public interface IAttacker : IArea2D {
   public void Attack(Vector2 direction);
   public void SetActive(bool active);
+  public void HandleNodeEntered(Node node);
 }
 
 
@@ -19,7 +22,7 @@ public partial class Attacker : Area2D, IAttacker {
   #endregion
 
   #region Nodes
-  [Node] IAnimatedSprite2D FX { get; set; } = default!;
+  [Node] private IAnimatedSprite2D FX { get; set; } = default!;
   #endregion
 
   #region Provisions
@@ -51,6 +54,10 @@ public partial class Attacker : Area2D, IAttacker {
   public void OnReady() {
     SetProcess(true);
     SetPhysicsProcess(true);
+
+    BodyEntered += OnBodyEntered;
+    AreaEntered += OnAreaEntered;
+    Monitoring = false;
   }
 
   public void OnProcess(double delta) { }
@@ -64,13 +71,38 @@ public partial class Attacker : Area2D, IAttacker {
 
   #endregion
 
-  #region Input Callbacks
+  #region Signal Handlers
+  private void OnBodyEntered(Node2D body) => HandleNodeEntered(body);
+  private void OnAreaEntered(Area2D area) => HandleNodeEntered(area);
+  #endregion
+
+  #region IAttacker
   public void Attack(Vector2 direction) {
-    GlobalRotation = direction.Angle() + ((float)Math.PI / 2.0f);
+    var targetAngle = direction.Angle() + ((float)Math.PI / 2.0f);
+    // NOTE roundabout way to fix the FX anim. It works, but is really messy.
+    // If this turns into a problem, give this a proper solution
+    if (targetAngle is < 0 or > (float)Math.PI) {
+      targetAngle += (float)Math.PI;
+      var scale = GlobalScale;
+      scale.X = -1;
+      GlobalScale = scale;
+    }
+    else {
+      var scale = GlobalScale;
+      scale.X = 1;
+      GlobalScale = scale;
+    }
+    GlobalRotation = targetAngle;
     FX.Play("attack");
   }
 
   public void SetActive(bool active) => Monitoring = active;
+
+  public void HandleNodeEntered(Node node) {
+    if (node is IDamageable damageable) {
+      damageable.Damage(1, Vector2.FromAngle(GlobalRotation - ((float)Math.PI / 2))); // TODO make the damage amount configurable.
+    }
+  }
   #endregion
 
   #region Output Callbacks

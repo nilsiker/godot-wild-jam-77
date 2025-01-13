@@ -1,0 +1,4 @@
+@startuml SpitLogic
+state "SpitLogic State" as SpitLogic_State
+[*] --> SpitLogic_State
+@enduml

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
 [ext_resource type="Texture2D" uid="uid://d43sw60ib1iq" path="res://icon.png" id="2_tglgq"]
-[ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/Enemy.tscn" id="4_nqd2y"]
-[ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/Larvae.tscn" id="5_kag1h"]
+[ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/broodmother/Broodmother.tscn" id="4_nqd2y"]
+[ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/larva/Larva.tscn" id="5_kag1h"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -31,7 +31,7 @@ texture = ExtResource("2_tglgq")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
 
-[node name="Enemy" parent="." instance=ExtResource("4_nqd2y")]
+[node name="Broodmother" parent="." instance=ExtResource("4_nqd2y")]
 position = Vector2(110, -70)
 
 [node name="Larvae" parent="." instance=ExtResource("5_kag1h")]

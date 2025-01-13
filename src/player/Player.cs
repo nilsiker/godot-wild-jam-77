@@ -4,9 +4,9 @@ using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
+using Nevergreen.Traits;
 
-
-public interface IPlayer : IRigidBody2D, IStateDebugInfo {
+public interface IPlayer : IRigidBody2D, IStateDebugInfo, IDamageable {
 }
 
 [Meta(typeof(IAutoNode))]
@@ -33,10 +33,12 @@ public partial class Player : RigidBody2D, IPlayer {
   private PlayerLogic.IBinding Binding { get; set; } = default!;
   #endregion
 
-  #region IStateDebugInfo
+  #region IPlayer
+  public void Damage(int amount, Vector2 direction) => Logic.Input(new PlayerLogic.Input.Damage(amount, direction));
   string IStateDebugInfo.Name => Name;
   public string State => Logic.Value.GetType().Name;
   #endregion
+
 
   #region Dependency Lifecycle
   public void Setup() => Logic = new();
@@ -52,7 +54,9 @@ public partial class Player : RigidBody2D, IPlayer {
     ).Handle(
       (in PlayerLogic.Output.FlipSprite output) => OnOutputFlipSprite(output.Flip)
     ).Handle(
-      (in PlayerLogic.Output.Attacked output) => OnOutputAttacked(output.Direction)
+      (in PlayerLogic.Output.StartAttacking output) => OnOutputStartAttacking(output.Direction)
+    ).Handle(
+      (in PlayerLogic.Output.SetHitting output) => OnOutputSetHitting(output.IsHitting)
     );
 
     Logic.Set(GameRepo);
@@ -90,8 +94,6 @@ public partial class Player : RigidBody2D, IPlayer {
   }
 
   public override void _UnhandledInput(InputEvent @event) {
-    if (@event is InputEventMouseMotion motion) {
-    }
     if (@event.IsActionPressed(Inputs.Attack)) {
       var direction = GlobalPosition.DirectionTo(GetGlobalMousePosition());
       Logic.Input(new PlayerLogic.Input.Attack(direction));
@@ -100,6 +102,8 @@ public partial class Player : RigidBody2D, IPlayer {
   #endregion
 
   #region Input Callbacks
+  private void StartHitting() => Logic.Input(new PlayerLogic.Input.UpdateHitting(true));
+  private void StopHitting() => Logic.Input(new PlayerLogic.Input.UpdateHitting(false));
   private void OnAnimationFinished(StringName animName) => Logic.Input(new PlayerLogic.Input.AnimationFinished(animName));
   private void Move(Vector2 direction) => Logic.Input(new PlayerLogic.Input.Move(direction));
   #endregion
@@ -115,9 +119,7 @@ public partial class Player : RigidBody2D, IPlayer {
   }
   private void OnOutputAnimationUpdated(StringName animation) => AnimationPlayer.Play(animation);
   private void OnOutputFlipSprite(bool flip) => PlayerModel.FlipH = flip;
-  private void OnOutputAttacked(Vector2 direction) {
-    Attacker.Attack(direction);
-    Attacker.SetActive(true);
-  }
+  private void OnOutputStartAttacking(Vector2 direction) => Attacker.Attack(direction);
+  private void OnOutputSetHitting(bool isHitting) => Attacker.SetActive(isHitting);
   #endregion
 }

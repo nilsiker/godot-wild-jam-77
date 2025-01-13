@@ -22,17 +22,20 @@ public partial class PlayerLogic
 
   public static class Input {
     public record struct AnimationFinished(StringName Animation);
+    public record struct UpdateHitting(bool IsHitting);
     public record struct UpdateGlobalPosition(Vector2 GlobalPosition);
     public record struct Aim(Vector2 Direction);
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
-    public record struct Damage(float Amount); // TODO maybe int?
+    public record struct Damage(int Amount, Vector2 Direction);
   }
 
   public static class Output {
     public record struct ForceApplied(Vector2 Force, bool IsImpulse);
-    public record struct Attacked(Vector2 Direction);
-    public record struct Damaged(float Amount);
+    public record struct StartAttacking(Vector2 Direction);
+    public record struct FinishedAttacking(Vector2 Direction);
+    public record struct SetHitting(bool IsHitting);
+    public record struct Damaged(int Amount);
     public record struct AnimationUpdated(StringName Animation);
     public record struct FlipSprite(bool Flip);
   }
