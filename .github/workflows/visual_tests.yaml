@@ -66,6 +66,11 @@ jobs:
           # renovatebot updates the Godot SDK version.
           version: global.json
 
+      - name: 🏗️ Install addons with GodotEnv
+        run: |
+          dotnet tool install --global Chickensoft.GodotEnv
+          godotenv addons install
+
       - name: 🧑‍🔬 Generate .NET Bindings
         run: godot --headless --build-solutions --quit || exit 0
 
