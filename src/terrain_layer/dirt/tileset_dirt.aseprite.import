@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://dva7jxqvking0"
+path="res://.godot/imported/tileset_dirt.aseprite-41224f76502783c967d2a2fe897dcf0a.res"
+
+[deps]
+
+source_file="res://src/terrain_layer/dirt/tileset_dirt.aseprite"
+dest_files=["res://.godot/imported/tileset_dirt.aseprite-41224f76502783c967d2a2fe897dcf0a.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

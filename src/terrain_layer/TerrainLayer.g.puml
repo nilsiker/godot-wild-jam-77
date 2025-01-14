@@ -1,0 +1,4 @@
+@startuml Logic
+state "Logic State" as Nevergreen_Logic_State
+[*] --> Nevergreen_Logic_State
+@enduml

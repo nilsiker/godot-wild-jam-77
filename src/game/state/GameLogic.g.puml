@@ -1,0 +1,13 @@
+@startuml GameLogic
+state "GameLogic State" as Nevergreen_GameLogic_State {
+  state "ChangingRoom" as Nevergreen_GameLogic_State_ChangingRoom
+  state "InRoom" as Nevergreen_GameLogic_State_InRoom
+}
+
+Nevergreen_GameLogic_State_ChangingRoom --> Nevergreen_GameLogic_State_InRoom : RoomResolved
+Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_ChangingRoom : TransitionRoom
+
+Nevergreen_GameLogic_State_ChangingRoom : OnEnter → RoomTransitionRequested
+
+[*] --> Nevergreen_GameLogic_State_InRoom
+@enduml

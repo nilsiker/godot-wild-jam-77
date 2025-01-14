@@ -13,3 +13,6 @@ obj/
 *.translation
 
 addons
+addons/*
+!addons/.editorconfig
+.addons/*

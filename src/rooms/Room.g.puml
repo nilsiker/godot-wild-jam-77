@@ -1,0 +1,4 @@
+@startuml RoomLogic
+state "RoomLogic State" as Nevergreen_RoomLogic_State
+[*] --> Nevergreen_RoomLogic_State
+@enduml

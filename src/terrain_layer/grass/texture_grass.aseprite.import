@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://qwv34q1nmoc6"
+path="res://.godot/imported/texture_grass.aseprite-da6fff06f165765bf53584dc585bc7f5.res"
+
+[deps]
+
+source_file="res://src/terrain_layer/grass/texture_grass.aseprite"
+dest_files=["res://.godot/imported/texture_grass.aseprite-da6fff06f165765bf53584dc585bc7f5.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

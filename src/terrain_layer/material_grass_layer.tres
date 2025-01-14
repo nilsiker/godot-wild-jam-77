@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c6qeehx41uolp"]
+
+[ext_resource type="Shader" path="res://src/terrain_layer/terrain_layer.gdshader" id="1_8h20s"]
+[ext_resource type="Texture2D" uid="uid://ci5yn7ekxy8qf" path="res://src/terrain_layer/grass/texture_grass.png" id="2_u4anw"]
+
+[resource]
+shader = ExtResource("1_8h20s")
+shader_parameter/scale = Vector2(64, 64)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/mask_color = Color(1, 0, 0, 1)
+shader_parameter/color_match_threshold = 0.8
+shader_parameter/fill_texture = ExtResource("2_u4anw")

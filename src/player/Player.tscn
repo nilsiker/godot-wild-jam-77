@@ -137,7 +137,7 @@ _data = {
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
 lock_rotation = true
-linear_damp = 10.0
+linear_damp = 14.0
 script = ExtResource("1_0m8kc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,44 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=5 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
-[ext_resource type="Texture2D" uid="uid://d43sw60ib1iq" path="res://icon.png" id="2_tglgq"]
-[ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/broodmother/Broodmother.tscn" id="4_nqd2y"]
-[ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/larva/Larva.tscn" id="5_kag1h"]
+[ext_resource type="PackedScene" uid="uid://dcs5fh6nj0sv3" path="res://src/rooms/glade/glade.tscn" id="2_rupvg"]
+[ext_resource type="PackedScene" uid="uid://cguo6kvae15em" path="res://src/rooms/stump/RoomStump.tscn" id="3_ugl7u"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_17mmo")
+_gladeScene = ExtResource("2_rupvg")
 
-[node name="DebugBG" type="ColorRect" parent="."]
-offset_left = -399.0
-offset_top = -286.0
-offset_right = 461.0
-offset_bottom = 323.0
-mouse_filter = 2
-color = Color(0.176783, 0.166057, 0.20493, 1)
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.237539, 0.237539, 0.237539, 1)
-offset_left = -249.0
-offset_top = -235.0
-offset_right = 263.0
-offset_bottom = 277.0
-texture = ExtResource("2_tglgq")
-
-[node name="Player" parent="." instance=ExtResource("2_17f0c")]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-6, -23)
 zoom = Vector2(3, 3)
 
-[node name="Broodmother" parent="." instance=ExtResource("4_nqd2y")]
-position = Vector2(110, -70)
+[node name="Player" parent="." instance=ExtResource("2_17f0c")]
+position = Vector2(-19, -4)
 
-[node name="Larvae" parent="." instance=ExtResource("5_kag1h")]
-position = Vector2(128, -16)
+[node name="Room" type="Node" parent="."]
+unique_name_in_owner = true
 
-[node name="Larvae2" parent="." instance=ExtResource("5_kag1h")]
-position = Vector2(44, -66)
-
-[node name="Larvae3" parent="." instance=ExtResource("5_kag1h")]
-position = Vector2(66, -24)
+[node name="RoomStump" parent="Room" instance=ExtResource("3_ugl7u")]

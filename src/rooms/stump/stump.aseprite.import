@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://dk30l4kjehn4q"
+path="res://.godot/imported/stump.aseprite-ccba55a32629410de756d8fc118e2312.res"
+
+[deps]
+
+source_file="res://src/rooms/stump/stump.aseprite"
+dest_files=["res://.godot/imported/stump.aseprite-ccba55a32629410de756d8fc118e2312.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false
