@@ -40,6 +40,7 @@ jobs:
           cd $PROJECT_PATH
           dotnet tool install --global Chickensoft.GodotEnv
           godotenv addons install
+          godot --headless --import
           godot --headless --verbose --export-release ${{matrix.platform}} "$EXPORT_DIR/${{matrix.platform}}/$EXPORT_NAME.exe"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

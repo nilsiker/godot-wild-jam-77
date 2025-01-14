@@ -71,6 +71,9 @@ jobs:
           dotnet tool install --global Chickensoft.GodotEnv
           godotenv addons install
 
+      - name: 📦 Godot Import
+        run: godot --headless --import
+
       - name: 🧑‍🔬 Generate .NET Bindings
         run: godot --headless --build-solutions --quit || exit 0
 
