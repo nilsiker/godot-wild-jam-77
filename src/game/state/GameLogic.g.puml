@@ -4,6 +4,7 @@ state "GameLogic State" as Nevergreen_GameLogic_State {
   state "InRoom" as Nevergreen_GameLogic_State_InRoom
 }
 
+Nevergreen_GameLogic_State --> Nevergreen_GameLogic_State : TeleportPlayerTo
 Nevergreen_GameLogic_State_ChangingRoom --> Nevergreen_GameLogic_State_InRoom : RoomResolved
 Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_ChangingRoom : TransitionRoom
 

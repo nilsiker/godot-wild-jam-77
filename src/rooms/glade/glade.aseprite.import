@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ca3w665jpc1yu"
+path="res://.godot/imported/glade.aseprite-16afafba8409fcdcd4ac8e6a4adf6c1b.res"
+
+[deps]
+
+source_file="res://src/rooms/glade/glade.aseprite"
+dest_files=["res://.godot/imported/glade.aseprite-16afafba8409fcdcd4ac8e6a4adf6c1b.res"]
+
+[params]
+

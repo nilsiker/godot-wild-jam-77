@@ -1,13 +1,13 @@
 namespace Nevergreen;
 
 using Godot;
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
 
 public enum ERoom {
+  None,
   Stump,
   Glade,
   Forest,
@@ -20,6 +20,7 @@ public interface IRoom : INode2D { }
 [Meta(typeof(IAutoNode))]
 public partial class Room : Node2D, IRoom {
   #region Exports
+  [Export] public ERoom RoomIdentifier { get; private set; }
   #endregion
 
   #region Nodes

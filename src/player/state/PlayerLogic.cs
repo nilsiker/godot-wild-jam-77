@@ -38,5 +38,6 @@ public partial class PlayerLogic
     public record struct Damaged(int Amount);
     public record struct AnimationUpdated(StringName Animation);
     public record struct FlipSprite(bool Flip);
+    public record struct Teleport(Vector2 GlobalPosition);
   }
 }

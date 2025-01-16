@@ -13,11 +13,13 @@ public interface IGameRepo : IDisposable {
   public event Action<EGameOverReason>? GameOver;
   public event Action<ERoom>? RoomTransitionRequested;
   public event Action? RoomResolved;
+  public event Action<Vector2>? PlayerTeleportationRequested;
 
   public IAutoProp<Vector2> PlayerGlobalPosition { get; }
   public void UpdatePlayerGlobalPosition(Vector2 playerGlobalPosition);
   public void RequestRoomTransition(ERoom room);
   public void OnRoomResolved();
+  public void RequestPlayerTeleportation(Vector2 globalPosition);
 }
 
 public class GameRepo : IGameRepo {
@@ -25,6 +27,7 @@ public class GameRepo : IGameRepo {
   public event Action<EGameOverReason>? GameOver;
   public event Action<ERoom>? RoomTransitionRequested;
   public event Action? RoomResolved;
+  public event Action<Vector2>? PlayerTeleportationRequested;
 
 
   public IAutoProp<Vector2> PlayerGlobalPosition => _playerGlobalPosition;
@@ -38,6 +41,8 @@ public class GameRepo : IGameRepo {
   public void OnRoomResolved() =>
     RoomResolved?.Invoke();
 
+  public void RequestPlayerTeleportation(Vector2 globalPosition) =>
+    PlayerTeleportationRequested?.Invoke(globalPosition);
 
   public void Dispose() {
     _playerGlobalPosition.OnCompleted();
@@ -46,6 +51,7 @@ public class GameRepo : IGameRepo {
     GameOver = null;
     RoomTransitionRequested = null;
     RoomResolved = null;
+    PlayerTeleportationRequested = null;
 
     GC.SuppressFinalize(this);
   }

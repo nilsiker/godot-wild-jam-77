@@ -2,22 +2,17 @@
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
-[ext_resource type="PackedScene" uid="uid://dcs5fh6nj0sv3" path="res://src/rooms/glade/glade.tscn" id="2_rupvg"]
+[ext_resource type="PackedScene" uid="uid://dcs5fh6nj0sv3" path="res://src/rooms/glade/Glade.tscn" id="2_rupvg"]
 [ext_resource type="PackedScene" uid="uid://cguo6kvae15em" path="res://src/rooms/stump/RoomStump.tscn" id="3_ugl7u"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_17mmo")
+_stumpScene = ExtResource("3_ugl7u")
 _gladeScene = ExtResource("2_rupvg")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-6, -23)
-zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_17f0c")]
 position = Vector2(-19, -4)
 
 [node name="Room" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="RoomStump" parent="Room" instance=ExtResource("3_ugl7u")]

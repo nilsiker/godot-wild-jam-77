@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyydbn7jc41nw"]
+
+[ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_17pm3"]
+
+[node name="RoomHive" type="Node2D"]
+script = ExtResource("1_17pm3")

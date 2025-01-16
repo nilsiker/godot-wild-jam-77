@@ -153,16 +153,23 @@ texture = SubResource("GradientTexture2D_2w6la")
 position = Vector2(26, 77)
 rotation = 0.216278
 script = ExtResource("4_g5s6x")
-Room = 1
+Room = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GladeExitArea"]
 position = Vector2(8.45437, -6.79774)
 rotation = -0.427276
 shape = SubResource("RectangleShape2D_hv34k")
 
+[node name="PlayerEntryPosition" type="Node2D" parent="GladeExitArea"]
+position = Vector2(-2.1761, -42.5237)
+
 [node name="Fog" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_c8k30")
 position = Vector2(7, -13)
 texture = SubResource("NoiseTexture2D_v4f1i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-6, -23)
+zoom = Vector2(3, 3)
 
 [connection signal="ExitAreaEntered" from="GladeExitArea" to="." method="OnExitAreaEntered"]

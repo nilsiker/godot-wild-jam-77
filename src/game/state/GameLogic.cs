@@ -1,6 +1,8 @@
 namespace Nevergreen;
+
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
+using Godot;
 
 public interface IGameLogic : ILogicBlock<GameLogic.State>;
 
@@ -17,6 +19,7 @@ public partial class GameLogic : LogicBlock<GameLogic.State>, IGameLogic {
     public readonly record struct StartGame;
     public readonly record struct TransitionRoom(ERoom Room);
     public readonly record struct RoomResolved;
+    public readonly record struct TeleportPlayerTo(Vector2 GlobalPosition);
   }
 
   public static class Output {

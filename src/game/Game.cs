@@ -1,6 +1,7 @@
 namespace Nevergreen;
 
 using System;
+using System.Linq;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -29,6 +30,7 @@ public partial class Game : Node2D, IGame {
 
   #region Nodes
   [Node] private Node Room { get; set; } = default!;
+  private ERoom CurrentRoom { get; set; }
   #endregion
 
   #region Provisions
@@ -67,6 +69,7 @@ public partial class Game : Node2D, IGame {
     Logic.Start();
 
     AddToGroup("state_debug");
+    ChangeRoom(ERoom.Stump);
   }
   #endregion
 
@@ -81,10 +84,23 @@ public partial class Game : Node2D, IGame {
       _ => throw new NotImplementedException(),
     };
 
+    var roomNode = scene.Instantiate<Room>();
+    var entrance = roomNode.GetChildren()
+      .OfType<ExitArea>()
+      .FirstOrDefault(area => area.Room == CurrentRoom)?
+      .PlayerEntryPosition;
+
+
+
     if (Room.GetChildCount() > 0) {
       Room.GetChild(0).QueueFree();
     }
-    Room.AddChild(scene.Instantiate());
+    Room.AddChild(roomNode);
+    CurrentRoom = room;
+
+    if (entrance is not null) {
+      Logic.Input(new GameLogic.Input.TeleportPlayerTo(entrance.GlobalPosition));
+    }
   }
 
 
@@ -94,7 +110,7 @@ public partial class Game : Node2D, IGame {
 
   #region Output Callbacks
   private void SetGamePaused(bool isPaused) => GetTree().Paused = isPaused;
-  private void OnOutputRoomTransitionRequested(ERoom room) => ChangeRoom(room);
+  private void OnOutputRoomTransitionRequested(ERoom room) => CallDeferred(nameof(ChangeRoom), (int)room);
 
   #endregion
 

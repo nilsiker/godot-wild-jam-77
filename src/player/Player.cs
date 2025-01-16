@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -57,6 +58,8 @@ public partial class Player : RigidBody2D, IPlayer {
       (in PlayerLogic.Output.StartAttacking output) => OnOutputStartAttacking(output.Direction)
     ).Handle(
       (in PlayerLogic.Output.SetHitting output) => OnOutputSetHitting(output.IsHitting)
+    ).Handle(
+      (in PlayerLogic.Output.Teleport output) => OnOutputTeleport(output.GlobalPosition)
     );
 
     Logic.Set(GameRepo);
@@ -68,6 +71,7 @@ public partial class Player : RigidBody2D, IPlayer {
     Logic.Start();
   }
   #endregion
+
 
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
@@ -121,5 +125,7 @@ public partial class Player : RigidBody2D, IPlayer {
   private void OnOutputFlipSprite(bool flip) => PlayerModel.FlipH = flip;
   private void OnOutputStartAttacking(Vector2 direction) => Attacker.Attack(direction);
   private void OnOutputSetHitting(bool isHitting) => Attacker.SetActive(isHitting);
+  private void OnOutputTeleport(Vector2 globalPosition) => GlobalPosition = globalPosition;
+
   #endregion
 }
