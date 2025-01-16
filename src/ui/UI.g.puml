@@ -1,0 +1,4 @@
+@startuml UILogic
+state "UILogic State" as Nevergreen_UILogic_State
+[*] --> Nevergreen_UILogic_State
+@enduml

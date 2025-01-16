@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://gx2u23fub7uf"
+path="res://.godot/imported/tileset_roots.aseprite-c83ebe01002fffd9a8521fa38d05c1a5.res"
+
+[deps]
+
+source_file="res://src/terrain_layer/roots/tileset_roots.aseprite"
+dest_files=["res://.godot/imported/tileset_roots.aseprite-c83ebe01002fffd9a8521fa38d05c1a5.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

@@ -90,8 +90,6 @@ public partial class Game : Node2D, IGame {
       .FirstOrDefault(area => area.Room == CurrentRoom)?
       .PlayerEntryPosition;
 
-
-
     if (Room.GetChildCount() > 0) {
       Room.GetChild(0).QueueFree();
     }

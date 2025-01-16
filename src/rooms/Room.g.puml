@@ -1,4 +1,13 @@
 @startuml RoomLogic
-state "RoomLogic State" as Nevergreen_RoomLogic_State
-[*] --> Nevergreen_RoomLogic_State
+state "RoomLogic State" as Nevergreen_RoomLogic_State {
+  state "Infested" as Nevergreen_RoomLogic_State_Infested
+  state "Cleared" as Nevergreen_RoomLogic_State_Cleared
+}
+
+Nevergreen_RoomLogic_State_Infested --> Nevergreen_RoomLogic_State_Cleared : Clear
+
+Nevergreen_RoomLogic_State : OnRoomEnemyKilled() → EnemyKilled
+Nevergreen_RoomLogic_State_Cleared : OnEnter → RemoveBlockage
+
+[*] --> Nevergreen_RoomLogic_State_Infested
 @enduml

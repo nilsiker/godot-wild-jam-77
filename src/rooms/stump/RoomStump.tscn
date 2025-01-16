@@ -170,6 +170,5 @@ texture = SubResource("NoiseTexture2D_v4f1i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-6, -23)
-zoom = Vector2(3, 3)
 
 [connection signal="ExitAreaEntered" from="GladeExitArea" to="." method="OnExitAreaEntered"]

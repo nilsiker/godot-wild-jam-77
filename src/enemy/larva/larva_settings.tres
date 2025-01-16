@@ -7,3 +7,5 @@ script = ExtResource("1_uu88v")
 Health = 2
 Speed = 200
 Damage = 1
+Metamorphizes = true
+Breeds = false

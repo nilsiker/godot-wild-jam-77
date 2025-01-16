@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3lakh62dw2mr"]
+[gd_scene load_steps=5 format=3 uid="uid://b3lakh62dw2mr"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_jls0k"]
+[ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_o271d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wnna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqgc5"]
 
 [node name="RoomForest" type="Node2D"]
 script = ExtResource("1_jls0k")
+RoomIdentifier = 3
+
+[node name="ExitGlade" type="Area2D" parent="."]
+script = ExtResource("2_o271d")
+Room = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGlade"]
+shape = SubResource("RectangleShape2D_1wnna")
+
+[node name="PlayerEntryPosition" type="Node2D" parent="ExitGlade"]
+position = Vector2(25, 0)
+
+[node name="ExitTunnel" type="Area2D" parent="."]
+position = Vector2(73, 0)
+script = ExtResource("2_o271d")
+Room = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTunnel"]
+shape = SubResource("RectangleShape2D_mqgc5")
+
+[node name="PlayerEntryPosition" type="Node2D" parent="ExitTunnel"]
+position = Vector2(-23, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="ExitAreaEntered" from="ExitGlade" to="." method="OnExitAreaEntered"]
+[connection signal="ExitAreaEntered" from="ExitTunnel" to="." method="OnExitAreaEntered"]

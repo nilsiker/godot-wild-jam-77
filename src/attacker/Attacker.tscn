@@ -148,7 +148,7 @@ script = ExtResource("1_h2pdf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-0.0999985, -5.4)
-polygon = PackedVector2Array(-22, 8, -19, -4, -12, -11, -4, -14, 4, -14, 11, -11, 16, -7, 19, -2, 22, 10, 26, 3, 27, 0, 27, -11, 21, -23, 13, -30, 6, -32, -5, -32, -11, -30, -19, -23, -25, -14, -26, 0)
+polygon = PackedVector2Array(-22, 8, 0.0999985, 8.4, 22.1, 10.4, 26, 3, 27, 0, 27, -11, 21, -23, 13, -30, 6, -32, -5, -32, -11, -30, -19, -23, -25, -14, -26, 0)
 
 [node name="FX" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

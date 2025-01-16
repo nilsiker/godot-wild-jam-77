@@ -19,6 +19,7 @@ public partial class EnemyLogic
     public int Speed;
     public int Health;
     public int Damage;
+    public float TimeAggroed;
   }
 
   public static class Input {
@@ -26,13 +27,18 @@ public partial class EnemyLogic
     public record struct Move(Vector2 Direction);
     public record struct Damage(int Amount, Vector2 Direction);
     public record struct PlayerInRange;
+    public record struct Age(float Time);
+
   }
 
   public static class Output {
     public record struct AnimationUpdated(StringName AnimationName);
     public record struct PlayerTrackedAt(Vector2 GlobalPosition);
+    public record struct FlipSprite(bool Flip);
     public record struct ForceApplied(Vector2 Force, bool IsImpulse);
     public record struct Damaged(float Amount);
     public record struct Died;
+    public record struct ReplaceWithBroodmother;
+    public record struct SpawnLarva;
   }
 }

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2c08b2yx8a4g"]
+
+[ext_resource type="Script" path="res://src/blockage/Blockage.cs" id="1_ji1ge"]
+
+[node name="Blockage" type="StaticBody2D"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(319, -108)
+script = ExtResource("1_ji1ge")

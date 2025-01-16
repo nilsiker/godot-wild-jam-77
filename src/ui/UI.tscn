@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm05qjy6glxtq"]
+
+[ext_resource type="Script" path="res://src/ui/UI.cs" id="1_72cam"]
+[ext_resource type="PackedScene" uid="uid://gnfeiowom8ok" path="res://src/main_menu/MainMenu.tscn" id="1_idx0b"]
+[ext_resource type="PackedScene" uid="uid://bfxhx3gxw1vm2" path="res://src/state_debug/StateDebug.tscn" id="2_hd5fu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyj2d"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdtba"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_72cam")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_idx0b")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StateDebug" parent="." instance=ExtResource("2_hd5fu")]
+
+[node name="Fadeout" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="WinScreen" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fyj2d")
+
+[node name="Label" type="Label" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.670588, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "You defeated the hive queen"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GameOverScreen" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wdtba")
+
+[node name="Label" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.65098, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "You failed
+The forest has fallen to the infestation"
+horizontal_alignment = 1
+uppercase = true

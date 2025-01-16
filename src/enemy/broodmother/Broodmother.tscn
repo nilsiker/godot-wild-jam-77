@@ -1,21 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://wf1ljc1aox3r"]
+[gd_scene load_steps=16 format=3 uid="uid://wf1ljc1aox3r"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.cs" id="1_i0dh5"]
 [ext_resource type="Resource" uid="uid://dhvb6n6k8r202" path="res://src/enemy/broodmother/settings_broodmother.tres" id="2_b0g7x"]
 [ext_resource type="Texture2D" uid="uid://x4fa1q0yolow" path="res://src/enemy/broodmother/enemy_broodmother.png" id="2_xmbin"]
+[ext_resource type="Shape2D" uid="uid://c35yx180cbs1y" path="res://src/enemy/broodmother/collider_broodmother.tres" id="5_dujqf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpqv2"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_448ed"]
-radius = 4.0
-height = 52.0
 
 [sub_resource type="Animation" id="Animation_yes4f"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Whiteout:modulate")
+tracks/0/path = NodePath("Sprite/Whiteout:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,6 +21,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_pll8d"]
 length = 0.2
@@ -31,7 +40,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -47,7 +56,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -57,13 +66,29 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_kk5sb"]
+resource_name = "die"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_pe25m"]
 resource_name = "hit"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Whiteout:modulate")
+tracks/0/path = NodePath("Sprite/Whiteout:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +104,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -94,6 +119,7 @@ _data = {
 "RESET": SubResource("Animation_yes4f"),
 "crawl": SubResource("Animation_pll8d"),
 "default": SubResource("Animation_2uikp"),
+"die": SubResource("Animation_kk5sb"),
 "hit": SubResource("Animation_pe25m"),
 "idle": SubResource("Animation_cxs1l")
 }
@@ -109,14 +135,15 @@ interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.253333, 0.54, 0.786667)
 colors = PackedColorArray(0.403922, 0.313726, 0.309804, 1, 0.247059, 0.258824, 0.184314, 1, 0.654902, 0.588235, 0.509804, 1, 0.499951, 0, 0.0272132, 1)
 
-[node name="Broodmother" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D"]
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 5.0
 script = ExtResource("1_i0dh5")
 _settings = ExtResource("2_b0g7x")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 clip_children = 2
 texture_filter = 1
 position = Vector2(0, 2)
@@ -141,7 +168,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "3e79586a256fed641e65f54389e65bb0"
 
-[node name="Whiteout" type="ColorRect" parent="Sprite2D"]
+[node name="Whiteout" type="ColorRect" parent="Sprite"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_rpqv2")
 offset_left = -33.0
@@ -152,7 +179,7 @@ mouse_filter = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_448ed")
+shape = ExtResource("5_dujqf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

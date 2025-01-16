@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -14,8 +15,11 @@ public partial class Enemy : RigidBody2D, IEnemy {
   #region Exports
   [Export] private EnemySettings _settings = default!;
   #endregion
+  private static PackedScene BroodmotherScene => GD.Load<PackedScene>("res://src/enemy/broodmother/Broodmother.tscn");
+  private static PackedScene LarvaScene => GD.Load<PackedScene>("res://src/enemy/larva/Larva.tscn");
 
   #region Nodes
+  [Node] private Sprite2D Sprite { get; set; } = default!;
   [Node] private AnimationPlayer AnimationPlayer { get; set; } = default!;
   [Node] private CpuParticles2D DamageSplash { get; set; } = default!;
   [Node] private Area2D AggroArea { get; set; } = default!;
@@ -26,6 +30,7 @@ public partial class Enemy : RigidBody2D, IEnemy {
 
   #region Dependencies
   [Dependency] private IGameRepo GameRepo => this.DependOn<IGameRepo>();
+  [Dependency] private IRoomRepo RoomRepo => this.DependOn<IRoomRepo>();
   #endregion
 
   #region State
@@ -60,22 +65,32 @@ public partial class Enemy : RigidBody2D, IEnemy {
         OnOutputAnimationUpdated(output.AnimationName)
     ).Handle(
       (in EnemyLogic.Output.Died _) => OnOutputDied()
+    )
+    .Handle(
+      (in EnemyLogic.Output.ReplaceWithBroodmother _) => OnOutputReplaceWithBroodmother()
+    )
+    .Handle(
+      (in EnemyLogic.Output.SpawnLarva _) => OnOutputSpawnLarva()
+    )
+    .Handle(
+      (in EnemyLogic.Output.FlipSprite output) => OnOutputFlipSprite(output.Flip)
     );
 
     Logic.Set(GameRepo);
+    Logic.Set(RoomRepo);
+
     Logic.Set(new EnemyLogic.Data { // NOTE is this reasonable?
       Health = _settings.Health,
       Speed = _settings.Speed,
       Damage = _settings.Damage
     });
 
+    Logic.Set(_settings as IEnemySettings);
+
     AddToGroup("state_debug");
     Logic.Start();
   }
   #endregion
-
-
-
 
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
@@ -89,7 +104,9 @@ public partial class Enemy : RigidBody2D, IEnemy {
     AnimationPlayer.AnimationFinished += OnAnimationFinished;
   }
 
-  public void OnProcess(double delta) { }
+  public void OnProcess(double delta) =>
+    Logic?.Input(new EnemyLogic.Input.Age((float)delta));
+
 
   public void OnPhysicsProcess(double delta) {
     var direction = GlobalPosition.DirectionTo(PlayerPosition);
@@ -141,8 +158,27 @@ public partial class Enemy : RigidBody2D, IEnemy {
     }
   }
   private void OnOutputAnimationUpdated(StringName animationName) => AnimationPlayer.Play(animationName);
+
   private void OnOutputDied() => QueueFree();
+
+  private void OnOutputReplaceWithBroodmother() {
+    var parent = GetParent();
+    var broodmother = BroodmotherScene.Instantiate<Enemy>();
+    broodmother.GlobalPosition = GlobalPosition;
+
+    parent.AddChild(broodmother);
+    QueueFree();
+  }
+
+  private void OnOutputSpawnLarva() {
+    var larva = LarvaScene.Instantiate<Enemy>();
+    larva.GlobalPosition = GlobalPosition + (GlobalPosition.DirectionTo(PlayerPosition) * 10);
+    GetParent().AddChild(larva);
+  }
+
+  private void OnOutputFlipSprite(bool flip) => Sprite.FlipH = flip;
   #endregion
+
 
   #region IDamageable
   public void Damage(int amount, Vector2 direction) => Logic.Input(new EnemyLogic.Input.Damage(amount, direction));

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://38hwqcdyv8q8"
+path="res://.godot/imported/Texture_roots.aseprite-fed86b9e746c6f104df6bfa8acc8ea32.res"
+
+[deps]
+
+source_file="res://src/tree/Texture_roots.aseprite"
+dest_files=["res://.godot/imported/Texture_roots.aseprite-fed86b9e746c6f104df6bfa8acc8ea32.res"]
+
+[params]
+
