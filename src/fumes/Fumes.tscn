@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfhb3p4mpq0wq"]
+
+[ext_resource type="Script" path="res://src/fumes/Fumes.cs" id="1_vaov2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uhj6i"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_2yf4g"]
+colors = PackedColorArray(1, 1, 1, 1, 0.348496, 0.0343899, 0.34358, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_50d68"]
+noise_type = 5
+offset = Vector3(0, 0, -22.7)
+fractal_type = 2
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w0ld0"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_2yf4g")
+noise = SubResource("FastNoiseLite_50d68")
+
+[node name="Fumes" type="Sprite2D"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_uhj6i")
+texture = SubResource("NoiseTexture2D_w0ld0")
+script = ExtResource("1_vaov2")

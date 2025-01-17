@@ -23,6 +23,8 @@ public partial class AppLogic
     public record struct FadeOutFinished;
 
     public record struct GameReady;
+    public record struct StartIntro;
+    public record struct StartOutro;
   }
 
   public static class Output {

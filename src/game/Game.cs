@@ -30,6 +30,7 @@ public partial class Game : Node2D, IGame {
 
   #region Nodes
   [Node] private Node Room { get; set; } = default!;
+  [Node] private AnimationPlayer CutscenePlayer { get; set; } = default!;
   private ERoom CurrentRoom { get; set; }
   #endregion
 
@@ -46,8 +47,6 @@ public partial class Game : Node2D, IGame {
   public string State => Logic.Value.GetType().Name;
   #endregion
 
-
-
   #region Dependency Lifecycle
   public void Setup() => Logic = new GameLogic();
 
@@ -62,15 +61,17 @@ public partial class Game : Node2D, IGame {
       .Handle((in GameLogic.Output.SetPauseMode output)
         => SetGamePaused(output.IsPaused))
       .Handle((in GameLogic.Output.RoomTransitionRequested output)
-        => OnOutputRoomTransitionRequested(output.Room));
+        => OnOutputRoomTransitionRequested(output.Room))
+      .Handle((in GameLogic.Output.StartIntro _)
+        => OnOutputStartIntro());
 
 
     this.Provide();
     Logic.Start();
 
     AddToGroup("state_debug");
-    ChangeRoom(ERoom.Stump);
   }
+
   #endregion
 
 
@@ -101,19 +102,28 @@ public partial class Game : Node2D, IGame {
     }
   }
 
-
   #region Input Callbacks
   public void StartGame() => Logic.Input(new GameLogic.Input.StartGame());
+
+  private void OnCutscenePlayerAnimationFinished(StringName animName) =>
+    Logic.Input(new GameLogic.Input.CutsceneFinished());
   #endregion
 
   #region Output Callbacks
   private void SetGamePaused(bool isPaused) => GetTree().Paused = isPaused;
-  private void OnOutputRoomTransitionRequested(ERoom room) => CallDeferred(nameof(ChangeRoom), (int)room);
+  private void OnOutputRoomTransitionRequested(ERoom room) =>
+    CallDeferred(nameof(ChangeRoom), (int)room);
+
+  private void OnOutputStartIntro() => CutscenePlayer.Play("intro");
 
   #endregion
 
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
+
+  public override void _Ready() =>
+    CutscenePlayer.AnimationFinished += OnCutscenePlayerAnimationFinished;
+
 
   public override void _Input(InputEvent @event) {
     if (Input.IsActionJustPressed(Inputs.Esc)) {

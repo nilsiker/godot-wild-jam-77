@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=13 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
@@ -7,8 +7,145 @@
 [ext_resource type="PackedScene" uid="uid://b3lakh62dw2mr" path="res://src/rooms/forest/Forest.tscn" id="4_mgual"]
 [ext_resource type="PackedScene" uid="uid://c2sje1deol08o" path="res://src/rooms/tunnel/Tunnel.tscn" id="5_ickkj"]
 [ext_resource type="PackedScene" uid="uid://cyydbn7jc41nw" path="res://src/rooms/hive/Hive.tscn" id="6_ghg5h"]
+[ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="9_vqvpx"]
+
+[sub_resource type="Animation" id="Animation_68iwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("An evil stirs:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("The forest is in danger:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Somewhere, a warden awakens___:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fumes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_muql6"]
+resource_name = "start"
+length = 17.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("An evil stirs:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.36667, 2.4, 4.86667, 5.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("The forest is in danger:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.76667, 7.46667, 10.6, 11.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Somewhere, a warden awakens___:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 12.7333, 13.7333, 17.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fumes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.86667, 7.36667, 10.7, 11.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0156863), Color(1, 1, 1, 0.0235294), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 16.9667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl4if"]
+_data = {
+"RESET": SubResource("Animation_68iwx"),
+"intro": SubResource("Animation_muql6")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dfxpp"]
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 y_sort_enabled = true
 script = ExtResource("1_17mmo")
 _stumpScene = ExtResource("3_ugl7u")
@@ -17,8 +154,92 @@ _forestScene = ExtResource("4_mgual")
 _tunnelScene = ExtResource("5_ickkj")
 _hiveScene = ExtResource("6_ghg5h")
 
+[node name="CutscenePlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+root_node = NodePath("Intro")
+libraries = {
+"": SubResource("AnimationLibrary_kl4if")
+}
+
+[node name="Intro" type="Control" parent="CutscenePlayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CutscenePlayer/Intro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="An evil stirs" type="Label" parent="CutscenePlayer/Intro"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "An evil stirs"
+visible_characters_behavior = 1
+
+[node name="The forest is in danger" type="Label" parent="CutscenePlayer/Intro"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "The forest is in danger"
+visible_characters_behavior = 1
+
+[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/Intro"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Somewhere, a warden awakens"
+visible_characters_behavior = 1
+
+[node name="Fumes" parent="CutscenePlayer/Intro" instance=ExtResource("9_vqvpx")]
+z_index = 2
+material = SubResource("CanvasItemMaterial_dfxpp")
+position = Vector2(241, 136)
+_speed = 50.0
+
 [node name="Player" parent="." instance=ExtResource("2_17f0c")]
 position = Vector2(-19, -4)
 
-[node name="Room" type="Node" parent="."]
+[node name="Room" type="Node2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

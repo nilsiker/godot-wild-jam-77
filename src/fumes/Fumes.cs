@@ -1,18 +1,17 @@
 namespace Nevergreen;
 
 using Godot;
-using System;
 
 public partial class Fumes : Sprite2D {
   // Called every frame. 'delta' is the elapsed time since the previous frame.
 
-  FastNoiseLite _noise;
+  [Export] private float _speed = 1f;
+  private FastNoiseLite _noise = default!;
   public override void _Ready() => _noise = (FastNoiseLite)((NoiseTexture2D)Texture).Noise;
 
   public override void _Process(double delta) {
     var offset = _noise.Offset;
-    offset.Z += (float)delta;
+    offset.Z += (float)delta * _speed;
     _noise.Offset = offset;
-    GD.Print(_noise.Offset);
   }
 }

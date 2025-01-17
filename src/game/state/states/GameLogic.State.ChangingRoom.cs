@@ -6,13 +6,27 @@ public partial class GameLogic {
   public abstract partial record State {
     public partial record ChangingRoom : State, IGet<Input.RoomResolved> {
       public ChangingRoom() {
-        OnAttach(() => Get<IGameRepo>().RoomResolved += OnRoomResolved);
-        OnDetach(() => Get<IGameRepo>().RoomResolved -= OnRoomResolved);
+        OnAttach(() => {
+          Get<IGameRepo>().RoomResolved += OnRoomResolved;
+          Get<IAppRepo>().FadeOutFinished += OnFadeOutFinished;
+        });
+        OnDetach(() => {
+          Get<IGameRepo>().RoomResolved -= OnRoomResolved;
+          Get<IAppRepo>().FadeOutFinished -= OnFadeOutFinished;
+        });
 
-        this.OnEnter(() => Output(new Output.RoomTransitionRequested(Get<Data>().Room)));
+        this.OnEnter(() => {
+          Get<IAppRepo>().RequestFadeOut();
+          Output(new Output.SetPauseMode(true));
+        });
       }
 
-      public Transition On(in Input.RoomResolved input) => To<InRoom>();
+      private void OnFadeOutFinished() =>
+        Output(new Output.RoomTransitionRequested(Get<Data>().Room));
+      public Transition On(in Input.RoomResolved input) {
+        Get<IAppRepo>().RequestFadeIn();
+        return To<InRoom>();
+      }
       private void OnRoomResolved() => Input(new Input.RoomResolved());
     }
   }

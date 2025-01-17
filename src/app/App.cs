@@ -28,14 +28,11 @@ public partial class App : Node, IApp {
   #endregion
 
   #region Nodes
-  [Node]
   private IGame Game { get; set; } = default!;
 
-  [Node]
-  private Control MainMenu { get; set; } = default!;
+  [Node] private Control MainMenu { get; set; } = default!;
 
-  [Node]
-  private AnimationPlayer AnimationPlayer { get; set; } = default!;
+  [Node] private AnimationPlayer AnimationPlayer { get; set; } = default!;
 
   #region IStateDebugInfo
   string IStateDebugInfo.Name => Name;
@@ -107,8 +104,9 @@ public partial class App : Node, IApp {
 
   #region Output Callbacks
   private void OnOutputSetupGame() {
-    Game = _gameScene.Instantiate<IGame>();
-    Game.AddChildEx(Game);
+    var gameNode = _gameScene.Instantiate<Game>();
+    Game = gameNode;
+    AddChild(gameNode);
   }
 
   private void OnOutputRemoveGame() {

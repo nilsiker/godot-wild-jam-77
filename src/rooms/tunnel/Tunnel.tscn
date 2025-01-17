@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2sje1deol08o"]
+[gd_scene load_steps=13 format=3 uid="uid://c2sje1deol08o"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_tsgav"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_b6srm"]
 [ext_resource type="Texture2D" uid="uid://cr70qanqkiux8" path="res://src/rooms/tunnel/tunnel.png" id="2_hrd2w"]
-[ext_resource type="Script" path="res://src/rooms/tunnel/Fumes.cs" id="4_mupaa"]
+[ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="4_vbcjm"]
 [ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/larva/Larva.tscn" id="5_kvynq"]
 [ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/broodmother/Broodmother.tscn" id="6_oyk18"]
 
@@ -17,23 +17,6 @@ size = Vector2(24, 334)
 size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbmk4"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uhj6i"]
-blend_mode = 3
-
-[sub_resource type="Gradient" id="Gradient_2yf4g"]
-colors = PackedColorArray(1, 1, 1, 1, 0.348496, 0.0343899, 0.34358, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_50d68"]
-noise_type = 5
-offset = Vector3(0, 0, -22.7)
-fractal_type = 2
-domain_warp_enabled = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w0ld0"]
-in_3d_space = true
-color_ramp = SubResource("Gradient_2yf4g")
-noise = SubResource("FastNoiseLite_50d68")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vuej0"]
 polygon = PackedVector2Array(-73, 135, -40, 113, -26, 112, -14, 116, 1, 110, 14, 97, 37, 86, 57, 92, 79, 71, 114, 62, 129, 69, 136, 63, 133, 48, 122, 31, 86, 21, 114, 31, 127, 47, 131, 63, 128, 65, 114, 59, 78, 69, 75, 71, 55, 89, 36, 82, 10, 96, -2, 109, -14, 113, -25, 110, -41, 110)
@@ -127,11 +110,7 @@ position = Vector2(0, 22)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Fumes" type="Sprite2D" parent="."]
-z_index = -1
-material = SubResource("CanvasItemMaterial_uhj6i")
-texture = SubResource("NoiseTexture2D_w0ld0")
-script = ExtResource("4_mupaa")
+[node name="Fumes" parent="." instance=ExtResource("4_vbcjm")]
 
 [node name="Enemy" parent="." instance=ExtResource("5_kvynq")]
 position = Vector2(89, 106)

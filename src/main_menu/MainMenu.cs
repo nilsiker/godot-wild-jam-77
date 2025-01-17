@@ -5,6 +5,8 @@ using Godot;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
+using System;
+
 
 public interface IMainMenu : IControl { }
 
@@ -34,10 +36,13 @@ public partial class MainMenu : Control, IMainMenu {
   #region Dependency Lifecycle
   public void Setup() { }
   public void OnResolved() {
-    StartGameButton.Pressed += () => Visible = false;
+    StartGameButton.Pressed += OnStartGameButtonPressed;
     QuitButton.Pressed += AppRepo.RequestQuitApp;
   }
+
+  private void OnStartGameButtonPressed() => AppRepo.RequestGameStart();
   #endregion
+
 
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);

@@ -8,6 +8,7 @@ state "AppLogic State" as Nevergreen_AppLogic_State {
   state "StartingNewGame" as Nevergreen_AppLogic_State_StartingNewGame
 }
 
+Nevergreen_AppLogic_State --> Nevergreen_AppLogic_State : FadeOutFinished
 Nevergreen_AppLogic_State_ClosingApplication --> Nevergreen_AppLogic_State_ClosingApplication : FadeOutFinished
 Nevergreen_AppLogic_State_InGame --> Nevergreen_AppLogic_State_ClosingApplication : QuitApp
 Nevergreen_AppLogic_State_InGame --> Nevergreen_AppLogic_State_LeavingGame : BackToMainMenu
@@ -18,6 +19,8 @@ Nevergreen_AppLogic_State_LeavingGame --> Nevergreen_AppLogic_State_InMainMenu :
 Nevergreen_AppLogic_State_LeavingMenu --> Nevergreen_AppLogic_State_StartingNewGame : FadeOutFinished
 Nevergreen_AppLogic_State_StartingNewGame --> Nevergreen_AppLogic_State_InGame : GameReady
 
+Nevergreen_AppLogic_State : OnAppFadeInRequested() → FadeIn
+Nevergreen_AppLogic_State : OnAppFadeOutRequested() → FadeOut
 Nevergreen_AppLogic_State_ClosingApplication : OnEnter → FadeOut
 Nevergreen_AppLogic_State_ClosingApplication : OnFadeOutFinished → CloseApplication
 Nevergreen_AppLogic_State_InGame : OnEnter → ShowGame

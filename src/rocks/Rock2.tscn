@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccansj7cngg8h"]
+
+[ext_resource type="Texture2D" uid="uid://bhw02t03rtha4" path="res://src/rocks/rock_2.png" id="1_gnvit"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkkea"]
+radius = 6.0
+height = 26.0
+
+[node name="Rock2" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -7)
+texture = ExtResource("1_gnvit")
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://src/rocks/rock_2.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "77a798f2ea4b2be6ae6ae1734083081c"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lkkea")

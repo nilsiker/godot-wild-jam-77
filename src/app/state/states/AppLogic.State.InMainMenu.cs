@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.LogicBlocks;
 
 public partial class AppLogic {
@@ -9,8 +10,13 @@ public partial class AppLogic {
         IGet<Input.StartGame>,
         IGet<Input.QuitApp> {
       public InMainMenu() {
+        OnAttach(() => Get<IAppRepo>().GameStartRequested += OnAppGameStartRequested);
+        OnDetach(() => Get<IAppRepo>().GameStartRequested -= OnAppGameStartRequested);
+
         this.OnEnter(() => Output(new Output.ShowMainMenu()));
       }
+
+      private void OnAppGameStartRequested() => Input(new Input.StartGame());
 
       Transition IGet<Input.StartGame>.On(in Input.StartGame input) => To<LeavingMenu>();
 

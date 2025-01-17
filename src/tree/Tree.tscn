@@ -39,7 +39,6 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "e2b6340ca85d586548430fa778c035cd"
 
 [node name="Trunk" type="Sprite2D" parent="."]
-z_index = 1
 texture_filter = 1
 position = Vector2(0, -39)
 texture = ExtResource("3_6j34m")
