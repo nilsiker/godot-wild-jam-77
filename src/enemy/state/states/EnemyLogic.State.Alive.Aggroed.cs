@@ -32,14 +32,17 @@ public partial class EnemyLogic {
         }
 
         public Transition On(in Input.Age input) {
+          var roomRepo = Get<IRoomRepo>();
           var data = Get<Data>();
           var settings = Get<IEnemySettings>();
 
           data.TimeAggroed += input.Time;
 
-          if (settings.Breeds && data.TimeAggroed > 3) {
-            Output(new Output.SpawnLarva());
-            Get<IRoomRepo>().OnEnemySpawned();
+          if (settings.Breeds && data.TimeAggroed > 2) {
+            if (roomRepo.EnemyCount.Value < 80) {
+              Output(new Output.SpawnLarva());
+              Get<IRoomRepo>().OnEnemySpawned();
+            }
             data.TimeAggroed = 0;
           }
 

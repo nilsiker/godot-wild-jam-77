@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfm3fmg27ks41"]
+[gd_scene load_steps=10 format=3 uid="uid://bfm3fmg27ks41"]
 
 [ext_resource type="Script" path="res://src/attacker/Attacker.cs" id="1_h2pdf"]
 [ext_resource type="Texture2D" uid="uid://c5wmrgtnx1isa" path="res://src/attacker/FX.png" id="2_qnuyn"]
 [ext_resource type="PackedScene" uid="uid://brks5nkfw6iji" path="res://src/dice/Dice.tscn" id="3_xne37"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ave57"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qovra"]
 atlas = ExtResource("2_qnuyn")
@@ -151,6 +154,7 @@ script = ExtResource("1_h2pdf")
 unique_name_in_owner = true
 visible = false
 z_index = 3
+material = SubResource("CanvasItemMaterial_ave57")
 position = Vector2(0, -29)
 
 [node name="Swing" type="Area2D" parent="."]

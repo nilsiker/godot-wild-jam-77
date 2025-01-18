@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_olfkm")
 Health = 6
-Speed = 5
+Speed = 15
 Damage = 2
 Metamorphizes = false
 Breeds = true

@@ -14,7 +14,6 @@ public partial class Dice : AnimatedSprite2D {
     }
     _tween = CreateTween();
     _tween.TweenProperty(this, "modulate:a", 0.0, 0.3).SetDelay(0.5);
-    // return Frame + 1;
-    return 6;
+    return Frame + 1;
   }
 }

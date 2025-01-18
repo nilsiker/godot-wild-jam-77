@@ -87,6 +87,9 @@ public partial class Attacker : Node2D, IAttacker {
       var roll = Dice.Roll();
       _damage = roll > 3 ? roll : 0;
     }
+    else {
+      _damage = 1;
+    }
     var targetAngle = direction.Angle() + ((float)Math.PI / 2.0f);
     // NOTE roundabout way to fix the FX anim. It works, but is really messy.
     // If this turns into a problem, give this a proper solution

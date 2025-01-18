@@ -51,7 +51,7 @@ public partial class Room : Node2D, IRoom {
   #region Dependency Lifecycle
   public void Setup() {
     Logic = new();
-    RoomRepo = new RoomRepo();
+    RoomRepo = new RoomRepo(GetChildren().OfType<Enemy>().Count());
   }
 
   public void OnResolved() {
@@ -61,9 +61,6 @@ public partial class Room : Node2D, IRoom {
     Binding.Handle((in RoomLogic.Output.RemoveBlockage _) => OnOutputRemoveBlockage());
 
     Logic.Set(RoomRepo);
-    Logic.Set(new RoomLogic.Data() {
-      EnemyCount = GetChildren().OfType<Enemy>().Count()
-    });
 
     this.Provide();
     Logic.Start();
@@ -119,9 +116,6 @@ public partial class RoomLogic
   : LogicBlock<RoomLogic.State>,
     IRoomLogic {
   public override Transition GetInitialState() => To<State.Infested>();
-  public class Data {
-    public int EnemyCount;
-  }
   public static class Input {
     public record struct Clear;
   }
@@ -135,27 +129,15 @@ public partial class RoomLogic
 
 
     public State() {
-      OnAttach(() => {
-        Get<IRoomRepo>().EnemySpawned += OnRoomEnemySpawned;
-        Get<IRoomRepo>().EnemyKilled += OnRoomEnemyKilled;
-      });
-      OnDetach(() => {
-        Get<IRoomRepo>().EnemySpawned -= OnRoomEnemySpawned;
-        Get<IRoomRepo>().EnemyKilled -= OnRoomEnemyKilled;
-      });
+      OnAttach(() => Get<IRoomRepo>().EnemyCount.Sync += OnEnemyCountSync);
+      OnDetach(() => Get<IRoomRepo>().EnemyCount.Sync -= OnEnemyCountSync);
     }
 
-    private void OnRoomEnemySpawned() =>
-      Get<Data>().EnemyCount += 1;
-
-
-    private void OnRoomEnemyKilled() {
-      Get<Data>().EnemyCount -= 1;
-      if (Get<Data>().EnemyCount == 0) {
+    private void OnEnemyCountSync(int enemyCount) {
+      if (enemyCount == 0) {
         Input(new Input.Clear());
       }
     }
-
 
     public partial record Infested : State, IGet<Input.Clear> {
       public Transition On(in Input.Clear input) => To<Cleared>();

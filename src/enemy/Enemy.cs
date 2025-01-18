@@ -97,7 +97,7 @@ public partial class Enemy : Area2D, IEnemy {
 
   public void OnReady() {
     SetProcess(true);
-    SetPhysicsProcess(true);
+    SetPhysicsProcess(false);
 
     BodyEntered += OnBodyEntered;
     AggroArea.BodyEntered += OnAggroAreaBodyEntered;
