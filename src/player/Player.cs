@@ -21,6 +21,8 @@ public partial class Player : RigidBody2D, IPlayer {
   [Node] private IAnimationPlayer AnimationPlayer { get; set; } = default!;
   [Node] private IAttacker Attacker { get; set; } = default!;
   [Node] private ColorRect Whiteout { get; set; } = default!;
+  [Node] private AudioStreamPlayer2D HurtAudio { get; set; } = default!;
+
   #endregion
 
   #region Provisions
@@ -151,6 +153,7 @@ public partial class Player : RigidBody2D, IPlayer {
     _damagedTween = CreateTween();
     Whiteout.Modulate = Colors.White;
     _damagedTween.TweenProperty(Whiteout, "modulate:a", 0.0, 0.2);
+    HurtAudio.Play();
   }
 
   #endregion

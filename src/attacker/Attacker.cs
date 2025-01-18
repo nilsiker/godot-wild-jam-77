@@ -100,7 +100,7 @@ public partial class Attacker : Area2D, IAttacker {
 
   public void HandleNodeEntered(Node node) {
     if (node is IDamageable damageable) {
-      damageable.Damage(1, Vector2.FromAngle(GlobalRotation - ((float)Math.PI / 2))); // TODO make the damage amount configurable.
+      damageable.Damage(1, GlobalPosition.DirectionTo(damageable.GlobalPosition)); // TODO make the damage amount configurable.
     }
   }
   #endregion

@@ -35,6 +35,7 @@ distance = 2.0
 size = Vector2(35, 129)
 
 [node name="RoomForest" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_jls0k")
 RoomIdentifier = 3
 
@@ -112,6 +113,7 @@ position = Vector2(7.5, -5.5)
 shape = SubResource("RectangleShape2D_qyrb8")
 
 [node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("11_caveg")]
 position = Vector2(-230, 137)
@@ -477,19 +479,25 @@ position = Vector2(108, -123)
 position = Vector2(108, -123)
 
 [node name="Larva" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(119, 57)
+position = Vector2(-83, 97)
 
 [node name="Larva2" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(70, 72)
+position = Vector2(52, 63)
+
+[node name="Larva7" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(106, 76)
 
 [node name="Larva3" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(-48, 68)
+position = Vector2(10, 72)
 
 [node name="Larva4" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(149, 10)
+position = Vector2(136, 7)
+
+[node name="Larva6" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(147, 16)
 
 [node name="Larva5" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(7, 78)
+position = Vector2(-48, 87)
 
 [node name="Broodmother" parent="." instance=ExtResource("12_c0toa")]
 position = Vector2(50, -72)

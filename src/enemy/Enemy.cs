@@ -125,7 +125,7 @@ public partial class Enemy : Area2D, IEnemy {
   #region Input Callbacks
   private void OnBodyEntered(Node body) {
     if (body is IPlayer player) {
-      player.Damage(_settings.Damage, player.GlobalPosition.DirectionTo(GlobalPosition));
+      player.Damage(_settings.Damage, ((INode2D)player).GlobalPosition.DirectionTo(GlobalPosition));
     }
   }
 

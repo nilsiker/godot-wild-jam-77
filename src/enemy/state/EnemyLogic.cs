@@ -20,6 +20,7 @@ public partial class EnemyLogic
     public int Health;
     public int Damage;
     public float TimeAggroed;
+    public Vector2 KnockbackDirection;
   }
 
   public static class Input {

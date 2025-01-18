@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5716skygfhq"]
+[gd_scene load_steps=21 format=3 uid="uid://b5716skygfhq"]
 
 [ext_resource type="Script" path="res://src/enemy/Enemy.cs" id="1_nngfc"]
 [ext_resource type="Texture2D" uid="uid://ba1nendcfuddu" path="res://src/enemy/larva/enemy_larvae.png" id="2_5scvg"]
 [ext_resource type="Resource" uid="uid://dums6gxobjxkd" path="res://src/enemy/larva/larva_settings.tres" id="2_bxb2r"]
 [ext_resource type="AudioStream" uid="uid://d3sfoc17ahgxv" path="res://src/audio/squish.ogg" id="5_ohaew"]
 [ext_resource type="Shape2D" uid="uid://btg5da2g8oj0x" path="res://src/enemy/larva/collider_larva.tres" id="5_pclgg"]
+[ext_resource type="AudioStream" uid="uid://drg58n2lmsc1g" path="res://src/audio/enemydie.ogg" id="6_2qxm0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k8rxh"]
 
@@ -41,6 +42,18 @@ tracks/2/path = NodePath("HurtAudio:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DieAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -93,6 +106,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DieAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_pe25m"]
@@ -183,6 +208,11 @@ random_volume_offset_db = 3.0
 streams_count = 1
 stream_0/stream = ExtResource("5_ohaew")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_njoap"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("6_2qxm0")
+
 [node name="Larva" type="Area2D"]
 collision_layer = 2
 linear_damp = 5.0
@@ -264,5 +294,10 @@ shape = SubResource("CircleShape2D_imm4d")
 
 [node name="HurtAudio" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_eovxd")
-volume_db = 12.0
+volume_db = 20.0
 pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="DieAudio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_njoap")
+bus = &"SFX"

@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://cnuq0eqvaa5ku"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://cnuq0eqvaa5ku"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_kohn3"]
 resource_name = "Reverb"
@@ -15,6 +15,11 @@ pitch_scale = 0.5
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_wrvbk"]
 resource_name = "LowPassFilter"
 cutoff_hz = 500.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_orvmu"]
+resource_name = "Reverb"
+room_size = 0.3
+wet = 0.1
 
 [resource]
 bus/1/name = &"Music"
@@ -37,3 +42,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_orvmu")
+bus/2/effect/0/enabled = true
