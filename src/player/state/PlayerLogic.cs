@@ -29,6 +29,7 @@ public partial class PlayerLogic
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
     public record struct Damage(int Amount, Vector2 Direction);
+    public record struct Revive();
   }
 
   public static class Output {

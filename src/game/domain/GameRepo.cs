@@ -18,6 +18,7 @@ public interface IGameRepo : IDisposable {
   public event Action? OutroStarted;
   public event Action? Paused;
   public event Action? Resumed;
+  public event Action? PlayerReset;
 
   public IAutoProp<Vector2> PlayerGlobalPosition { get; }
   public void Win();
@@ -30,6 +31,7 @@ public interface IGameRepo : IDisposable {
   public void StartOutro();
   public void Pause();
   public void Resume();
+  public void ResetPlayer();
 }
 
 public class GameRepo : IGameRepo {
@@ -42,6 +44,7 @@ public class GameRepo : IGameRepo {
   public event Action? OutroStarted;
   public event Action? Paused;
   public event Action? Resumed;
+  public event Action? PlayerReset;
 
   public IAutoProp<Vector2> PlayerGlobalPosition => _playerGlobalPosition;
   private readonly AutoProp<Vector2> _playerGlobalPosition = new(Vector2.Zero);
@@ -62,6 +65,8 @@ public class GameRepo : IGameRepo {
 
   public void Pause() => Paused?.Invoke();
   public void Resume() => Resumed?.Invoke();
+  public void ResetPlayer() => PlayerReset?.Invoke();
+
   public void Dispose() {
     _playerGlobalPosition.OnCompleted();
     _playerGlobalPosition.Dispose();

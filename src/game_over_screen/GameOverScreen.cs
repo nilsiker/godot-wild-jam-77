@@ -16,6 +16,7 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
 
   #region Nodes
   [Node] private Button ReturnToMainMenuButton { get; set; } = default!;
+  [Node] private Button TryAgainButton { get; set; } = default!;
   #endregion
 
   #region Provisions
@@ -52,7 +53,11 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
 
-  public override void _Ready() => ReturnToMainMenuButton.Pressed += OnReturnToMainMenuButtonPressed;
+  public override void _Ready() {
+    ReturnToMainMenuButton.Pressed += OnReturnToMainMenuButtonPressed;
+    TryAgainButton.Pressed += OnTryAgainButtonPressed;
+    TryAgainButton.GrabFocus();
+  }
 
   public void OnExitTree() {
     Logic.Stop();
@@ -70,7 +75,14 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
 
   #region Input Callbacks
   private void OnReturnToMainMenuButtonPressed() => Logic.Input(new GameOverScreenLogic.Input.ClickToMainMenu());
+  private void OnTryAgainButtonPressed() {
+    Visible = false;
+    GameRepo.RequestRoomTransition(ERoom.Stump);
+    GameRepo.ResetPlayer();
+  }
+
   #endregion
+
 
   #region Output Callbacks
   #endregion

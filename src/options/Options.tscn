@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://734dyqnjav8q"]
+
+[ext_resource type="Script" path="res://src/options/Options.cs" id="1_tmqny"]
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="2_0e5ak"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6ua2"]
+
+[node name="Options" type="PanelContainer"]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c6ua2")
+script = ExtResource("1_tmqny")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Music" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0e5ak")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0e5ak")
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0

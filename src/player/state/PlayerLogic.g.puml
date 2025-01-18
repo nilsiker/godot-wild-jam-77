@@ -9,6 +9,7 @@ state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
 }
 
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosition
+Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Alive_Idle : Revive
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Damage
@@ -20,6 +21,7 @@ Nevergreen_PlayerLogic_State_Alive_Idle --> Nevergreen_PlayerLogic_State_Alive_M
 Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Idle : Move
 Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
 
+Nevergreen_PlayerLogic_State : OnPlayerReset() → Teleport
 Nevergreen_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
 Nevergreen_PlayerLogic_State_Alive : OnDamage → Damaged
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking

@@ -16,9 +16,9 @@ pitch_scale = 0.5
 resource_name = "LowPassFilter"
 cutoff_hz = 500.0
 
-[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_orvmu"]
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_aw8rc"]
 resource_name = "Reverb"
-room_size = 0.3
+room_size = 0.2
 wet = 0.1
 
 [resource]
@@ -42,5 +42,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectReverb_orvmu")
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_aw8rc")
 bus/2/effect/0/enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dcs5fh6nj0sv3"]
+[gd_scene load_steps=30 format=4 uid="uid://dcs5fh6nj0sv3"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_ft61d"]
 [ext_resource type="Texture2D" uid="uid://p775hgd5wk7j" path="res://src/rooms/glade/stump_exterior.png" id="2_jgr62"]
@@ -14,8 +14,10 @@
 [ext_resource type="TileSet" uid="uid://dnmiwbv6qtn2q" path="res://src/terrain_layer/roots/tileset_roots.tres" id="10_txy1j"]
 [ext_resource type="Material" uid="uid://0bi1l1f2qi35" path="res://src/terrain_layer/roots/material_roots.tres" id="11_hxp2u"]
 [ext_resource type="Script" path="res://src/fumes/Fumes.cs" id="11_ig4nu"]
+[ext_resource type="Texture2D" uid="uid://bxvxfpf035gf8" path="res://src/player/radial_light.tres" id="13_2b3v1"]
 [ext_resource type="PackedScene" uid="uid://bwvx75pqur655" path="res://src/rocks/Rock1.tscn" id="14_mau2i"]
 [ext_resource type="PackedScene" uid="uid://ccansj7cngg8h" path="res://src/rocks/Rock2.tscn" id="15_llt6y"]
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="17_qvwit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cbmd"]
 size = Vector2(30, 22)
@@ -32,13 +34,26 @@ size = Vector2(62, 85)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hjve"]
 size = Vector2(19.9719, 85)
 
+[sub_resource type="Gradient" id="Gradient_m4ua6"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0bggi"]
+gradient = SubResource("Gradient_m4ua6")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_th5ol"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_8dvbs"]
+[sub_resource type="Gradient" id="Gradient_1egkx"]
 colors = PackedColorArray(1, 1, 1, 1, 0.348496, 0.0343899, 0.34358, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_31a4i"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1sj3s"]
 noise_type = 5
 frequency = 0.0668
 domain_warp_enabled = true
@@ -46,8 +61,8 @@ domain_warp_type = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ski3"]
 in_3d_space = true
-color_ramp = SubResource("Gradient_8dvbs")
-noise = SubResource("FastNoiseLite_31a4i")
+color_ramp = SubResource("Gradient_1egkx")
+noise = SubResource("FastNoiseLite_1sj3s")
 
 [node name="Glade" type="Node2D"]
 y_sort_enabled = true
@@ -417,6 +432,11 @@ position = Vector2(140, -39)
 [node name="Tree168" parent="Trees" instance=ExtResource("10_jdrs7")]
 position = Vector2(169, -116)
 
+[node name="PointLight2D" type="PointLight2D" parent="Trees/Tree168"]
+position = Vector2(172, -13)
+color = Color(0.726304, 0.000402084, 0.726299, 1)
+texture = ExtResource("13_2b3v1")
+
 [node name="Tree161" parent="Trees" instance=ExtResource("10_jdrs7")]
 position = Vector2(203, -148)
 
@@ -651,6 +671,16 @@ position = Vector2(67, -9)
 [node name="Rock4" parent="Rocks" instance=ExtResource("15_llt6y")]
 position = Vector2(70, -134)
 
+[node name="Label" type="Label" parent="."]
+z_index = 23
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 276.0
+offset_bottom = 29.0
+theme = ExtResource("17_qvwit")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Attack with LMB or A"
+
 [node name="Stump" type="StaticBody2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-17, -126)
@@ -676,7 +706,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://src/rooms/glade/stump_exterior.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "3d893cf2ef9a9c1afb41c9d1b6295d43"
+metadata/_aseprite_wizard_source_file_hash_ = "9b44629c8efebce7fec9cd7dcb3a8d4b"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stump"]
 position = Vector2(-28, -35.5)
@@ -686,6 +716,15 @@ shape = SubResource("RectangleShape2D_733gp")
 position = Vector2(31.0908, -42.4891)
 rotation = -0.472774
 shape = SubResource("RectangleShape2D_7hjve")
+
+[node name="PointLight2D" type="PointLight2D" parent="Stump"]
+position = Vector2(23, -20)
+color = Color(1, 0.874, 0.72, 1)
+energy = 3.0
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_0bggi")
 
 [node name="Fumes" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.0941176)

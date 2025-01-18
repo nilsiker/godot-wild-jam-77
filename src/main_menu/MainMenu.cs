@@ -18,7 +18,10 @@ public partial class MainMenu : Control, IMainMenu {
   #region Nodes
   [Node] private IButton StartGameButton { get; set; } = default!;
   [Node] private IButton OptionsButton { get; set; } = default!;
+  [Node] private IButton CreditsButton { get; set; } = default!;
   [Node] private IButton QuitButton { get; set; } = default!;
+  [Node] private PanelContainer Options { get; set; } = default!;
+  [Node] private PanelContainer Credits { get; set; } = default!;
   #endregion
 
   #region Provisions
@@ -36,8 +39,20 @@ public partial class MainMenu : Control, IMainMenu {
   public void OnResolved() {
     StartGameButton.Pressed += OnStartGameButtonPressed;
     QuitButton.Pressed += AppRepo.RequestQuitApp;
+    OptionsButton.Pressed += OnOptionsButtonPressed;
+    CreditsButton.Pressed += OnCreditsButtonPressed;
+    StartGameButton.GrabFocus();
   }
 
+  private void OnCreditsButtonPressed() {
+    Credits.Visible = !Credits.Visible;
+    Options.Visible = false;
+  }
+
+  private void OnOptionsButtonPressed() {
+    Options.Visible = !Options.Visible;
+    Credits.Visible = false;
+  }
   private void OnStartGameButtonPressed() => AppRepo.RequestGameStart();
   #endregion
 

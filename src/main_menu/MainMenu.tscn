@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://gnfeiowom8ok"]
+[gd_scene load_steps=37 format=3 uid="uid://gnfeiowom8ok"]
 
 [ext_resource type="Script" path="res://src/main_menu/MainMenu.cs" id="1_hxhey"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="2_byf5k"]
@@ -235,7 +235,7 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kn7wh"]
 
 [sub_resource type="Gradient" id="Gradient_2yf4g"]
-colors = PackedColorArray(0, 0, 0, 1, 0.348496, 0.0343899, 0.34358, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.368597, 0.691445, 0.524783, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_50d68"]
 noise_type = 5
@@ -247,6 +247,8 @@ domain_warp_enabled = true
 in_3d_space = true
 color_ramp = SubResource("Gradient_2yf4g")
 noise = SubResource("FastNoiseLite_50d68")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6ua2"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -266,7 +268,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Info" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -277,60 +279,12 @@ offset_left = -480.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "A game by Scanian Forest"
-horizontal_alignment = 2
-
-[node name="Container" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Margins" type="MarginContainer" parent="Container"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBox" type="VBoxContainer" parent="Container/Margins"]
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="Title" type="Label" parent="Container/Margins/VBox"]
-layout_mode = 2
 theme = ExtResource("2_nith8")
-theme_override_font_sizes/font_size = 32
-text = "Nevergreen"
+bbcode_enabled = true
+text = "[right]A game by nilsiker and konstig "
 
-[node name="HSeparator" type="HSeparator" parent="Container/Margins/VBox"]
-layout_mode = 2
-
-[node name="StartGameButton" type="Button" parent="Container/Margins/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_nith8")
-theme_override_font_sizes/font_size = 24
-text = "Play"
-
-[node name="OptionsButton" type="Button" parent="Container/Margins/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_nith8")
-theme_override_font_sizes/font_size = 24
-text = "Options"
-
-[node name="QuitButton" type="Button" parent="Container/Margins/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_nith8")
-theme_override_font_sizes/font_size = 24
-text = "Quit"
-
-[node name="SleepingVättri" type="AnimatedSprite2D" parent="Container"]
+[node name="SleepingVättri" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.329158, 0.329158, 0.329158, 1)
 texture_filter = 1
 position = Vector2(345, 125)
 scale = Vector2(3, 3)
@@ -358,4 +312,121 @@ z_index = 1
 material = SubResource("CanvasItemMaterial_kn7wh")
 position = Vector2(243, 134)
 texture = SubResource("NoiseTexture2D_sdvvl")
-_speed = 5.0
+_speed = 10.0
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Margins"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Menu" type="VBoxContainer" parent="Container/Margins/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="Container/Margins/HBoxContainer/Menu"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 32
+text = "Nevergreen"
+
+[node name="HSeparator" type="HSeparator" parent="Container/Margins/HBoxContainer/Menu"]
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="Container/Margins/HBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="Container/Margins/HBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="Container/Margins/HBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="Container/Margins/HBoxContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[node name="Options" type="PanelContainer" parent="Container/Margins/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c6ua2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Margins/HBoxContainer/Options"]
+layout_mode = 2
+alignment = 1
+
+[node name="Music" type="Label" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+
+[node name="SFX" type="Label" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+
+[node name="Credits" type="PanelContainer" parent="Container/Margins/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c6ua2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Margins/HBoxContainer/Credits"]
+layout_mode = 2
+alignment = 1
+
+[node name="Quaver" type="Label" parent="Container/Margins/HBoxContainer/Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 8
+text = "Quaver font by Nathan Scott"
+horizontal_alignment = 1
+
+[node name="CustomSplash" type="Label" parent="Container/Margins/HBoxContainer/Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 8
+text = "Alternate splash screen by KenneyNL"
+horizontal_alignment = 1

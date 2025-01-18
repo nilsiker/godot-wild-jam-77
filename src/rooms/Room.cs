@@ -102,6 +102,11 @@ public partial class Room : Node2D, IRoom {
   #region Output Callbacks
   private Tween tween = default!;
   private void OnOutputRemoveBlockage() {
+    if (RoomIdentifier == ERoom.Tunnel) {
+      GameRepo.Win();
+    }
+
+
     tween = CreateTween();
     var blockage = GetNode<Node2D>("Blockage");
     tween.TweenProperty(blockage, "modulate:a", 100, 0.5);

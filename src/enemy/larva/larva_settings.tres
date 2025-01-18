@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_uu88v")
-Health = 2
-Speed = 20
+Health = 3
+Speed = 10
 Damage = 1
 Metamorphizes = true
 Breeds = false

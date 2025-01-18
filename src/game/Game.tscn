@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=19 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3lakh62dw2mr" path="res://src/rooms/forest/Forest.tscn" id="4_mgual"]
 [ext_resource type="PackedScene" uid="uid://c2sje1deol08o" path="res://src/rooms/tunnel/Tunnel.tscn" id="5_ickkj"]
 [ext_resource type="PackedScene" uid="uid://cyydbn7jc41nw" path="res://src/rooms/hive/Hive.tscn" id="6_ghg5h"]
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="7_1di5p"]
 [ext_resource type="PackedScene" uid="uid://cv1shht68qyi8" path="res://src/game_over_screen/GameOverScreen.tscn" id="9_d7s1g"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="9_vqvpx"]
 
@@ -325,7 +326,6 @@ root_node = NodePath("Intro")
 libraries = {
 "": SubResource("AnimationLibrary_kl4if")
 }
-speed_scale = 20.0
 
 [node name="Intro" type="Control" parent="CutscenePlayer"]
 visible = false
@@ -359,6 +359,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "An evil stirs"
 visible_characters_behavior = 1
 
@@ -375,6 +376,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "The forest is in danger"
 visible_characters_behavior = 1
 
@@ -391,6 +393,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "Somewhere, a warden awakens"
 visible_characters_behavior = 1
 
@@ -439,6 +442,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "And with that, the forest can rest."
 visible_characters_behavior = 1
 
@@ -456,6 +460,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "The  warden may slumber again."
 visible_characters_behavior = 1
 
@@ -473,6 +478,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_1di5p")
 text = "'Til he is called anew"
 visible_characters_behavior = 1
 

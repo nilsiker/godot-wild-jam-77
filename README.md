@@ -20,4 +20,10 @@ TODO...
 
 ## Attributions
 
+Quaver font by Nathan Scott - https://caffinate.itch.io/quaver (Licensed under CC Zero v1.0 Universal)
+
+Alternate pixelated splash screen by KenneyNL - https://github.com/KenneyNL/Godot-SplashScreens (Licensed under CC0).
+
+The original Godot logo is made by Andrea Calabró and is [CC-BY-4.0](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) licensed.
+
 🐣 Game template generated from a 🐤 Chickensoft Template — <https://chickensoft.games>
