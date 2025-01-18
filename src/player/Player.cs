@@ -1,6 +1,5 @@
 namespace Nevergreen;
 
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -87,9 +86,13 @@ public partial class Player : RigidBody2D, IPlayer {
 
   public void OnPhysicsProcess(double delta) {
     var inputDirection = Input.GetVector(Inputs.Left, Inputs.Right, Inputs.Up, Inputs.Down);
-    Move(inputDirection);
 
+    Move(inputDirection);
     Logic.Input(new PlayerLogic.Input.UpdateGlobalPosition(GlobalPosition));
+
+    if (!inputDirection.IsZeroApprox()) {
+      _lastInputDirection = inputDirection;
+    }
   }
 
   public void OnExitTree() {
@@ -97,9 +100,14 @@ public partial class Player : RigidBody2D, IPlayer {
     Binding.Dispose();
   }
 
+  // FIXME hack helper var for joypad aiming
+  private Vector2 _lastInputDirection;
   public override void _UnhandledInput(InputEvent @event) {
     if (@event.IsActionPressed(Inputs.Attack)) {
-      var direction = GlobalPosition.DirectionTo(GetGlobalMousePosition());
+
+      var direction = (@event is InputEventJoypadButton)
+        ? _lastInputDirection
+        : GlobalPosition.DirectionTo(GetGlobalMousePosition());
       Logic.Input(new PlayerLogic.Input.Attack(direction));
     }
   }

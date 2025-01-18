@@ -58,7 +58,7 @@ public partial class Room : Node2D, IRoom {
     Binding = Logic.Bind();
 
     // Bind functions to state outputs here
-    Binding.Handle((in RoomLogic.Output.RemoveBlockage _) => GetNode<Node>("Blockage").QueueFree());
+    Binding.Handle((in RoomLogic.Output.RemoveBlockage _) => OnOutputRemoveBlockage());
 
     Logic.Set(RoomRepo);
     Logic.Set(new RoomLogic.Data() {
@@ -72,6 +72,7 @@ public partial class Room : Node2D, IRoom {
     AddToGroup(StateDebug.GROUP);
   }
   #endregion
+
 
 
   #region Godot Lifecycle
@@ -99,6 +100,16 @@ public partial class Room : Node2D, IRoom {
 
 
   #region Output Callbacks
+  private Tween tween = default!;
+  private void OnOutputRemoveBlockage() {
+    tween = CreateTween();
+    var blockage = GetNode<Node2D>("Blockage");
+    tween.TweenProperty(blockage, "modulate:a", 100, 0.5);
+    tween.TweenProperty(blockage, "modulate:a", 1, 0.1);
+    tween.TweenProperty(blockage, "modulate:a", 100, 0.5);
+    tween.TweenProperty(blockage, "modulate:a", 1, 0.1);
+    tween.TweenCallback(Callable.From(blockage.QueueFree));
+  }
   #endregion
 }
 

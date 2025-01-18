@@ -144,6 +144,7 @@ animations = [{
 }]
 
 [node name="Attacker" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_h2pdf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

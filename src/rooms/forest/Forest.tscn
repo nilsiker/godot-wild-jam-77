@@ -1,28 +1,75 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3lakh62dw2mr"]
+[gd_scene load_steps=21 format=4 uid="uid://b3lakh62dw2mr"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_jls0k"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_o271d"]
+[ext_resource type="TileSet" uid="uid://dqmlabge34258" path="res://src/terrain_layer/dirt/tileset_dirt.tres" id="3_s82nh"]
+[ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="4_7srkx"]
+[ext_resource type="Material" uid="uid://gr44uge3fuor" path="res://src/terrain_layer/dirt/material_dirt_layer.tres" id="5_c72pk"]
+[ext_resource type="TileSet" uid="uid://djnl6mio2sk1t" path="res://src/terrain_layer/grass/tileset_grass.tres" id="6_yw741"]
+[ext_resource type="Material" uid="uid://c6qeehx41uolp" path="res://src/terrain_layer/grass/material_grass_layer.tres" id="7_4o7sd"]
+[ext_resource type="PackedScene" uid="uid://b2c08b2yx8a4g" path="res://src/blockage/Blockage.tscn" id="8_nji4r"]
+[ext_resource type="TileSet" uid="uid://dnmiwbv6qtn2q" path="res://src/terrain_layer/roots/tileset_roots.tres" id="9_pesqm"]
+[ext_resource type="Material" uid="uid://0bi1l1f2qi35" path="res://src/terrain_layer/roots/material_roots.tres" id="10_s4od7"]
+[ext_resource type="PackedScene" uid="uid://tialxh62odlg" path="res://src/tree/Tree.tscn" id="11_caveg"]
+[ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/larva/Larva.tscn" id="12_5brux"]
+[ext_resource type="PackedScene" uid="uid://wf1ljc1aox3r" path="res://src/enemy/broodmother/Broodmother.tscn" id="12_c0toa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wnna"]
+size = Vector2(20, 121)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5miut"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q7ql8"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_re33n"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0kejv"]
+normal = Vector2(-1, 0)
+distance = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqgc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyrb8"]
+size = Vector2(35, 129)
 
 [node name="RoomForest" type="Node2D"]
 script = ExtResource("1_jls0k")
 RoomIdentifier = 3
 
 [node name="ExitGlade" type="Area2D" parent="."]
+position = Vector2(-242, -14)
 script = ExtResource("2_o271d")
 Room = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGlade"]
+position = Vector2(0, 50.5)
 shape = SubResource("RectangleShape2D_1wnna")
 
 [node name="PlayerEntryPosition" type="Node2D" parent="ExitGlade"]
-position = Vector2(25, 0)
+position = Vector2(31, 42)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-327, 135)
+shape = SubResource("WorldBoundaryShape2D_5miut")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1, -135)
+shape = SubResource("WorldBoundaryShape2D_q7ql8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-238, -233)
+shape = SubResource("WorldBoundaryShape2D_re33n")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(242, -210)
+shape = SubResource("WorldBoundaryShape2D_0kejv")
 
 [node name="ExitTunnel" type="Area2D" parent="."]
-position = Vector2(73, 0)
+position = Vector2(37, -114)
 script = ExtResource("2_o271d")
 Room = 4
 
@@ -33,6 +80,419 @@ shape = SubResource("RectangleShape2D_mqgc5")
 position = Vector2(-23, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Dirt" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+tile_map_data = PackedByteArray("AAD2//f/AAACAAEAAAD2//j/AAACAAEAAAD2//n/AAACAAEAAAD2//r/AAACAAEAAAD2//v/AAACAAEAAAD2//z/AAACAAEAAAD2//3/AAACAAEAAAD2//7/AAACAAEAAAD2////AAACAAEAAAD2/wAAAAACAAEAAAD2/wEAAAACAAEAAAD2/wIAAAACAAEAAAD3//f/AAACAAEAAAD3//j/AAACAAEAAAD3//n/AAACAAEAAAD3//r/AAACAAEAAAD3//v/AAACAAEAAAD3//z/AAACAAEAAAD3//3/AAACAAEAAAD3//7/AAACAAEAAAD3////AAACAAEAAAD3/wAAAAACAAEAAAD3/wEAAAACAAEAAAD3/wIAAAACAAEAAAD4//f/AAACAAEAAAD4//j/AAACAAEAAAD4//n/AAACAAEAAAD4//r/AAACAAEAAAD4//v/AAACAAEAAAD4//z/AAACAAEAAAD4//3/AAACAAEAAAD4//7/AAACAAEAAAD4////AAACAAEAAAD4/wAAAAACAAEAAAD4/wEAAAACAAEAAAD4/wIAAAACAAEAAAD5//f/AAACAAEAAAD5//j/AAACAAEAAAD5//n/AAACAAEAAAD5//r/AAACAAEAAAD5//v/AAACAAEAAAD5//z/AAACAAEAAAD5//3/AAACAAEAAAD5//7/AAACAAEAAAD5////AAACAAEAAAD5/wAAAAACAAEAAAD5/wEAAAACAAEAAAD5/wIAAAACAAEAAAD6//f/AAACAAEAAAD6//j/AAACAAEAAAD6//n/AAACAAEAAAD6//r/AAACAAEAAAD6//v/AAACAAEAAAD6//z/AAACAAEAAAD6//3/AAACAAEAAAD6//7/AAACAAEAAAD6////AAACAAEAAAD6/wAAAAACAAEAAAD6/wEAAAACAAEAAAD6/wIAAAACAAEAAAD7//f/AAACAAEAAAD7//j/AAACAAEAAAD7//n/AAACAAEAAAD7//r/AAACAAEAAAD7//v/AAACAAEAAAD7//z/AAACAAEAAAD7//3/AAACAAEAAAD7//7/AAACAAEAAAD7////AAACAAEAAAD7/wAAAAACAAEAAAD7/wEAAAACAAEAAAD7/wIAAAACAAEAAAD8//f/AAACAAEAAAD8//j/AAACAAEAAAD8//n/AAACAAEAAAD8//r/AAACAAEAAAD8//v/AAACAAEAAAD8//z/AAACAAEAAAD8//3/AAACAAEAAAD8//7/AAACAAEAAAD8////AAACAAEAAAD8/wAAAAACAAEAAAD8/wEAAAACAAEAAAD8/wIAAAACAAEAAAD9//f/AAACAAEAAAD9//j/AAACAAEAAAD9//n/AAACAAEAAAD9//r/AAACAAEAAAD9//v/AAACAAEAAAD9//z/AAACAAEAAAD9//3/AAACAAEAAAD9//7/AAACAAEAAAD9////AAACAAEAAAD9/wAAAAACAAEAAAD9/wEAAAACAAEAAAD9/wIAAAACAAEAAAD+//f/AAACAAEAAAD+//j/AAACAAEAAAD+//n/AAACAAEAAAD+//r/AAACAAEAAAD+//v/AAACAAEAAAD+//z/AAACAAEAAAD+//3/AAACAAEAAAD+//7/AAACAAEAAAD+////AAACAAEAAAD+/wAAAAACAAEAAAD+/wEAAAACAAEAAAD+/wIAAAACAAEAAAD///f/AAACAAEAAAD///j/AAACAAEAAAD///n/AAACAAEAAAD///r/AAACAAEAAAD///v/AAACAAEAAAD///z/AAACAAEAAAD///3/AAACAAEAAAD///7/AAACAAEAAAD/////AAACAAEAAAD//wAAAAACAAEAAAD//wEAAAACAAEAAAD//wIAAAACAAEAAAAAAPf/AAACAAEAAAAAAPj/AAACAAEAAAAAAPn/AAACAAEAAAAAAPr/AAACAAEAAAAAAPv/AAACAAEAAAAAAPz/AAACAAEAAAAAAP3/AAACAAEAAAAAAP7/AAACAAEAAAAAAP//AAACAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAABAPf/AAACAAEAAAABAPj/AAACAAEAAAABAPn/AAACAAEAAAABAPr/AAACAAEAAAABAPv/AAACAAEAAAABAPz/AAACAAEAAAABAP3/AAACAAEAAAABAP7/AAACAAEAAAABAP//AAACAAEAAAABAAAAAAACAAEAAAABAAEAAAACAAEAAAABAAIAAAACAAEAAAACAPf/AAACAAEAAAACAPj/AAACAAEAAAACAPn/AAACAAEAAAACAPr/AAACAAEAAAACAPv/AAACAAEAAAACAPz/AAACAAEAAAACAP3/AAACAAEAAAACAP7/AAACAAEAAAACAP//AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAEAAAADAPf/AAACAAEAAAADAPj/AAACAAEAAAADAPn/AAACAAEAAAADAPr/AAACAAEAAAADAPv/AAACAAEAAAADAPz/AAACAAEAAAADAP3/AAACAAEAAAADAP7/AAACAAEAAAADAP//AAACAAEAAAADAAAAAAACAAEAAAADAAEAAAACAAEAAAADAAIAAAACAAEAAAAEAPf/AAACAAEAAAAEAPj/AAACAAEAAAAEAPn/AAACAAEAAAAEAPr/AAACAAEAAAAEAPv/AAACAAEAAAAEAPz/AAACAAEAAAAEAP3/AAACAAEAAAAEAP7/AAACAAEAAAAEAP//AAACAAEAAAAEAAAAAAACAAEAAAAEAAEAAAACAAEAAAAEAAIAAAACAAEAAAAFAPf/AAACAAEAAAAFAPj/AAACAAEAAAAFAPn/AAACAAEAAAAFAPr/AAACAAEAAAAFAPv/AAACAAEAAAAFAPz/AAACAAEAAAAFAP3/AAACAAEAAAAFAP7/AAACAAEAAAAFAP//AAACAAEAAAAFAAAAAAACAAEAAAAFAAEAAAACAAEAAAAFAAIAAAACAAEAAAAGAPf/AAACAAEAAAAGAPj/AAACAAEAAAAGAPn/AAACAAEAAAAGAPr/AAACAAEAAAAGAPv/AAACAAEAAAAGAPz/AAACAAEAAAAGAP3/AAACAAEAAAAGAP7/AAACAAEAAAAGAP//AAACAAEAAAAGAAAAAAACAAEAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAAHAPf/AAACAAEAAAAHAPj/AAACAAEAAAAHAPn/AAACAAEAAAAHAPr/AAACAAEAAAAHAPv/AAACAAEAAAAHAPz/AAACAAEAAAAHAP3/AAACAAEAAAAHAP7/AAACAAEAAAAHAP//AAACAAEAAAAHAAAAAAACAAEAAAAHAAEAAAACAAEAAAAHAAIAAAACAAEAAAAIAPf/AAACAAEAAAAIAPj/AAACAAEAAAAIAPn/AAACAAEAAAAIAPr/AAACAAEAAAAIAPv/AAACAAEAAAAIAPz/AAACAAEAAAAIAP3/AAACAAEAAAAIAP7/AAACAAEAAAAIAP//AAACAAEAAAAIAAAAAAACAAEAAAAIAAEAAAACAAEAAAAIAAIAAAACAAEAAAAJAPf/AAACAAEAAAAJAPj/AAACAAEAAAAJAPn/AAACAAEAAAAJAPr/AAACAAEAAAAJAPv/AAACAAEAAAAJAPz/AAACAAEAAAAJAP3/AAACAAEAAAAJAP7/AAACAAEAAAAJAP//AAACAAEAAAAJAAAAAAACAAEAAAAJAAEAAAACAAEAAAAJAAIAAAACAAEAAAAKAPf/AAACAAEAAAAKAPj/AAACAAEAAAAKAPn/AAACAAEAAAAKAPr/AAACAAEAAAAKAPv/AAACAAEAAAAKAPz/AAACAAEAAAAKAP3/AAACAAEAAAAKAP7/AAACAAEAAAAKAP//AAACAAEAAAAKAAAAAAACAAEAAAAKAAEAAAACAAEAAAAKAAIAAAACAAEAAAALAPf/AAACAAEAAAALAPj/AAACAAEAAAALAPn/AAACAAEAAAALAPr/AAACAAEAAAALAPv/AAACAAEAAAALAPz/AAACAAEAAAALAP3/AAACAAEAAAALAP7/AAACAAEAAAALAP//AAACAAEAAAALAAAAAAACAAEAAAALAAEAAAACAAEAAAALAAIAAAACAAEAAAAMAPf/AAACAAEAAAAMAPj/AAACAAEAAAAMAPn/AAACAAEAAAAMAPr/AAACAAEAAAAMAPv/AAACAAEAAAAMAPz/AAACAAEAAAAMAP3/AAACAAEAAAAMAP7/AAACAAEAAAAMAP//AAACAAEAAAAMAAAAAAACAAEAAAAMAAEAAAACAAEAAAAMAAIAAAACAAEAAAANAPf/AAACAAEAAAANAPj/AAACAAEAAAANAPn/AAACAAEAAAANAPr/AAACAAEAAAANAPv/AAACAAEAAAANAPz/AAACAAEAAAANAP3/AAACAAEAAAANAP7/AAACAAEAAAANAP//AAACAAEAAAANAAAAAAACAAEAAAANAAEAAAACAAEAAAANAAIAAAACAAEAAAAOAPf/AAACAAEAAAAOAPj/AAACAAEAAAAOAPn/AAACAAEAAAAOAPr/AAACAAEAAAAOAPv/AAACAAEAAAAOAPz/AAACAAEAAAAOAP3/AAACAAEAAAAOAP7/AAACAAEAAAAOAP//AAACAAEAAAAOAAAAAAACAAEAAAAOAAEAAAACAAEAAAAOAAIAAAACAAEAAAAPAPf/AAACAAEAAAAPAPj/AAACAAEAAAAPAPn/AAACAAEAAAAPAPr/AAACAAEAAAAPAPv/AAACAAEAAAAPAPz/AAACAAEAAAAPAP3/AAACAAEAAAAPAP7/AAACAAEAAAAPAP//AAACAAEAAAAPAAAAAAACAAEAAAAPAAEAAAACAAEAAAAPAAIAAAACAAEAAADw//f/AAACAAEAAADw//j/AAACAAEAAADw//n/AAACAAEAAADw//r/AAACAAEAAADw//v/AAACAAEAAADw//z/AAACAAEAAADw//3/AAACAAEAAADw//7/AAACAAEAAADw////AAACAAEAAADw/wAAAAACAAEAAADw/wQAAAACAAEAAADw/wUAAAACAAEAAADw/wYAAAACAAEAAADw/wcAAAACAAEAAADw/wgAAAACAAEAAADx//f/AAACAAEAAADx//j/AAACAAEAAADx//n/AAACAAEAAADx//r/AAACAAEAAADx//v/AAACAAEAAADx//z/AAACAAEAAADx//3/AAACAAEAAADx//7/AAACAAEAAADx////AAACAAEAAADx/wAAAAACAAEAAADx/wEAAAACAAEAAADx/wIAAAACAAEAAADx/wMAAAACAAEAAADx/wQAAAACAAEAAADx/wUAAAACAAEAAADx/wYAAAACAAEAAADx/wcAAAACAAEAAADx/wgAAAACAAEAAADy//f/AAACAAEAAADy//j/AAACAAEAAADy//n/AAACAAEAAADy//r/AAACAAEAAADy//v/AAACAAEAAADy//z/AAACAAEAAADy//3/AAACAAEAAADy//7/AAACAAEAAADy////AAACAAEAAADy/wAAAAACAAEAAADy/wEAAAACAAEAAADy/wIAAAACAAEAAADy/wMAAAACAAEAAADy/wQAAAACAAEAAADy/wUAAAACAAEAAADy/wYAAAACAAEAAADy/wcAAAACAAEAAADy/wgAAAACAAEAAADz//f/AAACAAEAAADz//j/AAACAAEAAADz//n/AAACAAEAAADz//r/AAACAAEAAADz//v/AAACAAEAAADz//z/AAACAAEAAADz//3/AAACAAEAAADz//7/AAACAAEAAADz////AAACAAEAAADz/wAAAAACAAEAAADz/wEAAAACAAEAAADz/wIAAAACAAEAAADz/wMAAAACAAEAAADz/wQAAAACAAEAAADz/wUAAAACAAEAAADz/wYAAAACAAEAAADz/wcAAAACAAEAAADz/wgAAAACAAEAAAD0//f/AAACAAEAAAD0//j/AAACAAEAAAD0//n/AAACAAEAAAD0//r/AAACAAEAAAD0//v/AAACAAEAAAD0//z/AAACAAEAAAD0//3/AAACAAEAAAD0//7/AAACAAEAAAD0////AAACAAEAAAD0/wAAAAACAAEAAAD0/wEAAAACAAEAAAD0/wIAAAACAAEAAAD0/wMAAAACAAEAAAD0/wQAAAACAAEAAAD0/wUAAAACAAEAAAD0/wYAAAACAAEAAAD0/wcAAAACAAEAAAD0/wgAAAACAAEAAAD1//f/AAACAAEAAAD1//j/AAACAAEAAAD1//n/AAACAAEAAAD1//r/AAACAAEAAAD1//v/AAACAAEAAAD1//z/AAACAAEAAAD1//3/AAACAAEAAAD1//7/AAACAAEAAAD1////AAACAAEAAAD1/wAAAAACAAEAAAD1/wEAAAACAAEAAAD1/wIAAAACAAEAAAD1/wMAAAACAAEAAAD1/wQAAAACAAEAAAD1/wUAAAACAAEAAAD1/wYAAAACAAEAAAD1/wcAAAACAAEAAAD1/wgAAAACAAEAAAD2/wMAAAACAAEAAAD2/wQAAAACAAEAAAD2/wUAAAACAAEAAAD2/wYAAAACAAEAAAD2/wcAAAACAAEAAAD2/wgAAAACAAEAAAD3/wMAAAACAAEAAAD3/wQAAAACAAEAAAD3/wUAAAACAAEAAAD3/wYAAAACAAEAAAD3/wcAAAACAAEAAAD3/wgAAAACAAEAAAD4/wMAAAACAAEAAAD4/wQAAAACAAEAAAD4/wUAAAACAAEAAAD4/wYAAAACAAEAAAD4/wcAAAACAAEAAAD4/wgAAAACAAEAAAD5/wMAAAACAAEAAAD5/wQAAAACAAEAAAD5/wUAAAACAAEAAAD5/wYAAAACAAEAAAD5/wcAAAACAAEAAAD5/wgAAAACAAEAAAD6/wMAAAACAAEAAAD6/wQAAAACAAEAAAD6/wUAAAACAAEAAAD6/wYAAAACAAEAAAD6/wcAAAACAAEAAAD6/wgAAAACAAEAAAD7/wMAAAACAAEAAAD7/wQAAAACAAEAAAD7/wUAAAACAAEAAAD7/wYAAAACAAEAAAD7/wcAAAACAAEAAAD7/wgAAAACAAEAAAD8/wMAAAACAAEAAAD8/wQAAAACAAEAAAD8/wUAAAACAAEAAAD8/wYAAAACAAEAAAD8/wcAAAACAAEAAAD8/wgAAAACAAEAAAD9/wMAAAACAAEAAAD9/wQAAAACAAEAAAD9/wUAAAACAAEAAAD9/wYAAAACAAEAAAD9/wcAAAACAAEAAAD9/wgAAAACAAEAAAD+/wMAAAACAAEAAAD+/wQAAAACAAEAAAD+/wUAAAACAAEAAAD+/wYAAAACAAEAAAD+/wcAAAACAAEAAAD+/wgAAAACAAEAAAD//wMAAAACAAEAAAD//wQAAAACAAEAAAD//wUAAAACAAEAAAD//wYAAAACAAEAAAD//wcAAAACAAEAAAD//wgAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAACAAEAAAABAAMAAAACAAEAAAABAAQAAAACAAEAAAABAAUAAAACAAEAAAABAAYAAAACAAEAAAABAAcAAAACAAEAAAABAAgAAAACAAEAAAACAAMAAAACAAEAAAACAAQAAAACAAEAAAACAAUAAAACAAEAAAACAAYAAAACAAEAAAACAAcAAAACAAEAAAACAAgAAAACAAEAAAADAAMAAAACAAEAAAADAAQAAAACAAEAAAADAAUAAAACAAEAAAADAAYAAAACAAEAAAADAAcAAAACAAEAAAADAAgAAAACAAEAAAAEAAMAAAACAAEAAAAEAAQAAAACAAEAAAAEAAUAAAACAAEAAAAEAAYAAAACAAEAAAAEAAcAAAACAAEAAAAEAAgAAAACAAEAAAAFAAMAAAACAAEAAAAFAAQAAAACAAEAAAAFAAUAAAACAAEAAAAFAAYAAAACAAEAAAAFAAcAAAACAAEAAAAFAAgAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAGAAcAAAACAAEAAAAGAAgAAAACAAEAAAAHAAMAAAACAAEAAAAHAAQAAAACAAEAAAAHAAUAAAACAAEAAAAHAAYAAAACAAEAAAAHAAcAAAACAAEAAAAHAAgAAAACAAEAAAAIAAMAAAACAAEAAAAIAAQAAAACAAEAAAAIAAUAAAACAAEAAAAIAAYAAAACAAEAAAAIAAcAAAACAAEAAAAIAAgAAAACAAEAAAAJAAMAAAACAAEAAAAJAAQAAAACAAEAAAAJAAUAAAACAAEAAAAJAAYAAAACAAEAAAAJAAcAAAACAAEAAAAJAAgAAAACAAEAAAAKAAMAAAACAAEAAAAKAAQAAAACAAEAAAAKAAUAAAACAAEAAAAKAAYAAAACAAEAAAAKAAcAAAACAAEAAAAKAAgAAAACAAEAAAALAAMAAAACAAEAAAALAAQAAAACAAEAAAALAAUAAAACAAEAAAALAAYAAAACAAEAAAALAAcAAAACAAEAAAALAAgAAAACAAEAAAAMAAMAAAACAAEAAAAMAAQAAAACAAEAAAAMAAUAAAACAAEAAAAMAAYAAAACAAEAAAAMAAcAAAACAAEAAAAMAAgAAAACAAEAAAANAAMAAAACAAEAAAANAAQAAAACAAEAAAANAAUAAAACAAEAAAANAAYAAAACAAEAAAANAAcAAAACAAEAAAANAAgAAAACAAEAAAAOAAMAAAACAAEAAAAOAAQAAAACAAEAAAAOAAUAAAACAAEAAAAOAAYAAAACAAEAAAAOAAcAAAACAAEAAAAOAAgAAAACAAEAAAAPAAMAAAACAAEAAAAPAAQAAAACAAEAAAAPAAUAAAACAAEAAAAPAAYAAAACAAEAAAAPAAcAAAACAAEAAAAPAAgAAAACAAEAAADw/wEAAAACAAEAAADw/wIAAAACAAEAAADw/wMAAAACAAEAAADv/wAAAAACAAEAAADv/wEAAAACAAEAAADv/wIAAAACAAEAAADv/wMAAAACAAEAAADv/wQAAAACAAEAAADv/wUAAAACAAEAAAA=")
+tile_set = ExtResource("3_s82nh")
+script = ExtResource("4_7srkx")
+display_material = ExtResource("5_c72pk")
+
+[node name="Grass" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+tile_map_data = PackedByteArray("AAD3//f/AAACAAEAAAD3//j/AAACAAEAAAD3//n/AAACAAEAAAD3//r/AAACAAEAAAD3//v/AAACAAEAAAD3//z/AAACAAEAAAD3//3/AAACAAEAAAD3//7/AAACAAEAAAD3////AAACAAEAAAD3/wAAAAACAAEAAAD3/wEAAAACAAEAAAD4//f/AAACAAEAAAD4//j/AAACAAEAAAD4//n/AAACAAEAAAD4//r/AAACAAEAAAD4//v/AAACAAEAAAD4//z/AAACAAEAAAD4//3/AAACAAEAAAD4//7/AAACAAEAAAD4////AAACAAEAAAD4/wAAAAACAAEAAAD4/wEAAAACAAEAAAD5//f/AAACAAEAAAD5//j/AAACAAEAAAD5//n/AAACAAEAAAD5//r/AAACAAEAAAD5//v/AAACAAEAAAD5//z/AAACAAEAAAD5//3/AAACAAEAAAD5//7/AAACAAEAAAD5////AAACAAEAAAD5/wAAAAACAAEAAAD5/wEAAAACAAEAAAD6//f/AAACAAEAAAD6//j/AAACAAEAAAD6//n/AAACAAEAAAD6//r/AAACAAEAAAD6//v/AAACAAEAAAD6//z/AAACAAEAAAD6//3/AAACAAEAAAD6//7/AAACAAEAAAD6////AAACAAEAAAD6/wAAAAACAAEAAAD6/wEAAAACAAEAAAD7//f/AAACAAEAAAD7//j/AAACAAEAAAD7//n/AAACAAEAAAD7//r/AAACAAEAAAD7//v/AAACAAEAAAD7//z/AAACAAEAAAD7//3/AAACAAEAAAD7////AAACAAEAAAD7/wAAAAACAAEAAAD7/wEAAAACAAEAAAD8//f/AAACAAEAAAD8//j/AAACAAEAAAD8//n/AAACAAEAAAD8//r/AAACAAEAAAD8//v/AAACAAEAAAD8//z/AAACAAEAAAD8//3/AAACAAEAAAD8////AAACAAEAAAD8/wAAAAACAAEAAAD8/wEAAAACAAEAAAD9//f/AAACAAEAAAD9//j/AAACAAEAAAD9//n/AAACAAEAAAD9//r/AAACAAEAAAD9//v/AAACAAEAAAD9//z/AAACAAEAAAD9////AAACAAEAAAD9/wAAAAACAAEAAAD9/wEAAAACAAEAAAD+//f/AAACAAEAAAD+//j/AAACAAEAAAD+////AAACAAEAAAD+/wAAAAACAAEAAAD+/wEAAAACAAEAAAD///f/AAACAAEAAAD///j/AAACAAEAAAD/////AAACAAEAAAD//wAAAAACAAEAAAD//wEAAAACAAEAAAAAAPf/AAACAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAABAPf/AAACAAEAAAABAAAAAAACAAEAAAABAAEAAAACAAEAAAACAPf/AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAADAAAAAAACAAEAAAADAAEAAAACAAEAAAAEAAAAAAACAAEAAAAEAAEAAAACAAEAAAAFAPj/AAACAAEAAAAFAPn/AAACAAEAAAAFAAAAAAACAAEAAAAFAAEAAAACAAEAAAAGAPn/AAACAAEAAAAGAAAAAAACAAEAAAAGAAEAAAACAAEAAAAHAPf/AAACAAEAAAAHAAAAAAACAAEAAAAHAAEAAAACAAEAAAAIAPf/AAACAAEAAAAJAPf/AAACAAEAAAAJAP//AAACAAEAAAAKAPf/AAACAAEAAAAKAPj/AAACAAEAAAAKAAAAAAACAAEAAAALAPf/AAACAAEAAAALAPj/AAACAAEAAAALAAAAAAACAAEAAAALAAEAAAACAAEAAAAMAPf/AAACAAEAAAAMAPj/AAACAAEAAAAMAPn/AAACAAEAAAAMAPv/AAACAAEAAAAMAPz/AAACAAEAAAAMAAAAAAACAAEAAAAMAAEAAAACAAEAAAANAPf/AAACAAEAAAANAPj/AAACAAEAAAANAPv/AAACAAEAAAANAPz/AAACAAEAAAANAP3/AAACAAEAAAANAAAAAAACAAEAAAANAAEAAAACAAEAAAAOAPf/AAACAAEAAAAOAPj/AAACAAEAAAAOAPr/AAACAAEAAAAOAPv/AAACAAEAAAAOAPz/AAACAAEAAAAOAP3/AAACAAEAAAAOAP7/AAACAAEAAAAOAAEAAAACAAEAAAAGAPj/AAACAAEAAAAGAPf/AAACAAEAAAAFAPf/AAACAAEAAAAEAPf/AAACAAEAAAADAPf/AAACAAEAAAD0/wIAAAACAAEAAAD0/wMAAAACAAEAAAD0/wQAAAACAAEAAAD0/wUAAAACAAEAAAD0/wYAAAACAAEAAAD0/wcAAAACAAEAAAD0/wgAAAACAAEAAAD1/wAAAAACAAEAAAD1/wMAAAACAAEAAAD1/wQAAAACAAEAAAD1/wUAAAACAAEAAAD1/wYAAAACAAEAAAD1/wcAAAACAAEAAAD1/wgAAAACAAEAAAD2/wAAAAACAAEAAAD2/wEAAAACAAEAAAD2/wQAAAACAAEAAAD2/wUAAAACAAEAAAD2/wYAAAACAAEAAAD2/wcAAAACAAEAAAD2/wgAAAACAAEAAAD3/wIAAAACAAEAAAD3/wQAAAACAAEAAAD3/wUAAAACAAEAAAD3/wYAAAACAAEAAAD3/wcAAAACAAEAAAD3/wgAAAACAAEAAAD4/wIAAAACAAEAAAD4/wUAAAACAAEAAAD4/wYAAAACAAEAAAD4/wcAAAACAAEAAAD4/wgAAAACAAEAAAD5/wIAAAACAAEAAAD5/wMAAAACAAEAAAD5/wYAAAACAAEAAAD5/wcAAAACAAEAAAD5/wgAAAACAAEAAAD6/wIAAAACAAEAAAD6/wMAAAACAAEAAAD6/wYAAAACAAEAAAD6/wcAAAACAAEAAAD6/wgAAAACAAEAAAD7/wIAAAACAAEAAAD7/wMAAAACAAEAAAD7/wcAAAACAAEAAAD7/wgAAAACAAEAAAD8/wIAAAACAAEAAAD8/wMAAAACAAEAAAD8/wcAAAACAAEAAAD8/wgAAAACAAEAAAD9/wIAAAACAAEAAAD9/wMAAAACAAEAAAD9/wcAAAACAAEAAAD9/wgAAAACAAEAAAD+/wIAAAACAAEAAAD+/wMAAAACAAEAAAD+/wUAAAACAAEAAAD+/wcAAAACAAEAAAD+/wgAAAACAAEAAAD//wIAAAACAAEAAAD//wMAAAACAAEAAAD//wUAAAACAAEAAAD//wcAAAACAAEAAAD//wgAAAACAAEAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAUAAAACAAEAAAAAAAgAAAACAAEAAAABAAIAAAACAAEAAAABAAMAAAACAAEAAAABAAUAAAACAAEAAAABAAgAAAACAAEAAAACAAIAAAACAAEAAAACAAUAAAACAAEAAAACAAYAAAACAAEAAAACAAgAAAACAAEAAAADAAIAAAACAAEAAAADAAUAAAACAAEAAAADAAYAAAACAAEAAAADAAgAAAACAAEAAAAEAAIAAAACAAEAAAAEAAUAAAACAAEAAAAEAAYAAAACAAEAAAAEAAgAAAACAAEAAAAFAAIAAAACAAEAAAAFAAQAAAACAAEAAAAFAAUAAAACAAEAAAAFAAYAAAACAAEAAAAFAAgAAAACAAEAAAAGAAIAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAGAAgAAAACAAEAAAAHAAIAAAACAAEAAAAHAAQAAAACAAEAAAAHAAUAAAACAAEAAAAHAAYAAAACAAEAAAAHAAgAAAACAAEAAAAIAAIAAAACAAEAAAAIAAQAAAACAAEAAAAIAAUAAAACAAEAAAAIAAgAAAACAAEAAAAJAAQAAAACAAEAAAAJAAUAAAACAAEAAAAJAAgAAAACAAEAAAAKAAgAAAACAAEAAAALAAcAAAACAAEAAAALAAgAAAACAAEAAAAMAAIAAAACAAEAAAAMAAMAAAACAAEAAAAMAAQAAAACAAEAAAAMAAUAAAACAAEAAAAMAAcAAAACAAEAAAAMAAgAAAACAAEAAAANAAIAAAACAAEAAAANAAMAAAACAAEAAAANAAQAAAACAAEAAAANAAUAAAACAAEAAAANAAcAAAACAAEAAAANAAgAAAACAAEAAAAOAAIAAAACAAEAAAAOAAMAAAACAAEAAAAOAAQAAAACAAEAAAAOAAUAAAACAAEAAAAOAAcAAAACAAEAAAAOAAgAAAACAAEAAADt//f/AAACAAEAAADt//j/AAACAAEAAADt//n/AAACAAEAAADt//r/AAACAAEAAADt//v/AAACAAEAAADt//z/AAACAAEAAADt//3/AAACAAEAAADt//7/AAACAAEAAADt////AAACAAEAAADu//f/AAACAAEAAADu//j/AAACAAEAAADu//n/AAACAAEAAADu//r/AAACAAEAAADu//v/AAACAAEAAADu//z/AAACAAEAAADu//3/AAACAAEAAADu//7/AAACAAEAAADu////AAACAAEAAADv//f/AAACAAEAAADv//j/AAACAAEAAADv//n/AAACAAEAAADv//r/AAACAAEAAADv//v/AAACAAEAAADv//z/AAACAAEAAADv//3/AAACAAEAAADv//7/AAACAAEAAADw//f/AAACAAEAAADw//j/AAACAAEAAADw//n/AAACAAEAAADw//r/AAACAAEAAADw//v/AAACAAEAAADw//z/AAACAAEAAADw//3/AAACAAEAAADw//7/AAACAAEAAADx//f/AAACAAEAAADx//j/AAACAAEAAADx//n/AAACAAEAAADx//r/AAACAAEAAADx//v/AAACAAEAAADx//z/AAACAAEAAADx//3/AAACAAEAAADx//7/AAACAAEAAADy//f/AAACAAEAAADy//j/AAACAAEAAADy//n/AAACAAEAAADy//r/AAACAAEAAADy//v/AAACAAEAAADy//z/AAACAAEAAADy//3/AAACAAEAAADy//7/AAACAAEAAADz//f/AAACAAEAAADz//j/AAACAAEAAADz//n/AAACAAEAAADz//r/AAACAAEAAADz//v/AAACAAEAAADz//z/AAACAAEAAADz//3/AAACAAEAAADz//7/AAACAAEAAADz////AAACAAEAAAD0//f/AAACAAEAAAD0//j/AAACAAEAAAD0//n/AAACAAEAAAD0//r/AAACAAEAAAD0//v/AAACAAEAAAD0//z/AAACAAEAAAD0//3/AAACAAEAAAD0//7/AAACAAEAAAD0////AAACAAEAAAD1//f/AAACAAEAAAD1//j/AAACAAEAAAD1//n/AAACAAEAAAD1//r/AAACAAEAAAD1//v/AAACAAEAAAD1//z/AAACAAEAAAD1//3/AAACAAEAAAD1//7/AAACAAEAAAD1////AAACAAEAAAD2//f/AAACAAEAAAD2//j/AAACAAEAAAD2//n/AAACAAEAAAD2//r/AAACAAEAAAD2//v/AAACAAEAAAD2//z/AAACAAEAAAD2//3/AAACAAEAAAD2//7/AAACAAEAAAD2////AAACAAEAAAAKAPz/AAACAAEAAAALAPz/AAACAAEAAAALAPv/AAACAAEAAAAKAP3/AAACAAEAAAAJAPn/AAACAAEAAAAJAPj/AAACAAEAAAAIAPj/AAACAAEAAAAHAPj/AAACAAEAAAAHAPn/AAACAAEAAAAIAPn/AAACAAEAAAAGAPr/AAACAAEAAAAFAPr/AAACAAEAAAAPAPf/AAACAAEAAAAPAPj/AAACAAEAAAAPAPn/AAACAAEAAAAPAPr/AAACAAEAAAAPAPv/AAACAAEAAAAPAPz/AAACAAEAAAAPAP3/AAACAAEAAAAPAP7/AAACAAEAAAAPAP//AAACAAEAAAAPAAAAAAACAAEAAAAPAAEAAAACAAEAAAAPAAIAAAACAAEAAAAPAAMAAAACAAEAAAAPAAQAAAACAAEAAAAPAAUAAAACAAEAAAAPAAYAAAACAAEAAAAPAAcAAAACAAEAAAAPAAgAAAACAAEAAADw/wgAAAACAAEAAADw/wcAAAACAAEAAADw/wYAAAACAAEAAADw/wUAAAACAAEAAADx/wgAAAACAAEAAADy/wgAAAACAAEAAADz/wgAAAACAAEAAADw/wAAAAACAAEAAADw////AAACAAEAAAALAAMAAAACAAEAAAALAAIAAAACAAEAAAALAAQAAAACAAEAAAALAAUAAAACAAEAAAAOAAYAAAACAAEAAAANAAYAAAACAAEAAAAOAAAAAAACAAEAAAAOAP//AAACAAEAAAANAP//AAACAAEAAAANAP7/AAACAAEAAAAMAP7/AAACAAEAAAAMAP//AAACAAEAAAALAP3/AAACAAEAAAALAPr/AAACAAEAAAAKAPv/AAACAAEAAAAKAP7/AAACAAEAAAALAP7/AAACAAEAAAALAP//AAACAAEAAAAJAP7/AAACAAEAAAAKAP//AAACAAEAAAAMAP3/AAACAAEAAAAKAPr/AAACAAEAAAAKAPn/AAACAAEAAAAMAPr/AAACAAEAAAANAPr/AAACAAEAAAALAPn/AAACAAEAAAAQAPv/AAACAAEAAAAQAPr/AAACAAEAAAAOAPn/AAACAAEAAAANAPn/AAACAAEAAAABAPz/AAACAAEAAAACAPz/AAACAAEAAAACAP3/AAACAAEAAAABAP3/AAACAAEAAAAAAP3/AAACAAEAAAD///3/AAACAAEAAAD///7/AAACAAEAAAAAAP7/AAACAAEAAAAAAP//AAACAAEAAAD9/wUAAAACAAEAAAD8/wUAAAACAAEAAAD8/wYAAAACAAEAAAD7/wYAAAACAAEAAAD9/wYAAAACAAEAAAD+/wYAAAACAAEAAAD//wYAAAACAAEAAAAAAAcAAAACAAEAAAABAAcAAAACAAEAAAACAAcAAAACAAEAAAA=")
+tile_set = ExtResource("6_yw741")
+script = ExtResource("4_7srkx")
+display_material = ExtResource("7_4o7sd")
+
+[node name="Blockage" parent="." instance=ExtResource("8_nji4r")]
+position = Vector2(314, -106)
+
+[node name="Roots" type="TileMapLayer" parent="Blockage"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-314, 106)
+tile_set = ExtResource("9_pesqm")
+script = ExtResource("4_7srkx")
+display_material = ExtResource("10_s4od7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockage"]
+position = Vector2(7.5, -5.5)
+shape = SubResource("RectangleShape2D_qyrb8")
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-230, 137)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-203, 133)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-182, 139)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-181, 121)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-177, 101)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-150, 94)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-149, 114)
+
+[node name="Tree8" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-155, 136)
+
+[node name="Tree9" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-131, 125)
+
+[node name="Tree11" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-99, 125)
+
+[node name="Tree24" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(189, 150)
+
+[node name="Tree25" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(227, 146)
+
+[node name="Tree26" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(255, 148)
+
+[node name="Tree27" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(285, 144)
+
+[node name="Tree28" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(209, 145)
+
+[node name="Tree29" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(209, 145)
+
+[node name="Tree30" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(7, 192)
+
+[node name="Tree31" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(40, 159)
+
+[node name="Tree32" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(64, 171)
+
+[node name="Tree33" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(102, 167)
+
+[node name="Tree34" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(130, 169)
+
+[node name="Tree35" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(160, 165)
+
+[node name="Tree36" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(84, 166)
+
+[node name="Tree37" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(84, 166)
+
+[node name="Tree38" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-184, 171)
+
+[node name="Tree39" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-153, 173)
+
+[node name="Tree40" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-129, 185)
+
+[node name="Tree41" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-91, 181)
+
+[node name="Tree42" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-63, 183)
+
+[node name="Tree43" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-33, 179)
+
+[node name="Tree44" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-109, 180)
+
+[node name="Tree45" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-109, 180)
+
+[node name="Tree46" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-227, -125)
+
+[node name="Tree47" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-196, -123)
+
+[node name="Tree48" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-172, -111)
+
+[node name="Tree49" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-134, -115)
+
+[node name="Tree50" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-106, -113)
+
+[node name="Tree51" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-76, -117)
+
+[node name="Tree52" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-152, -116)
+
+[node name="Tree53" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-152, -116)
+
+[node name="Tree54" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-204, -97)
+
+[node name="Tree57" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-111, -87)
+
+[node name="Tree59" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-53, -89)
+
+[node name="Tree62" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-227, -83)
+
+[node name="Tree63" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-196, -81)
+
+[node name="Tree70" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-201, -70)
+
+[node name="Tree75" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-50, -62)
+
+[node name="Tree78" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-223, -51)
+
+[node name="Tree79" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-192, -49)
+
+[node name="Tree80" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-168, -37)
+
+[node name="Tree81" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-130, -41)
+
+[node name="Tree82" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-102, -39)
+
+[node name="Tree83" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-72, -43)
+
+[node name="Tree84" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-148, -42)
+
+[node name="Tree86" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-236, -30)
+
+[node name="Tree87" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-205, -28)
+
+[node name="Tree88" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-181, -16)
+
+[node name="Tree89" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-143, -20)
+
+[node name="Tree90" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-115, -18)
+
+[node name="Tree91" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-85, -22)
+
+[node name="Tree92" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-161, -21)
+
+[node name="Tree93" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-161, -21)
+
+[node name="Tree94" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-111, 7)
+
+[node name="Tree95" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-81, 3)
+
+[node name="Tree96" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-157, 4)
+
+[node name="Tree97" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-157, 4)
+
+[node name="Tree100" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-64, -9)
+
+[node name="Tree101" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-64, -9)
+
+[node name="Tree104" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-99, -6)
+
+[node name="Tree105" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-99, -6)
+
+[node name="Tree108" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-64, 10)
+
+[node name="Tree112" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-42, 23)
+
+[node name="Tree114" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(72, 36)
+
+[node name="Tree115" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(102, 32)
+
+[node name="Tree116" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(13, 49)
+
+[node name="Tree119" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(32, 37)
+
+[node name="Tree162" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(52, 24)
+
+[node name="Tree117" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-12, 44)
+
+[node name="Tree118" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-36, 37)
+
+[node name="Tree120" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-82, 34)
+
+[node name="Tree121" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(-82, 34)
+
+[node name="Tree122" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(213, -17)
+
+[node name="Tree123" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(243, -21)
+
+[node name="Tree124" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(167, -20)
+
+[node name="Tree125" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(167, -20)
+
+[node name="Tree126" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(235, -2)
+
+[node name="Tree127" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(265, -6)
+
+[node name="Tree128" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(189, -5)
+
+[node name="Tree129" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(189, -5)
+
+[node name="Tree130" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(257, 22)
+
+[node name="Tree131" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(287, 18)
+
+[node name="Tree132" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(211, 19)
+
+[node name="Tree133" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(211, 19)
+
+[node name="Tree134" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(275, 40)
+
+[node name="Tree135" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(305, 36)
+
+[node name="Tree136" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(229, 37)
+
+[node name="Tree137" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(229, 37)
+
+[node name="Tree138" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(256, 62)
+
+[node name="Tree139" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(286, 58)
+
+[node name="Tree140" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(210, 59)
+
+[node name="Tree141" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(210, 59)
+
+[node name="Tree142" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(250, 45)
+
+[node name="Tree143" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(280, 41)
+
+[node name="Tree144" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(204, 42)
+
+[node name="Tree145" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(204, 42)
+
+[node name="Tree146" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(277, 85)
+
+[node name="Tree147" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(307, 81)
+
+[node name="Tree148" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(231, 82)
+
+[node name="Tree149" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(231, 82)
+
+[node name="Tree150" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(186, -106)
+
+[node name="Tree151" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(216, -110)
+
+[node name="Tree152" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(140, -109)
+
+[node name="Tree153" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(140, -109)
+
+[node name="Tree154" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(154, -120)
+
+[node name="Tree155" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(184, -124)
+
+[node name="Tree156" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(108, -123)
+
+[node name="Tree157" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(108, -123)
+
+[node name="Tree158" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(154, -120)
+
+[node name="Tree159" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(184, -124)
+
+[node name="Tree160" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(108, -123)
+
+[node name="Tree161" parent="Trees" instance=ExtResource("11_caveg")]
+position = Vector2(108, -123)
+
+[node name="Larva" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(119, 57)
+
+[node name="Larva2" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(70, 72)
+
+[node name="Larva3" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(-48, 68)
+
+[node name="Larva4" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(149, 10)
+
+[node name="Larva5" parent="." instance=ExtResource("12_5brux")]
+position = Vector2(7, 78)
+
+[node name="Broodmother" parent="." instance=ExtResource("12_c0toa")]
+position = Vector2(50, -72)
 
 [connection signal="ExitAreaEntered" from="ExitGlade" to="." method="OnExitAreaEntered"]
 [connection signal="ExitAreaEntered" from="ExitTunnel" to="." method="OnExitAreaEntered"]

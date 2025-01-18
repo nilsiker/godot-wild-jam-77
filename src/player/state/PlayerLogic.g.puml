@@ -1,27 +1,32 @@
 @startuml PlayerLogic
 state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
-  state "Attacking" as Nevergreen_PlayerLogic_State_Attacking
-  state "Idle" as Nevergreen_PlayerLogic_State_Idle
-  state "Moving" as Nevergreen_PlayerLogic_State_Moving
+  state "Alive" as Nevergreen_PlayerLogic_State_Alive {
+    state "Attacking" as Nevergreen_PlayerLogic_State_Alive_Attacking
+    state "Idle" as Nevergreen_PlayerLogic_State_Alive_Idle
+    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
+  }
+  state "Dead" as Nevergreen_PlayerLogic_State_Dead
 }
 
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosition
-Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Attacking : Attack
-Nevergreen_PlayerLogic_State_Attacking --> Nevergreen_PlayerLogic_State_Attacking : AnimationFinished
-Nevergreen_PlayerLogic_State_Attacking --> Nevergreen_PlayerLogic_State_Attacking : UpdateHitting
-Nevergreen_PlayerLogic_State_Attacking --> Nevergreen_PlayerLogic_State_Idle : AnimationFinished
-Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Idle : Move
-Nevergreen_PlayerLogic_State_Idle --> Nevergreen_PlayerLogic_State_Moving : Move
-Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Idle : Move
-Nevergreen_PlayerLogic_State_Moving --> Nevergreen_PlayerLogic_State_Moving : Move
+Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
+Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
+Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Damage
+Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : AnimationFinished
+Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : UpdateHitting
+Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Idle : AnimationFinished
+Nevergreen_PlayerLogic_State_Alive_Idle --> Nevergreen_PlayerLogic_State_Alive_Idle : Move
+Nevergreen_PlayerLogic_State_Alive_Idle --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
+Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Idle : Move
+Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
 
 Nevergreen_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
-Nevergreen_PlayerLogic_State_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
-Nevergreen_PlayerLogic_State_Attacking : OnExit → FinishedAttacking
-Nevergreen_PlayerLogic_State_Attacking : OnUpdateHitting → ForceApplied, SetHitting
-Nevergreen_PlayerLogic_State_Idle : OnEnter → AnimationUpdated
-Nevergreen_PlayerLogic_State_Moving : OnEnter → AnimationUpdated
-Nevergreen_PlayerLogic_State_Moving : OnMove → FlipSprite, ForceApplied
+Nevergreen_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
+Nevergreen_PlayerLogic_State_Alive_Attacking : OnExit → FinishedAttacking
+Nevergreen_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → ForceApplied, SetHitting
+Nevergreen_PlayerLogic_State_Alive_Idle : OnEnter → AnimationUpdated
+Nevergreen_PlayerLogic_State_Alive_Moving : OnEnter → AnimationUpdated
+Nevergreen_PlayerLogic_State_Alive_Moving : OnMove → FlipSprite, ForceApplied
 
-[*] --> Nevergreen_PlayerLogic_State_Idle
+[*] --> Nevergreen_PlayerLogic_State_Alive_Idle
 @enduml

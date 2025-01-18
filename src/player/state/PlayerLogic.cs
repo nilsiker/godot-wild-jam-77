@@ -13,9 +13,10 @@ public partial class PlayerLogic
   : LogicBlock<PlayerLogic.State>,
     IPlayerLogic {
   protected override void HandleError(Exception e) => throw e;
-  public override Transition GetInitialState() => To<State.Idle>();
+  public override Transition GetInitialState() => To<State.Alive.Idle>();
 
   public class Data {
+    public int Health { get; set; }
     public float Speed { get; set; }
     public Vector2 AttackDirection { get; set; }
   }
