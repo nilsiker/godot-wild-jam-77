@@ -85,7 +85,7 @@ public partial class Attacker : Node2D, IAttacker {
   public void Attack(Vector2 direction) {
     if (AppRepo.UseDice.Value) {
       var roll = Dice.Roll();
-      _damage = roll > 3 ? roll : 0;
+      _damage = roll > 2 ? roll : 0;
     }
     else {
       _damage = 1;

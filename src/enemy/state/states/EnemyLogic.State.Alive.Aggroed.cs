@@ -39,7 +39,7 @@ public partial class EnemyLogic {
           data.TimeAggroed += input.Time;
 
           if (settings.Breeds && data.TimeAggroed > 2) {
-            if (roomRepo.EnemyCount.Value < 80) {
+            if (roomRepo.EnemyCount.Value < 50) {
               Output(new Output.SpawnLarva());
               Get<IRoomRepo>().OnEnemySpawned();
             }

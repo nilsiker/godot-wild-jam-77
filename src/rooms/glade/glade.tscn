@@ -51,7 +51,7 @@ fill_to = Vector2(1, 0.5)
 blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_1egkx"]
-colors = PackedColorArray(1, 1, 1, 1, 0.348496, 0.0343899, 0.34358, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.348496, 0.0343899, 0.34358, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1sj3s"]
 noise_type = 5
@@ -59,7 +59,7 @@ frequency = 0.0668
 domain_warp_enabled = true
 domain_warp_type = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ski3"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kllow"]
 in_3d_space = true
 color_ramp = SubResource("Gradient_1egkx")
 noise = SubResource("FastNoiseLite_1sj3s")
@@ -734,11 +734,11 @@ shadow_filter = 2
 texture = SubResource("GradientTexture2D_0bggi")
 
 [node name="Fumes" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.0941176)
+modulate = Color(1, 1, 1, 0.560784)
 z_index = 2
 material = SubResource("CanvasItemMaterial_th5ol")
 position = Vector2(108, -101)
-texture = SubResource("NoiseTexture2D_8ski3")
+texture = SubResource("NoiseTexture2D_kllow")
 script = ExtResource("11_ig4nu")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

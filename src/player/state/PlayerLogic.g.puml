@@ -12,6 +12,7 @@ Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosi
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Alive_Idle : Revive
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
+Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Damage
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : AnimationFinished
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : UpdateHitting
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Idle : AnimationFinished
@@ -25,7 +26,7 @@ Nevergreen_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
 Nevergreen_PlayerLogic_State_Alive : OnDamage → Damaged
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnExit → FinishedAttacking
-Nevergreen_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → ForceApplied, SetHitting
+Nevergreen_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → SetHitting
 Nevergreen_PlayerLogic_State_Alive_Idle : OnEnter → AnimationUpdated
 Nevergreen_PlayerLogic_State_Alive_Moving : OnEnter → AnimationUpdated
 Nevergreen_PlayerLogic_State_Alive_Moving : OnMove → FlipSprite, ForceApplied

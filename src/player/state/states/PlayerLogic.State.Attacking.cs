@@ -30,8 +30,7 @@ public partial class PlayerLogic {
           input.Animation == ATTACK ? To<Idle>() : ToSelf();
         public Transition On(in Input.UpdateHitting input) {
           if (input.IsHitting) {
-            Output(new Output.ForceApplied(Get<Data>().AttackDirection * 100f, true));
-
+            // Output(new Output.ForceApplied(Get<Data>().AttackDirection * 100f, true));
           }
           Output(new Output.SetHitting(input.IsHitting));
           return ToSelf();

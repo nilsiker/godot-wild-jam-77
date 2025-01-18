@@ -42,7 +42,7 @@ size = Vector2(121, 33)
 blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_8dvbs"]
-colors = PackedColorArray(0, 0, 0, 1, 0.348496, 0.0343899, 0.34358, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.348496, 0.0343899, 0.34358, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_31a4i"]
 noise_type = 5
@@ -546,7 +546,7 @@ color = Color(0.726304, 0.000402084, 0.726299, 1)
 texture = ExtResource("15_3bpo2")
 
 [node name="Fumes" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.329412)
+modulate = Color(1, 1, 1, 0.854902)
 z_index = 2
 material = SubResource("CanvasItemMaterial_iyvly")
 position = Vector2(6, -9)
