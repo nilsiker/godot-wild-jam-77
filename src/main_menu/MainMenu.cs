@@ -16,10 +16,8 @@ public partial class MainMenu : Control, IMainMenu {
   #endregion
 
   #region Nodes
-  [Node] private ITextureRect Background { get; set; } = default!;
   [Node] private IButton StartGameButton { get; set; } = default!;
   [Node] private IButton OptionsButton { get; set; } = default!;
-  [Node] private IButton CreditsButton { get; set; } = default!;
   [Node] private IButton QuitButton { get; set; } = default!;
   #endregion
 
@@ -50,12 +48,6 @@ public partial class MainMenu : Control, IMainMenu {
   public void OnReady() {
     SetProcess(true);
     SetPhysicsProcess(true);
-  }
-
-  public void OnProcess(double delta) {
-    var offset = ((FastNoiseLite)((NoiseTexture2D)Background.Texture).Noise).Offset;
-    offset.Z += (float)delta;
-    ((FastNoiseLite)((NoiseTexture2D)Background.Texture).Noise).Offset = offset;
   }
 
   public void OnPhysicsProcess(double delta) { }

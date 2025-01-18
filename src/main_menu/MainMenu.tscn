@@ -1,19 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://gnfeiowom8ok"]
+[gd_scene load_steps=36 format=3 uid="uid://gnfeiowom8ok"]
 
 [ext_resource type="Script" path="res://src/main_menu/MainMenu.cs" id="1_hxhey"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_avwyo"]
-noise_type = 0
-offset = Vector3(0, 0, 367.54)
-fractal_type = 3
-domain_warp_type = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pngyo"]
-width = 128
-height = 128
-in_3d_space = true
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_avwyo")
+[ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="2_byf5k"]
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="2_nith8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dsl3o"]
 load_path = "res://.godot/imported/player.png-7c4d057edcab8f8126ffb130fd0df8aa.ctex"
@@ -243,6 +232,22 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kn7wh"]
+
+[sub_resource type="Gradient" id="Gradient_2yf4g"]
+colors = PackedColorArray(0, 0, 0, 1, 0.348496, 0.0343899, 0.34358, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_50d68"]
+noise_type = 5
+offset = Vector3(0, 0, -22.7)
+fractal_type = 2
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sdvvl"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_2yf4g")
+noise = SubResource("FastNoiseLite_50d68")
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -252,6 +257,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hxhey")
 
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "A game by Scanian Forest"
+horizontal_alignment = 2
+
 [node name="Container" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -260,20 +288,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="Container"]
-unique_name_in_owner = true
-modulate = Color(0.439207, 0.487659, 0.309457, 1)
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("NoiseTexture2D_pngyo")
-stretch_mode = 6
-
 [node name="Margins" type="MarginContainer" parent="Container"]
 layout_mode = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="VBox" type="VBoxContainer" parent="Container/Margins"]
 layout_mode = 2
@@ -282,8 +302,9 @@ alignment = 1
 
 [node name="Title" type="Label" parent="Container/Margins/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "NEVERGREEN"
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 32
+text = "Nevergreen"
 
 [node name="HSeparator" type="HSeparator" parent="Container/Margins/VBox"]
 layout_mode = 2
@@ -291,31 +312,28 @@ layout_mode = 2
 [node name="StartGameButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Start Game"
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
+text = "Play"
 
 [node name="OptionsButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
 text = "Options"
-
-[node name="CreditsButton" type="Button" parent="Container/Margins/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Credits"
 
 [node name="QuitButton" type="Button" parent="Container/Margins/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 24
 text = "Quit"
 
 [node name="SleepingVättri" type="AnimatedSprite2D" parent="Container"]
 texture_filter = 1
-position = Vector2(790, 342)
-scale = Vector2(10, 10)
+position = Vector2(345, 125)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2yj34")
 animation = &"zzz"
 metadata/_aseprite_wizard_interface_config_ = {
@@ -333,3 +351,11 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://src/player/player.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "1c34e9d6a01672845f8cfd43123675df"
+
+[node name="Fumes" parent="." instance=ExtResource("2_byf5k")]
+modulate = Color(1, 1, 1, 0.180392)
+z_index = 1
+material = SubResource("CanvasItemMaterial_kn7wh")
+position = Vector2(243, 134)
+texture = SubResource("NoiseTexture2D_sdvvl")
+_speed = 5.0

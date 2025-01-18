@@ -10,8 +10,8 @@ public partial class EnemyLogic {
       }
 
       public Transition On(in Input.AnimationFinished input) {
-        Get<IRoomRepo>().OnEnemyKilled();
         Output(new Output.Died());
+        Get<IRoomRepo>().OnEnemyKilled();
         return ToSelf();
       }
     }

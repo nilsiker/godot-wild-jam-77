@@ -21,8 +21,8 @@ public partial class GameLogic {
         });
       }
 
-      private void OnFadeOutFinished() =>
-        Output(new Output.RoomTransitionRequested(Get<Data>().Room));
+      private void OnFadeOutFinished() => Output(new Output.RoomTransitionRequested(Get<Data>().Room));
+
       public Transition On(in Input.RoomResolved input) {
         Get<IAppRepo>().RequestFadeIn();
         return To<InRoom>();

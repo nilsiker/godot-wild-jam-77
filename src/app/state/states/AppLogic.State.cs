@@ -25,6 +25,7 @@ public partial class AppLogic {
       Get<IAppRepo>().OnFadeOutFinished();
       return ToSelf();
     }
+
     private void OnAppFadeInRequested() => Output(new Output.FadeIn());
     private void OnAppFadeOutRequested() => Output(new Output.FadeOut());
     private void OnAppQuit() => Input(new Input.QuitApp());

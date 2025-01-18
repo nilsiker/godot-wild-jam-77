@@ -10,10 +10,8 @@ public partial class AppLogic {
         this.OnExit(() => Output(new Output.HideMainMenu()));
       }
 
-      public Transition On(in Input.FadeOutFinished input) {
-        Output(new Output.FadeIn());
-        return To<StartingNewGame>();
-      }
+      public Transition On(in Input.FadeOutFinished input)
+        => To<StartingNewGame>();
     }
   }
 }

@@ -86,4 +86,4 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "e2b6340ca85d586548430fa778c035cd"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Canopy"]
-polygon = PackedVector2Array(-23, 22, -29, -6, -26, -34, -8, -49, 9, -47, 19, -34, 29, -4, 23, 22)
+polygon = PackedVector2Array(-23, 22, -29, -6, -26, -29, -8, -41, 9, -41, 19, -33, 29, -4, 23, 22)

@@ -39,6 +39,7 @@ public partial class EnemyLogic {
 
           if (settings.Breeds && data.TimeAggroed > 3) {
             Output(new Output.SpawnLarva());
+            Get<IRoomRepo>().OnEnemySpawned();
             data.TimeAggroed = 0;
           }
 

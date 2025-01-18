@@ -9,6 +9,7 @@ public interface IStateDebugInfo {
 }
 
 public partial class StateDebug : VBoxContainer {
+  public const string GROUP = "state_debug";
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta) {
     ClearChildren();
@@ -17,7 +18,8 @@ public partial class StateDebug : VBoxContainer {
       var node = new RichTextLabel {
         Text = str,
         FitContent = true,
-        BbcodeEnabled = true
+        BbcodeEnabled = true,
+        MouseFilter = MouseFilterEnum.Ignore
       };
       AddChild(node);
     }

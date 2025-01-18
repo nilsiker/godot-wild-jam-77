@@ -67,7 +67,7 @@ public partial class Player : RigidBody2D, IPlayer {
       Speed = 1000f
     });
 
-    AddToGroup("state_debug");
+    AddToGroup(StateDebug.GROUP);
     Logic.Start();
   }
   #endregion

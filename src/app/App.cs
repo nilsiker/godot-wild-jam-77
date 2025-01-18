@@ -63,12 +63,12 @@ public partial class App : Node, IApp {
       .Handle((in AppLogic.Output.HideMainMenu _) => MainMenu.Visible = false)
       .Handle((in AppLogic.Output.ShowGame _) => CallDeferred(nameof(OnOutputShowGame)))
       .Handle((in AppLogic.Output.FadeIn _) => CallDeferred(nameof(OnOutputFadeIn)))
-      .Handle((in AppLogic.Output.FadeOut _) => OnOutputFadeOut())
-      .When<AppLogic.State>(state => GD.Print(state.GetType().Name));
+      .Handle((in AppLogic.Output.FadeOut _) => OnOutputFadeOut());
 
-    Logic.Start();
-    AddToGroup("state_debug");
     this.Provide();
+    Logic.Start();
+
+    AddToGroup(StateDebug.GROUP);
   }
   #endregion
 
@@ -109,21 +109,18 @@ public partial class App : Node, IApp {
     AddChild(gameNode);
   }
 
-  private void OnOutputRemoveGame() {
-    if (Game.GetChildCount() == 0) {
-      return;
-    }
-
-    var game = Game.GetChild(0);
-    Game.RemoveChildEx(game);
-    game.QueueFree();
-  }
+  private void OnOutputRemoveGame() => Game?.QueueFree();
 
   private void OnOutputShowGame() => Game.Visible = true;
 
   private void OnOutputShowMainMenu() => MainMenu.Visible = true;
 
-  private void OnOutputFadeOut() => AnimationPlayer.Play("fade_out");
+  private void OnOutputFadeOut() {
+    // FIXME this is a hack, could be solved if Fadeout was its own repo where we keep track of the state.
+    if (GetNode<ColorRect>("UI/Fadeout").Color.A < 0.1) {
+      AnimationPlayer.Play("fade_out");
+    }
+  }
 
   private void OnOutputFadeIn() => AnimationPlayer.Play("fade_in");
 

@@ -87,7 +87,7 @@ public partial class Enemy : RigidBody2D, IEnemy {
 
     Logic.Set(_settings as IEnemySettings);
 
-    AddToGroup("state_debug");
+    AddToGroup(StateDebug.GROUP);
     Logic.Start();
   }
   #endregion

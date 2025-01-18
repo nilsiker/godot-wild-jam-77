@@ -13,6 +13,8 @@ Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_Outro : Request
 Nevergreen_GameLogic_State_Intro --> Nevergreen_GameLogic_State_ChangingRoom : CutsceneFinished
 Nevergreen_GameLogic_State_Outro --> Nevergreen_GameLogic_State_Outro : CutsceneFinished
 
+Nevergreen_GameLogic_State : OnGamePaused() → SetPauseMode
+Nevergreen_GameLogic_State : OnGameResumed() → SetPauseMode
 Nevergreen_GameLogic_State_ChangingRoom : OnEnter → SetPauseMode
 Nevergreen_GameLogic_State_ChangingRoom : OnFadeOutFinished() → RoomTransitionRequested
 Nevergreen_GameLogic_State_InRoom : OnEnter → SetPauseMode

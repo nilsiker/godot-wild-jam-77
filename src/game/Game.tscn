@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=18 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3lakh62dw2mr" path="res://src/rooms/forest/Forest.tscn" id="4_mgual"]
 [ext_resource type="PackedScene" uid="uid://c2sje1deol08o" path="res://src/rooms/tunnel/Tunnel.tscn" id="5_ickkj"]
 [ext_resource type="PackedScene" uid="uid://cyydbn7jc41nw" path="res://src/rooms/hive/Hive.tscn" id="6_ghg5h"]
+[ext_resource type="PackedScene" uid="uid://cv1shht68qyi8" path="res://src/game_over_screen/GameOverScreen.tscn" id="9_d7s1g"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="9_vqvpx"]
 
 [sub_resource type="Animation" id="Animation_68iwx"]
@@ -71,6 +72,78 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Outro:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Outro:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Outro/Fumes:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Outro/The forest is safe:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Outro/A solitary warden:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Outro/Somewhere, a warden awakens___:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_muql6"]
 resource_name = "start"
@@ -118,10 +191,10 @@ tracks/3/path = NodePath("Fumes:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 6.86667, 7.36667, 10.7, 11.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 17),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.0156863), Color(1, 1, 1, 0.0235294), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.0156863), Color(1, 1, 1, 0.384314)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -130,19 +203,110 @@ tracks/4/path = NodePath(".:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 16.9667),
+"times": PackedFloat32Array(0, 17),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_i4v51"]
+resource_name = "outro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Outro:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Outro:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Outro/Fumes:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333338, 16.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Outro/The forest is safe:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.766667, 1.8, 4.1, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Outro/A solitary warden:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 6.9, 7.9, 9.96667, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Outro/Somewhere, a warden awakens___:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 12.5, 13.5333, 15.7333, 16.7667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kl4if"]
 _data = {
 "RESET": SubResource("Animation_68iwx"),
-"intro": SubResource("Animation_muql6")
+"intro": SubResource("Animation_muql6"),
+"outro": SubResource("Animation_i4v51")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dfxpp"]
+
+[sub_resource type="Gradient" id="Gradient_2yf4g"]
+colors = PackedColorArray(0, 0, 0, 1, 0.348496, 0.0343899, 0.34358, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_urjf6"]
+noise_type = 5
+offset = Vector3(0, 0, -22.7)
+fractal_type = 2
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_swpgr"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_2yf4g")
+noise = SubResource("FastNoiseLite_urjf6")
 
 [node name="Game" type="Node2D"]
 process_mode = 1
@@ -161,6 +325,7 @@ root_node = NodePath("Intro")
 libraries = {
 "": SubResource("AnimationLibrary_kl4if")
 }
+speed_scale = 20.0
 
 [node name="Intro" type="Control" parent="CutscenePlayer"]
 visible = false
@@ -233,7 +398,83 @@ visible_characters_behavior = 1
 z_index = 2
 material = SubResource("CanvasItemMaterial_dfxpp")
 position = Vector2(241, 136)
+texture = SubResource("NoiseTexture2D_swpgr")
 _speed = 50.0
+
+[node name="Outro" type="Control" parent="CutscenePlayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CutscenePlayer/Outro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="Fumes" parent="CutscenePlayer/Outro" instance=ExtResource("9_vqvpx")]
+z_index = 0
+material = SubResource("CanvasItemMaterial_dfxpp")
+position = Vector2(241, 136)
+_speed = 50.0
+
+[node name="The forest is safe" type="Label" parent="CutscenePlayer/Outro"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "And with that, the forest can rest."
+visible_characters_behavior = 1
+
+[node name="A solitary warden" type="Label" parent="CutscenePlayer/Outro"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "The  warden may slumber again."
+visible_characters_behavior = 1
+
+[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/Outro"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "'Til he is called anew"
+visible_characters_behavior = 1
 
 [node name="Player" parent="." instance=ExtResource("2_17f0c")]
 position = Vector2(-19, -4)
@@ -243,3 +484,5 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("9_d7s1g")]

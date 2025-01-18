@@ -637,7 +637,6 @@ texture = SubResource("NoiseTexture2D_8ski3")
 script = ExtResource("11_ig4nu")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 z_index = 2
 color = Color(0.332881, 0.332881, 0.332881, 1)
 

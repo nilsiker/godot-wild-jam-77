@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv1shht68qyi8"]
+
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="1_ecdis"]
+[ext_resource type="Script" path="res://src/game_over_screen/GameOverScreen.cs" id="1_kowxw"]
+[ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="3_la2ex"]
+
+[node name="GameOverScreen" type="PanelContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kowxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_ecdis")
+theme_override_colors/font_color = Color(0.67451, 0, 0, 1)
+text = "The forest falls with you.
+"
+
+[node name="ReturnToMainMenuButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_ecdis")
+text = "Return to main menu"
+
+[node name="Fumes" parent="." instance=ExtResource("3_la2ex")]
+position = Vector2(241, 120)
+_speed = 100.0

@@ -69,10 +69,10 @@ public partial class Game : Node2D, IGame {
     this.Provide();
     Logic.Start();
 
-    AddToGroup("state_debug");
+    AddToGroup(StateDebug.GROUP);
   }
-
   #endregion
+
 
 
   public void ChangeRoom(ERoom room) {
@@ -108,6 +108,7 @@ public partial class Game : Node2D, IGame {
   private void OnCutscenePlayerAnimationFinished(StringName animName) =>
     Logic.Input(new GameLogic.Input.CutsceneFinished());
   #endregion
+
 
   #region Output Callbacks
   private void SetGamePaused(bool isPaused) => GetTree().Paused = isPaused;

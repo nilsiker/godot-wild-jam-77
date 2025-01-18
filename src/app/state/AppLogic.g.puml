@@ -23,13 +23,12 @@ Nevergreen_AppLogic_State : OnAppFadeInRequested() → FadeIn
 Nevergreen_AppLogic_State : OnAppFadeOutRequested() → FadeOut
 Nevergreen_AppLogic_State_ClosingApplication : OnEnter → FadeOut
 Nevergreen_AppLogic_State_ClosingApplication : OnFadeOutFinished → CloseApplication
-Nevergreen_AppLogic_State_InGame : OnEnter → ShowGame
+Nevergreen_AppLogic_State_InGame : OnEnter → FadeIn, ShowGame
 Nevergreen_AppLogic_State_InMainMenu : OnEnter → ShowMainMenu
 Nevergreen_AppLogic_State_LeavingGame : OnEnter → FadeOut
 Nevergreen_AppLogic_State_LeavingGame : OnExit → FadeIn, RemoveGame
 Nevergreen_AppLogic_State_LeavingMenu : OnEnter → FadeOut
 Nevergreen_AppLogic_State_LeavingMenu : OnExit → HideMainMenu
-Nevergreen_AppLogic_State_LeavingMenu : OnFadeOutFinished → FadeIn
 Nevergreen_AppLogic_State_StartingNewGame : OnEnter → SetupGame
 
 [*] --> Nevergreen_AppLogic_State_InMainMenu

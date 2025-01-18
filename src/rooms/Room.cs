@@ -18,7 +18,7 @@ public enum ERoom {
   Hive
 }
 
-public interface IRoom : INode2D, IProvide<IRoomRepo> { }
+public interface IRoom : INode2D, IProvide<IRoomRepo>, IStateDebugInfo { }
 
 [Meta(typeof(IAutoNode))]
 public partial class Room : Node2D, IRoom {
@@ -41,7 +41,12 @@ public partial class Room : Node2D, IRoom {
   public IRoomRepo RoomRepo { get; set; } = default!;
   private RoomLogic Logic { get; set; } = default!;
   private RoomLogic.IBinding Binding { get; set; } = default!;
+
+  string IStateDebugInfo.Name => Name;
+
+  public string State => Logic.Value.GetType().Name;
   #endregion
+
 
   #region Dependency Lifecycle
   public void Setup() {
@@ -53,15 +58,18 @@ public partial class Room : Node2D, IRoom {
     Binding = Logic.Bind();
 
     // Bind functions to state outputs here
-    Binding.Handle((in RoomLogic.Output.EnemyKilled _) => OnOutputEnemyKilled());
+    Binding.Handle((in RoomLogic.Output.RemoveBlockage _) => GetNode<Node>("Blockage").QueueFree());
 
     Logic.Set(RoomRepo);
+    Logic.Set(new RoomLogic.Data() {
+      EnemyCount = GetChildren().OfType<Enemy>().Count()
+    });
 
     this.Provide();
     Logic.Start();
-
     GameRepo.OnRoomResolved();  // TODO taking a shortcut
 
+    AddToGroup(StateDebug.GROUP);
   }
   #endregion
 
@@ -86,19 +94,11 @@ public partial class Room : Node2D, IRoom {
 
   #region Input Callbacks
   public void OnExitAreaEntered(ERoom room) =>
-    GameRepo.RequestRoomTransition(room);
+    GameRepo.RequestRoomTransition(room);  // Shortcut!
   #endregion
 
 
   #region Output Callbacks
-  private void OnOutputEnemyKilled() {
-    var enemyCount = GetChildren().OfType<Enemy>().Count();
-    if (enemyCount == 1) { // Last enemy is still not freed
-      foreach (var blockage in GetChildren().OfType<Blockage>()) {
-        blockage.QueueFree(); // TODO POLISH animate this
-      }
-    }
-  }
   #endregion
 }
 
@@ -110,7 +110,9 @@ public partial class RoomLogic
   : LogicBlock<RoomLogic.State>,
     IRoomLogic {
   public override Transition GetInitialState() => To<State.Infested>();
-
+  public class Data {
+    public int EnemyCount;
+  }
   public static class Input {
     public record struct Clear;
   }
@@ -121,12 +123,30 @@ public partial class RoomLogic
   }
 
   public partial record State : StateLogic<State> {
+
+
     public State() {
-      OnAttach(() => Get<IRoomRepo>().EnemyKilled += OnRoomEnemyKilled);
-      OnDetach(() => Get<IRoomRepo>().EnemyKilled -= OnRoomEnemyKilled);
+      OnAttach(() => {
+        Get<IRoomRepo>().EnemySpawned += OnRoomEnemySpawned;
+        Get<IRoomRepo>().EnemyKilled += OnRoomEnemyKilled;
+      });
+      OnDetach(() => {
+        Get<IRoomRepo>().EnemySpawned -= OnRoomEnemySpawned;
+        Get<IRoomRepo>().EnemyKilled -= OnRoomEnemyKilled;
+      });
     }
 
-    private void OnRoomEnemyKilled() => Output(new Output.EnemyKilled());
+    private void OnRoomEnemySpawned() =>
+      Get<Data>().EnemyCount += 1;
+
+
+    private void OnRoomEnemyKilled() {
+      Get<Data>().EnemyCount -= 1;
+      if (Get<Data>().EnemyCount == 0) {
+        Input(new Input.Clear());
+      }
+    }
+
 
     public partial record Infested : State, IGet<Input.Clear> {
       public Transition On(in Input.Clear input) => To<Cleared>();

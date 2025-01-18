@@ -9,7 +9,10 @@ public partial class AppLogic {
         OnAttach(() => Get<IAppRepo>().MainMenuRequested += OnMainMenuRequested);
         OnDetach(() => Get<IAppRepo>().MainMenuRequested -= OnMainMenuRequested);
 
-        this.OnEnter(() => Output(new Output.ShowGame()));
+        this.OnEnter(() => {
+          Output(new Output.ShowGame());
+          Output(new Output.FadeIn());
+        });
       }
 
       private void OnMainMenuRequested() => Input(new Input.BackToMainMenu());
