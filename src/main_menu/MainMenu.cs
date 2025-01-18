@@ -5,10 +5,10 @@ using Godot;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
-using System;
 
-
-public interface IMainMenu : IControl { }
+public interface IMainMenu : IControl {
+  public void Open();
+}
 
 [Meta(typeof(IAutoNode))]
 public partial class MainMenu : Control, IMainMenu {
@@ -33,6 +33,13 @@ public partial class MainMenu : Control, IMainMenu {
 
   #region State
   #endregion
+
+  public void Open() {
+    Visible = true;
+    StartGameButton.GrabFocus();
+    Options.Visible = false;
+    Credits.Visible = false;  // HACKY
+  }
 
   #region Dependency Lifecycle
   public void Setup() { }

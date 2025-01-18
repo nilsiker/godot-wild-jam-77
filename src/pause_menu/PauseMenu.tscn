@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://8015l5jri76n"]
+
+[ext_resource type="Script" path="res://src/pause_menu/PauseMenu.cs" id="1_6bf3n"]
+[ext_resource type="PackedScene" uid="uid://734dyqnjav8q" path="res://src/options/Options.tscn" id="1_s2k80"]
+[ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="2_bkn1p"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_6bf3n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -142.0
+offset_right = 121.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bkn1p")
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548963, 1)
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Options" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_s2k80")]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bkn1p")
+text = "Resume"
+
+[node name="BackToMainMenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bkn1p")
+text = "Back to Main Menu"

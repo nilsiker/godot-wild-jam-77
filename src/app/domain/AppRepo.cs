@@ -1,6 +1,7 @@
 namespace Nevergreen;
 
 using System;
+using Chickensoft.Collections;
 
 public interface IAppRepo : IDisposable {
   public event Action? GameStartRequested;
@@ -11,6 +12,8 @@ public interface IAppRepo : IDisposable {
   public event Action? FadeOutFinished;
   public event Action? FadeInRequested;
 
+  public IAutoProp<bool> UseDice { get; }
+  public void SetUseDice(bool useDice);
   public void RequestMainMenu();
   public void RequestGameStart();
   public void OnGameStarted();
@@ -28,6 +31,11 @@ public partial class AppRepo() : IAppRepo {
   public event Action? FadeOutRequested;
   public event Action? FadeInRequested;
   public event Action? FadeOutFinished;
+
+  public IAutoProp<bool> UseDice => _useDice;
+  private readonly AutoProp<bool> _useDice = new(false);
+  public void SetUseDice(bool useDice) => _useDice.OnNext(useDice); // HACKY
+
 
   public void RequestMainMenu() => MainMenuRequested?.Invoke();
   public void RequestGameStart() => GameStartRequested?.Invoke();

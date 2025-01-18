@@ -30,7 +30,7 @@ public partial class App : Node, IApp {
   #region Nodes
   private IGame Game { get; set; } = default!;
 
-  [Node] private Control MainMenu { get; set; } = default!;
+  [Node] private IMainMenu MainMenu { get; set; } = default!;
 
   [Node] private AnimationPlayer AnimationPlayer { get; set; } = default!;
 
@@ -113,7 +113,7 @@ public partial class App : Node, IApp {
 
   private void OnOutputShowGame() => Game.Visible = true;
 
-  private void OnOutputShowMainMenu() => MainMenu.Visible = true;
+  private void OnOutputShowMainMenu() => MainMenu.Open();
 
   private void OnOutputFadeOut() {
     // FIXME this is a hack, could be solved if Fadeout was its own repo where we keep track of the state.

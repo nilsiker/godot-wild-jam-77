@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://gnfeiowom8ok"]
+[gd_scene load_steps=38 format=3 uid="uid://gnfeiowom8ok"]
 
 [ext_resource type="Script" path="res://src/main_menu/MainMenu.cs" id="1_hxhey"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="2_byf5k"]
 [ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="2_nith8"]
+[ext_resource type="PackedScene" uid="uid://734dyqnjav8q" path="res://src/options/Options.tscn" id="4_gejkp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dsl3o"]
 load_path = "res://.godot/imported/player.png-7c4d057edcab8f8126ffb130fd0df8aa.ctex"
@@ -375,36 +376,11 @@ theme = ExtResource("2_nith8")
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[node name="Options" type="PanelContainer" parent="Container/Margins/HBoxContainer"]
+[node name="Options" parent="Container/Margins/HBoxContainer" instance=ExtResource("4_gejkp")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_c6ua2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/Margins/HBoxContainer/Options"]
-layout_mode = 2
-alignment = 1
-
-[node name="Music" type="Label" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_nith8")
-text = "Music"
-
-[node name="MusicSlider" type="HSlider" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
-layout_mode = 2
-max_value = 10.0
-value = 5.0
-
-[node name="SFX" type="Label" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_nith8")
-text = "SFX"
-
-[node name="SFXSlider" type="HSlider" parent="Container/Margins/HBoxContainer/Options/VBoxContainer"]
-layout_mode = 2
-max_value = 10.0
-value = 5.0
+focus_neighbor_left = NodePath("../Menu/OptionsButton")
 
 [node name="Credits" type="PanelContainer" parent="Container/Margins/HBoxContainer"]
 unique_name_in_owner = true

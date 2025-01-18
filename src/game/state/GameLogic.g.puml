@@ -9,6 +9,7 @@ state "GameLogic State" as Nevergreen_GameLogic_State {
 Nevergreen_GameLogic_State --> Nevergreen_GameLogic_State : TeleportPlayerTo
 Nevergreen_GameLogic_State_ChangingRoom --> Nevergreen_GameLogic_State_InRoom : RoomResolved
 Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_ChangingRoom : TransitionRoom
+Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_InRoom : ClickPause
 Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_Outro : RequestOutro
 Nevergreen_GameLogic_State_Intro --> Nevergreen_GameLogic_State_ChangingRoom : CutsceneFinished
 Nevergreen_GameLogic_State_Outro --> Nevergreen_GameLogic_State_Outro : CutsceneFinished
@@ -17,8 +18,10 @@ Nevergreen_GameLogic_State : OnGamePaused() → SetPauseMode
 Nevergreen_GameLogic_State : OnGameResumed() → SetPauseMode
 Nevergreen_GameLogic_State_ChangingRoom : OnEnter → SetPauseMode
 Nevergreen_GameLogic_State_ChangingRoom : OnFadeOutFinished() → RoomTransitionRequested
+Nevergreen_GameLogic_State_InRoom : OnClickPause → ShowPauseMenu
 Nevergreen_GameLogic_State_InRoom : OnEnter → SetPauseMode
 Nevergreen_GameLogic_State_Intro : OnEnter → SetPauseMode, StartIntro
+Nevergreen_GameLogic_State_Outro : OnEnter → SetPauseMode, StartOutro
 
 [*] --> Nevergreen_GameLogic_State_Intro
 @enduml

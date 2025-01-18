@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.LogicBlocks;
 
 public partial class GameLogic {
@@ -10,13 +11,22 @@ public partial class GameLogic {
         var gameRepo = Get<IGameRepo>();
         gameRepo.Paused += OnGamePaused;
         gameRepo.Resumed += OnGameResumed;
+        gameRepo.GameOver += OnGameOver;
       });
 
       OnDetach(() => {
         var gameRepo = Get<IGameRepo>();
         gameRepo.Paused -= OnGamePaused;
         gameRepo.Resumed -= OnGameResumed;
+        gameRepo.GameOver -= OnGameOver;
+
       });
+    }
+
+    private void OnGameOver(EGameOverReason reason) {
+      if (reason == EGameOverReason.Won) {
+        Input(new Input.RequestOutro());
+      }
     }
 
     private void OnGameResumed() => Output(new Output.SetPauseMode(false));

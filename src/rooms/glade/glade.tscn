@@ -67,7 +67,7 @@ noise = SubResource("FastNoiseLite_1sj3s")
 [node name="Glade" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ft61d")
-RoomIdentifier = 1
+RoomIdentifier = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(104, -105)

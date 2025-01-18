@@ -31,6 +31,7 @@ public partial class Game : Node2D, IGame {
   #region Nodes
   [Node] private Node Room { get; set; } = default!;
   [Node] private AnimationPlayer CutscenePlayer { get; set; } = default!;
+  [Node] private PauseMenu PauseMenu { get; set; } = default!;
   private ERoom CurrentRoom { get; set; }
   #endregion
 
@@ -63,7 +64,9 @@ public partial class Game : Node2D, IGame {
       .Handle((in GameLogic.Output.RoomTransitionRequested output)
         => OnOutputRoomTransitionRequested(output.Room))
       .Handle((in GameLogic.Output.StartIntro _)
-        => OnOutputStartIntro());
+        => OnOutputStartIntro())
+      .Handle((in GameLogic.Output.ShowPauseMenu _) => OnOutputShowPauseMenu())
+       .Handle((in GameLogic.Output.StartOutro _) => OnOutputStartWinSequence());
 
 
     this.Provide();
@@ -72,6 +75,8 @@ public partial class Game : Node2D, IGame {
     AddToGroup(StateDebug.GROUP);
   }
   #endregion
+
+
 
 
 
@@ -116,6 +121,9 @@ public partial class Game : Node2D, IGame {
     CallDeferred(nameof(ChangeRoom), (int)room);
 
   private void OnOutputStartIntro() => CutscenePlayer.Play("intro");
+  private void OnOutputShowPauseMenu() => PauseMenu.Open();
+  private void OnOutputStartWinSequence() => CutscenePlayer.Play("outro");
+
 
   #endregion
 
@@ -126,9 +134,9 @@ public partial class Game : Node2D, IGame {
     CutscenePlayer.AnimationFinished += OnCutscenePlayerAnimationFinished;
 
 
-  public override void _Input(InputEvent @event) {
-    if (Input.IsActionJustPressed(Inputs.Esc)) {
-      Logic.Input(new GameLogic.Input.PauseButtonPressed());
+  public override void _UnhandledInput(InputEvent @event) {
+    if (@event.IsActionPressed(Inputs.Esc) && !PauseMenu.Visible) {
+      Logic.Input(new GameLogic.Input.ClickPause());
     }
   }
 

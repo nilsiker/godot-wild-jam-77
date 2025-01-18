@@ -9,7 +9,7 @@ using System;
 using Nevergreen.Traits;
 
 
-public interface IAttacker : IArea2D {
+public interface IAttacker : INode2D {
   public void Attack(Vector2 direction);
   public void SetActive(bool active);
   public void HandleNodeEntered(Node node);
@@ -17,18 +17,23 @@ public interface IAttacker : IArea2D {
 
 
 [Meta(typeof(IAutoNode))]
-public partial class Attacker : Area2D, IAttacker {
+public partial class Attacker : Node2D, IAttacker {
   #region Exports
   #endregion
 
   #region Nodes
   [Node] private IAnimatedSprite2D FX { get; set; } = default!;
+  [Node] private Dice Dice { get; set; } = default!;
+  [Node] private Area2D Swing { get; set; } = default!;
   #endregion
 
   #region Provisions
   #endregion
 
+  private int _damage = 1;
+
   #region Dependencies
+  [Dependency] IAppRepo AppRepo => this.DependOn<IAppRepo>();
   #endregion
 
   #region State
@@ -55,9 +60,9 @@ public partial class Attacker : Area2D, IAttacker {
     SetProcess(true);
     SetPhysicsProcess(true);
 
-    BodyEntered += OnBodyEntered;
-    AreaEntered += OnAreaEntered;
-    Monitoring = false;
+    Swing.BodyEntered += OnBodyEntered;
+    Swing.AreaEntered += OnAreaEntered;
+    Swing.Monitoring = false;
   }
 
   public void OnProcess(double delta) { }
@@ -78,29 +83,33 @@ public partial class Attacker : Area2D, IAttacker {
 
   #region IAttacker
   public void Attack(Vector2 direction) {
+    if (AppRepo.UseDice.Value) {
+      var roll = Dice.Roll();
+      _damage = roll > 3 ? roll : 0;
+    }
     var targetAngle = direction.Angle() + ((float)Math.PI / 2.0f);
     // NOTE roundabout way to fix the FX anim. It works, but is really messy.
     // If this turns into a problem, give this a proper solution
     if (targetAngle is < 0 or > (float)Math.PI) {
       targetAngle += (float)Math.PI;
-      var scale = GlobalScale;
+      var scale = Swing.GlobalScale;
       scale.X = -1;
-      GlobalScale = scale;
+      Swing.GlobalScale = scale;
     }
     else {
-      var scale = GlobalScale;
+      var scale = Swing.GlobalScale;
       scale.X = 1;
-      GlobalScale = scale;
+      Swing.GlobalScale = scale;
     }
-    GlobalRotation = targetAngle;
+    Swing.GlobalRotation = targetAngle;
     FX.Play("attack");
   }
 
-  public void SetActive(bool active) => Monitoring = active;
+  public void SetActive(bool active) => Swing.Monitoring = active;
 
   public void HandleNodeEntered(Node node) {
-    if (node is IDamageable damageable) {
-      damageable.Damage(1, GlobalPosition.DirectionTo(damageable.GlobalPosition)); // TODO make the damage amount configurable.
+    if (_damage > 0 && node is IDamageable damageable) {
+      damageable.Damage(_damage, GlobalPosition.DirectionTo(damageable.GlobalPosition)); // TODO make the damage amount configurable.
     }
   }
   #endregion

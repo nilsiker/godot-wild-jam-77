@@ -1,6 +1,5 @@
 namespace Nevergreen;
 
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -62,14 +61,6 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
   public void OnExitTree() {
     Logic.Stop();
     Binding.Dispose();
-  }
-
-  // FIXME REMOVE DEBUG
-  public override void _UnhandledInput(InputEvent @event) {
-    if (Input.IsKeyLabelPressed(Key.P)) {
-      GameRepo.Lose();
-
-    }
   }
   #endregion
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cywpu6lxdjhuu"]
+[gd_scene load_steps=23 format=3 uid="uid://cywpu6lxdjhuu"]
 
 [ext_resource type="Script" path="res://src/game/Game.cs" id="1_17mmo"]
 [ext_resource type="PackedScene" uid="uid://b7rx8ssokdstu" path="res://src/player/Player.tscn" id="2_17f0c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="7_1di5p"]
 [ext_resource type="PackedScene" uid="uid://cv1shht68qyi8" path="res://src/game_over_screen/GameOverScreen.tscn" id="9_d7s1g"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="9_vqvpx"]
+[ext_resource type="PackedScene" uid="uid://8015l5jri76n" path="res://src/pause_menu/PauseMenu.tscn" id="11_b174d"]
 
 [sub_resource type="Animation" id="Animation_68iwx"]
 length = 0.001
@@ -309,6 +310,20 @@ in_3d_space = true
 color_ramp = SubResource("Gradient_2yf4g")
 noise = SubResource("FastNoiseLite_urjf6")
 
+[sub_resource type="Gradient" id="Gradient_v1lew"]
+colors = PackedColorArray(0, 0, 0, 1, 0.348496, 0.0343899, 0.34358, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_50d68"]
+noise_type = 5
+offset = Vector3(0, 0, -22.7)
+fractal_type = 2
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xlkiv"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_v1lew")
+noise = SubResource("FastNoiseLite_50d68")
+
 [node name="Game" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
@@ -322,12 +337,14 @@ _hiveScene = ExtResource("6_ghg5h")
 [node name="CutscenePlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-root_node = NodePath("Intro")
+root_node = NodePath("CanvasLayer/Intro")
 libraries = {
 "": SubResource("AnimationLibrary_kl4if")
 }
 
-[node name="Intro" type="Control" parent="CutscenePlayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="CutscenePlayer"]
+
+[node name="Intro" type="Control" parent="CutscenePlayer/CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -336,7 +353,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="CutscenePlayer/Intro"]
+[node name="Background" type="ColorRect" parent="CutscenePlayer/CanvasLayer/Intro"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,7 +362,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0562916, 0.0562916, 0.0562916, 1)
 
-[node name="An evil stirs" type="Label" parent="CutscenePlayer/Intro"]
+[node name="An evil stirs" type="Label" parent="CutscenePlayer/CanvasLayer/Intro"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -360,10 +377,10 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_1di5p")
-text = "An evil stirs"
+text = "A blight creeps near"
 visible_characters_behavior = 1
 
-[node name="The forest is in danger" type="Label" parent="CutscenePlayer/Intro"]
+[node name="The forest is in danger" type="Label" parent="CutscenePlayer/CanvasLayer/Intro"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -377,10 +394,10 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_1di5p")
-text = "The forest is in danger"
+text = "A forest in peril"
 visible_characters_behavior = 1
 
-[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/Intro"]
+[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/CanvasLayer/Intro"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -397,14 +414,14 @@ theme = ExtResource("7_1di5p")
 text = "Somewhere, a warden awakens"
 visible_characters_behavior = 1
 
-[node name="Fumes" parent="CutscenePlayer/Intro" instance=ExtResource("9_vqvpx")]
+[node name="Fumes" parent="CutscenePlayer/CanvasLayer/Intro" instance=ExtResource("9_vqvpx")]
 z_index = 2
 material = SubResource("CanvasItemMaterial_dfxpp")
 position = Vector2(241, 136)
 texture = SubResource("NoiseTexture2D_swpgr")
 _speed = 50.0
 
-[node name="Outro" type="Control" parent="CutscenePlayer"]
+[node name="Outro" type="Control" parent="CutscenePlayer/CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -413,7 +430,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="CutscenePlayer/Outro"]
+[node name="Background" type="ColorRect" parent="CutscenePlayer/CanvasLayer/Outro"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -422,13 +439,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0562916, 0.0562916, 0.0562916, 1)
 
-[node name="Fumes" parent="CutscenePlayer/Outro" instance=ExtResource("9_vqvpx")]
+[node name="Fumes" parent="CutscenePlayer/CanvasLayer/Outro" instance=ExtResource("9_vqvpx")]
 z_index = 0
 material = SubResource("CanvasItemMaterial_dfxpp")
 position = Vector2(241, 136)
+texture = SubResource("NoiseTexture2D_xlkiv")
 _speed = 50.0
 
-[node name="The forest is safe" type="Label" parent="CutscenePlayer/Outro"]
+[node name="The forest is safe" type="Label" parent="CutscenePlayer/CanvasLayer/Outro"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -446,7 +464,7 @@ theme = ExtResource("7_1di5p")
 text = "And with that, the forest can rest."
 visible_characters_behavior = 1
 
-[node name="A solitary warden" type="Label" parent="CutscenePlayer/Outro"]
+[node name="A solitary warden" type="Label" parent="CutscenePlayer/CanvasLayer/Outro"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -461,10 +479,10 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_1di5p")
-text = "The  warden may slumber again."
+text = "The warden returns to his slumber"
 visible_characters_behavior = 1
 
-[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/Outro"]
+[node name="Somewhere, a warden awakens___" type="Label" parent="CutscenePlayer/CanvasLayer/Outro"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -492,9 +510,8 @@ y_sort_enabled = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GameOverScreen" parent="UI" instance=ExtResource("9_d7s1g")]
+visible = false
 
-[node name="PauseScreen" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PauseMenu" parent="UI" instance=ExtResource("11_b174d")]
+unique_name_in_owner = true
+visible = false

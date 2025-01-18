@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://brks5nkfw6iji"]
+
+[ext_resource type="SpriteFrames" uid="uid://bpj1sb8ghg0cx" path="res://src/dice/dice.aseprite" id="1_41rpg"]
+[ext_resource type="Script" path="res://src/dice/Dice.cs" id="2_w06ik"]
+
+[node name="Dice" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_41rpg")
+frame = 1
+script = ExtResource("2_w06ik")
