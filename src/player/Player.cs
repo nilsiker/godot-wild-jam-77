@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -19,6 +20,7 @@ public partial class Player : RigidBody2D, IPlayer {
   [Node] private ISprite2D PlayerModel { get; set; } = default!;
   [Node] private IAnimationPlayer AnimationPlayer { get; set; } = default!;
   [Node] private IAttacker Attacker { get; set; } = default!;
+  [Node] private ColorRect Whiteout { get; set; } = default!;
   #endregion
 
   #region Provisions
@@ -34,7 +36,6 @@ public partial class Player : RigidBody2D, IPlayer {
   #endregion
 
   #region IPlayer
-  public void Damage(int amount, Vector2 direction) => Logic.Input(new PlayerLogic.Input.Damage(amount, direction));
   string IStateDebugInfo.Name => Name;
   public string State => Logic.Value.GetType().Name;
   #endregion
@@ -59,10 +60,12 @@ public partial class Player : RigidBody2D, IPlayer {
       (in PlayerLogic.Output.SetHitting output) => OnOutputSetHitting(output.IsHitting)
     ).Handle(
       (in PlayerLogic.Output.Teleport output) => OnOutputTeleport(output.GlobalPosition)
-    );
+    ).Handle(
+      (in PlayerLogic.Output.Damaged output) => OnOutputDamaged(output.Amount, output.Direction));
 
     Logic.Set(GameRepo);
     Logic.Set(new PlayerLogic.Data() {
+      Health = 3,
       Speed = 1000f
     });
 
@@ -70,6 +73,7 @@ public partial class Player : RigidBody2D, IPlayer {
     Logic.Start();
   }
   #endregion
+
 
 
   #region Godot Lifecycle
@@ -114,6 +118,8 @@ public partial class Player : RigidBody2D, IPlayer {
   #endregion
 
   #region Input Callbacks
+  public void Damage(int amount, Vector2 direction) =>
+    Logic.Input(new PlayerLogic.Input.Damage(amount, direction));
   private void StartHitting() => Logic.Input(new PlayerLogic.Input.UpdateHitting(true));
   private void StopHitting() => Logic.Input(new PlayerLogic.Input.UpdateHitting(false));
   private void OnAnimationFinished(StringName animName) => Logic.Input(new PlayerLogic.Input.AnimationFinished(animName));
@@ -134,6 +140,18 @@ public partial class Player : RigidBody2D, IPlayer {
   private void OnOutputStartAttacking(Vector2 direction) => Attacker.Attack(direction);
   private void OnOutputSetHitting(bool isHitting) => Attacker.SetActive(isHitting);
   private void OnOutputTeleport(Vector2 globalPosition) => GlobalPosition = globalPosition;
+
+  // FIXME remove tween?
+  private Tween? _damagedTween;
+  private void OnOutputDamaged(int amount, Vector2 direction) {
+    ApplyImpulse(direction * 400);
+    if (_damagedTween is not null && _damagedTween.IsRunning()) {
+      _damagedTween.Kill();
+    }
+    _damagedTween = CreateTween();
+    Whiteout.Modulate = Colors.White;
+    _damagedTween.TweenProperty(Whiteout, "modulate:a", 0.0, 0.2);
+  }
 
   #endregion
 }

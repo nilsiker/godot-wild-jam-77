@@ -21,6 +21,7 @@ Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive
 Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
 
 Nevergreen_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
+Nevergreen_PlayerLogic_State_Alive : OnDamage → Damaged
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnExit → FinishedAttacking
 Nevergreen_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → ForceApplied, SetHitting

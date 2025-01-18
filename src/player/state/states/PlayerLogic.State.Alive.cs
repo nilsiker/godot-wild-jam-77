@@ -12,6 +12,9 @@ public partial class PlayerLogic {
       public Transition On(in Input.Damage input) {
         var data = Get<Data>();
         data.Health -= 1;
+
+        Output(new Output.Damaged(input.Amount, -input.Direction));
+
         return data.Health < 1
           ? To<Dead>()
           : ToSelf();

@@ -36,7 +36,7 @@ public partial class PlayerLogic
     public record struct StartAttacking(Vector2 Direction);
     public record struct FinishedAttacking(Vector2 Direction);
     public record struct SetHitting(bool IsHitting);
-    public record struct Damaged(int Amount);
+    public record struct Damaged(int Amount, Vector2 Direction);
     public record struct AnimationUpdated(StringName Animation);
     public record struct FlipSprite(bool Flip);
     public record struct Teleport(Vector2 GlobalPosition);
