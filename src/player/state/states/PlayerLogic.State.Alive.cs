@@ -15,10 +15,9 @@ public partial class PlayerLogic {
 
         Output(new Output.Damaged(input.Amount, -input.Direction));
 
-        // return data.Health < 1
-        //   ? To<Dead>()
-        //   : ToSelf();
-        return ToSelf();
+        return data.Health < 1
+          ? To<Dead>()
+          : ToSelf();
       }
     }
   }
