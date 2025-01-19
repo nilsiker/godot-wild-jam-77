@@ -7,7 +7,7 @@ using Chickensoft.Introspection;
 using Godot;
 using Nevergreen.Traits;
 
-public interface IPlayer : IRigidBody2D, IStateDebugInfo, IDamageable {
+public interface IPlayer : IRigidBody2D, IStateDebugInfo, IDamageable, IProvide<IPlayerRepo> {
 }
 
 [Meta(typeof(IAutoNode))]
@@ -26,6 +26,7 @@ public partial class Player : RigidBody2D, IPlayer {
   #endregion
 
   #region Provisions
+  public IPlayerRepo Value() => PlayerRepo;
   #endregion
 
   #region Dependencies
@@ -33,6 +34,7 @@ public partial class Player : RigidBody2D, IPlayer {
   #endregion
 
   #region State
+  private IPlayerRepo PlayerRepo { get; set; } = new PlayerRepo(3);
   private PlayerLogic Logic { get; set; } = default!;
   private PlayerLogic.IBinding Binding { get; set; } = default!;
   #endregion
@@ -66,11 +68,12 @@ public partial class Player : RigidBody2D, IPlayer {
       (in PlayerLogic.Output.Damaged output) => OnOutputDamaged(output.Amount, output.Direction));
 
     Logic.Set(GameRepo);
+    Logic.Set(PlayerRepo);
     Logic.Set(new PlayerLogic.Data() {
-      Health = 3,
       Speed = 1000f
     });
 
+    this.Provide();
     AddToGroup(StateDebug.GROUP);
     Logic.Start();
   }
@@ -155,6 +158,8 @@ public partial class Player : RigidBody2D, IPlayer {
     _damagedTween.TweenProperty(Whiteout, "modulate:a", 0.0, 0.2);
     HurtAudio.Play();
   }
+
+
 
   #endregion
 }

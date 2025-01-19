@@ -1,0 +1,4 @@
+@startuml HeartsIndicatorLogic
+state "HeartsIndicatorLogic State" as Nevergreen_HeartsIndicatorLogic_State
+[*] --> Nevergreen_HeartsIndicatorLogic_State
+@enduml

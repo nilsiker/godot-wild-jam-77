@@ -1,9 +1,9 @@
 @startuml PlayerLogic
 state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
   state "Alive" as Nevergreen_PlayerLogic_State_Alive {
+    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
     state "Attacking" as Nevergreen_PlayerLogic_State_Alive_Attacking
     state "Idle" as Nevergreen_PlayerLogic_State_Alive_Idle
-    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
   }
   state "Dead" as Nevergreen_PlayerLogic_State_Dead
 }
@@ -12,6 +12,7 @@ Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosi
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Alive_Idle : Revive
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
+Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Die
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : AnimationFinished
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : UpdateHitting
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Idle : AnimationFinished

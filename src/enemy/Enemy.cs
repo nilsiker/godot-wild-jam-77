@@ -8,10 +8,10 @@ using Godot;
 using Nevergreen.Traits;
 
 
-public interface IEnemy : IArea2D, IDamageable, IStateDebugInfo { }
+public interface IEnemy : IRigidBody2D, IDamageable, IStateDebugInfo { }
 
 [Meta(typeof(IAutoNode))]
-public partial class Enemy : Area2D, IEnemy {
+public partial class Enemy : RigidBody2D, IEnemy {
   #region Exports
   [Export] private EnemySettings _settings = default!;
   #endregion
@@ -149,8 +149,17 @@ public partial class Enemy : Area2D, IEnemy {
     AnimationPlayer.Play("hit");
   }
 
-  private void OnOutputForceApplied(Vector2 force, bool isImpulse) =>
-    GlobalPosition += force * (float)GetPhysicsProcessDeltaTime();
+  private void OnOutputForceApplied(Vector2 force, bool isImpulse) {
+    if (isImpulse) {
+      ApplyImpulse(force);
+    }
+    else {
+      ApplyForce(force);
+    }
+    // GlobalPosition += force * (float)GetPhysicsProcessDeltaTime();
+  }
+
+
   private void OnOutputAnimationUpdated(StringName animationName) => AnimationPlayer.Play(animationName);
 
   private void OnOutputDied() => QueueFree();

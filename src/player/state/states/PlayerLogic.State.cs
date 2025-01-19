@@ -19,7 +19,7 @@ public partial class PlayerLogic {
 
     private void OnPlayerReset() {
       Output(new Output.Teleport(new Vector2(-19, -4)));
-      Get<Data>().Health = 3;
+      Get<IPlayerRepo>().SetHealth(3);
       Input(new Input.Revive());
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7rx8ssokdstu"]
+[gd_scene load_steps=21 format=3 uid="uid://b7rx8ssokdstu"]
 
 [ext_resource type="Script" path="res://src/player/Player.cs" id="1_0m8kc"]
 [ext_resource type="AudioStream" uid="uid://8lvg1ijru155" path="res://src/player/footstep_1.tres" id="3_qh3qh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfm3fmg27ks41" path="res://src/attacker/Attacker.tscn" id="4_lb4cf"]
 [ext_resource type="AudioStream" uid="uid://60hoetcf4mdg" path="res://src/audio/vattrihurt.ogg" id="5_dunro"]
 [ext_resource type="AudioStream" uid="uid://br7bh351rjkka" path="res://src/audio/whoosh.ogg" id="6_o00bg"]
+[ext_resource type="PackedScene" uid="uid://c0ru6qxwysrtt" path="res://src/hearts_indicator/HeartsIndicator.tscn" id="7_01ekh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4nwmd"]
 radius = 8.0
@@ -274,3 +275,8 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_nyj3t")
 volume_db = -9.0
 bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HeartsIndicator" parent="CanvasLayer" instance=ExtResource("7_01ekh")]
+frame = 0

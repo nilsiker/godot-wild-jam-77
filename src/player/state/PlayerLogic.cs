@@ -16,7 +16,6 @@ public partial class PlayerLogic
   public override Transition GetInitialState() => To<State.Alive.Idle>();
 
   public class Data {
-    public int Health { get; set; }
     public float Speed { get; set; }
     public Vector2 AttackDirection { get; set; }
   }
@@ -29,7 +28,8 @@ public partial class PlayerLogic
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
     public record struct Damage(int Amount, Vector2 Direction);
-    public record struct Revive();
+    public record struct Die;
+    public record struct Revive;
   }
 
   public static class Output {

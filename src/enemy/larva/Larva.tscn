@@ -213,8 +213,12 @@ random_pitch = 1.3
 streams_count = 1
 stream_0/stream = ExtResource("6_2qxm0")
 
-[node name="Larva" type="Area2D"]
+[node name="Larva" type="RigidBody2D"]
 collision_layer = 2
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 25
 linear_damp = 5.0
 script = ExtResource("1_nngfc")
 _settings = ExtResource("2_bxb2r")

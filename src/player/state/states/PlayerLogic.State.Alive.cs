@@ -1,8 +1,21 @@
 namespace Nevergreen;
 
+using System;
+
 public partial class PlayerLogic {
   public partial record State {
-    public partial record Alive : State, IGet<Input.Attack>, IGet<Input.Damage> {
+    public partial record Alive : State, IGet<Input.Attack>, IGet<Input.Damage>, IGet<Input.Die> {
+
+      public Alive() {
+        OnAttach(() => Get<IPlayerRepo>().Health.Sync += OnPlayerHealthSync);
+        OnDetach(() => Get<IPlayerRepo>().Health.Sync -= OnPlayerHealthSync);
+      }
+
+      private void OnPlayerHealthSync(int health) {
+        if (health < 1) {
+          Input(new Input.Die());
+        }
+      }
 
       public Transition On(in Input.Attack input) {
         Get<Data>().AttackDirection = input.Direction;
@@ -10,15 +23,13 @@ public partial class PlayerLogic {
       }
 
       public Transition On(in Input.Damage input) {
-        var data = Get<Data>();
-        data.Health -= 1;
-
+        Get<IPlayerRepo>().Damage(input.Amount);
         Output(new Output.Damaged(input.Amount, -input.Direction));
 
-        return data.Health < 1
-          ? To<Dead>()
-          : ToSelf();
+        return ToSelf();
       }
+
+      public Transition On(in Input.Die input) => To<Dead>();
     }
   }
 }

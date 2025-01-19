@@ -1,11 +1,11 @@
 @startuml AppLogic
 state "AppLogic State" as Nevergreen_AppLogic_State {
+  state "LeavingGame" as Nevergreen_AppLogic_State_LeavingGame
+  state "InMainMenu" as Nevergreen_AppLogic_State_InMainMenu
+  state "StartingNewGame" as Nevergreen_AppLogic_State_StartingNewGame
+  state "LeavingMenu" as Nevergreen_AppLogic_State_LeavingMenu
   state "ClosingApplication" as Nevergreen_AppLogic_State_ClosingApplication
   state "InGame" as Nevergreen_AppLogic_State_InGame
-  state "InMainMenu" as Nevergreen_AppLogic_State_InMainMenu
-  state "LeavingGame" as Nevergreen_AppLogic_State_LeavingGame
-  state "LeavingMenu" as Nevergreen_AppLogic_State_LeavingMenu
-  state "StartingNewGame" as Nevergreen_AppLogic_State_StartingNewGame
 }
 
 Nevergreen_AppLogic_State --> Nevergreen_AppLogic_State : FadeOutFinished

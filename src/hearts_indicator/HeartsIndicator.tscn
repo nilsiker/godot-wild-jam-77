@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ru6qxwysrtt"]
+
+[ext_resource type="SpriteFrames" uid="uid://jb1vr878v3c8" path="res://src/hearts_indicator/heart.aseprite" id="1_4ysfl"]
+[ext_resource type="Script" path="res://src/hearts_indicator/HeartsIndicator.cs" id="2_4qe2w"]
+
+[node name="HeartsIndicator" type="AnimatedSprite2D"]
+position = Vector2(62, 39)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_4ysfl")
+frame = 3
+script = ExtResource("2_4qe2w")

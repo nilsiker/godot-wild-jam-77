@@ -175,10 +175,10 @@ position = Vector2(-6, -23)
 
 [node name="Label" type="Label" parent="."]
 z_index = 23
-offset_left = -142.0
-offset_top = -127.0
-offset_right = 122.0
-offset_bottom = -104.0
+offset_left = -137.0
+offset_top = -136.0
+offset_right = 127.0
+offset_bottom = -113.0
 theme = ExtResource("5_36j2q")
 theme_override_colors/font_color = Color(0.481789, 0.481789, 0.481789, 1)
 text = "Move using WASD or Left Stick"
