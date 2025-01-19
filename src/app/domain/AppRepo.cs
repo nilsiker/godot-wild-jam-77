@@ -34,7 +34,7 @@ public partial class AppRepo() : IAppRepo {
 
   public IAutoProp<bool> UseDice => _useDice;
   private readonly AutoProp<bool> _useDice = new(false);
-  public void SetUseDice(bool useDice) => _useDice.OnNext(useDice); // HACKY
+  public void SetUseDice(bool useDice) => _useDice.OnNext(useDice);
 
 
   public void RequestMainMenu() => MainMenuRequested?.Invoke();
