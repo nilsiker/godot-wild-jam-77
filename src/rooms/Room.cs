@@ -102,7 +102,7 @@ public partial class Room : Node2D, IRoom {
       GameRepo.Win();
     }
     else {
-      GetNode<Node2D>("Blockage").QueueFree();
+      GetNode<Node2D>("Blockage")?.QueueFree();
     }
   }
   #endregion

@@ -38,6 +38,11 @@ public partial class HeartsIndicator : AnimatedSprite2D, IHeartsIndicator {
     // Bind functions to state outputs here
 
     PlayerRepo.Health.Sync += OnPlayerHealthSync;
+    GameRepo.GameOver += (reason) => {
+      if (reason == EGameOverReason.Won) {
+        Visible = false;
+      }
+    };
     GameRepo.RoomTransitionRequested += (room) => {
       if (room == ERoom.Glade) {
         Visible = true;

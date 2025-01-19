@@ -269,7 +269,7 @@ position = Vector2(-4, -17)
 texture = ExtResource("18_wwy3i")
 hframes = 6
 vframes = 5
-frame = 23
+frame = 13
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "pending_changes": {}

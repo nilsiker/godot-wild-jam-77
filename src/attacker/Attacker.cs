@@ -33,7 +33,7 @@ public partial class Attacker : Node2D, IAttacker {
   private int _damage = 1;
 
   #region Dependencies
-  [Dependency] IAppRepo AppRepo => this.DependOn<IAppRepo>();
+  [Dependency] private IAppRepo AppRepo => this.DependOn<IAppRepo>();
   #endregion
 
   #region State
@@ -85,7 +85,7 @@ public partial class Attacker : Node2D, IAttacker {
   public void Attack(Vector2 direction) {
     if (AppRepo.UseDice.Value) {
       var roll = Dice.Roll();
-      _damage = roll > 2 ? roll : 0;
+      _damage = roll > 1 ? roll : 0;
     }
     else {
       _damage = 1;

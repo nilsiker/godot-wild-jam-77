@@ -6,13 +6,14 @@ using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
 
-public interface IPauseMenu : IControl { }
+public interface IPauseMenu : IControl {
+}
 
 [Meta(typeof(IAutoNode))]
 public partial class PauseMenu : Control, IPauseMenu {
   #region Nodes
-  [Node] private Button ResumeButton { get; set; }
-  [Node] private Button BackToMainMenuButton { get; set; }
+  [Node] private Button ResumeButton { get; set; } = default!;
+  [Node] private Button BackToMainMenuButton { get; set; } = default!;
   #endregion
 
 
@@ -24,25 +25,30 @@ public partial class PauseMenu : Control, IPauseMenu {
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
 
+  public bool HackyDumbOpenState { get; set; }
+
   public void OnReady() {
-    ResumeButton.Pressed += OnResumeButtonPressed;
+    ResumeButton.Pressed += Close;
     BackToMainMenuButton.Pressed += AppRepo.RequestMainMenu;
   }
 
   public void Open() {
     Visible = true;
     ResumeButton.GrabFocus();
+    HackyDumbOpenState = true;
   }
 
-  private void OnResumeButtonPressed() {
+  public void Close() {
     GameRepo.Resume();
     Visible = false;
+    HackyDumbOpenState = false;
   }
 
-  public override void _UnhandledInput(InputEvent @event) {
-    if (@event.IsActionPressed(Inputs.Esc)) {
-      Visible = false;
-      GetTree().Paused = false; // FIXME HACKY!!!
+  public override void _Input(InputEvent @event) {
+    if (HackyDumbOpenState && @event.IsActionPressed(Inputs.Esc)) {
+      // HACKY
+      Close();
+      GetViewport().SetInputAsHandled();
     }
   }
   #endregion

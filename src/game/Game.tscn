@@ -341,6 +341,7 @@ root_node = NodePath("CanvasLayer/Intro")
 libraries = {
 "": SubResource("AnimationLibrary_kl4if")
 }
+speed_scale = 20.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CutscenePlayer"]
 

@@ -76,10 +76,6 @@ public partial class Game : Node2D, IGame {
   }
   #endregion
 
-
-
-
-
   public void ChangeRoom(ERoom room) {
     var scene = room switch {
       ERoom.Stump => _stumpScene,
@@ -122,6 +118,7 @@ public partial class Game : Node2D, IGame {
 
   private void OnOutputStartIntro() => CutscenePlayer.Play("intro");
   private void OnOutputShowPauseMenu() => PauseMenu.Open();
+
   private void OnOutputStartWinSequence() => CutscenePlayer.Play("outro");
 
 
@@ -135,7 +132,7 @@ public partial class Game : Node2D, IGame {
 
 
   public override void _UnhandledInput(InputEvent @event) {
-    if (@event.IsActionPressed(Inputs.Esc) && !PauseMenu.Visible) {
+    if (@event.IsActionPressed(Inputs.Esc)) {
       Logic.Input(new GameLogic.Input.ClickPause());
     }
   }

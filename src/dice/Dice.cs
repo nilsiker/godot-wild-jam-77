@@ -8,7 +8,7 @@ public partial class Dice : AnimatedSprite2D {
   public int Roll() {
     Visible = true;
     Frame = (int)GD.Randi() % 6;
-    Modulate = Frame > 1 ? Colors.White : Colors.DarkRed;
+    Modulate = Frame > 0 ? Colors.White : Colors.DarkRed;
     if (_tween is not null && _tween.IsRunning()) {
       _tween.Kill();
     }
