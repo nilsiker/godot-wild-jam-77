@@ -245,7 +245,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("2_nith8")
 bbcode_enabled = true
-text = "[right]A game by nilsiker and konstig "
+text = "[right]A game by nilsiker and Konstig "
 
 [node name="Container" type="PanelContainer" parent="."]
 layout_mode = 1
