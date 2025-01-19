@@ -2,6 +2,7 @@ namespace Nevergreen;
 
 using System;
 using Chickensoft.Collections;
+using Godot;
 
 public interface IRoomRepo {
   public event Action? EnemyKilled;
@@ -26,6 +27,7 @@ public class RoomRepo(int enemyCount) : IRoomRepo, IDisposable {
   }
 
   public void OnEnemySpawned() {
+    GD.Print(_enemyCount.Value + 1);
     _enemyCount.OnNext(_enemyCount.Value + 1);
     EnemySpawned?.Invoke();
   }

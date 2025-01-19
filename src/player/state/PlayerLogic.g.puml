@@ -12,7 +12,6 @@ Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosi
 Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Alive_Idle : Revive
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
 Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
-Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Damage
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : AnimationFinished
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : UpdateHitting
 Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Idle : AnimationFinished

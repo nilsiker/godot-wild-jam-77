@@ -1,5 +1,6 @@
 namespace Nevergreen;
 
+using Chickensoft.LogicBlocks;
 using Godot;
 
 public partial class EnemyLogic {
@@ -15,6 +16,8 @@ public partial class EnemyLogic {
             var gameRepo = Get<IGameRepo>();
             gameRepo.PlayerGlobalPosition.Sync -= OnPlayerGlobalPositionSync;
           });
+
+          this.OnEnter(() => Output(new Output.AnimationUpdated("crawl")));
         }
 
         private void OnPlayerGlobalPositionSync(Vector2 vector) =>
@@ -39,7 +42,7 @@ public partial class EnemyLogic {
           data.TimeAggroed += input.Time;
 
           if (settings.Breeds && data.TimeAggroed > 2) {
-            if (roomRepo.EnemyCount.Value < 50) {
+            if (roomRepo.EnemyCount.Value < 100) {
               Output(new Output.SpawnLarva());
               Get<IRoomRepo>().OnEnemySpawned();
             }

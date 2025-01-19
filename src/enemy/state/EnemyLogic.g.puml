@@ -22,6 +22,7 @@ Nevergreen_EnemyLogic_State_Dead --> Nevergreen_EnemyLogic_State_Dead : Animatio
 
 Nevergreen_EnemyLogic_State_Alive : OnDamage → Damaged, ForceApplied
 Nevergreen_EnemyLogic_State_Alive_Aggroed : OnAge → SpawnLarva
+Nevergreen_EnemyLogic_State_Alive_Aggroed : OnEnter → AnimationUpdated
 Nevergreen_EnemyLogic_State_Alive_Aggroed : OnMove → FlipSprite, ForceApplied
 Nevergreen_EnemyLogic_State_Alive_Aggroed : OnPlayerGlobalPositionSync() → PlayerTrackedAt
 Nevergreen_EnemyLogic_State_Alive_KnockedBack : OnAge → ForceApplied

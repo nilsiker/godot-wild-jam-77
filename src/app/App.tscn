@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://7g0ikydwv3vm"]
+[gd_scene load_steps=11 format=4 uid="uid://7g0ikydwv3vm"]
 
 [ext_resource type="Script" path="res://src/app/App.cs" id="1_1ypil"]
 [ext_resource type="PackedScene" uid="uid://cywpu6lxdjhuu" path="res://src/game/Game.tscn" id="1_6cyag"]
 [ext_resource type="Script" path="res://src/ui/UI.cs" id="3_3p1uv"]
 [ext_resource type="PackedScene" uid="uid://gnfeiowom8ok" path="res://src/main_menu/MainMenu.tscn" id="3_juyav"]
-[ext_resource type="PackedScene" uid="uid://bfxhx3gxw1vm2" path="res://src/state_debug/StateDebug.tscn" id="5_t2vt7"]
 
 [sub_resource type="Animation" id="Animation_3o22p"]
 length = 0.001
@@ -97,9 +96,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
-
-[node name="StateDebug" parent="UI" instance=ExtResource("5_t2vt7")]
-visible = false
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamOggVorbis_qy76l")
