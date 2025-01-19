@@ -109,15 +109,11 @@ public partial class Player : RigidBody2D, IPlayer {
     Binding.Dispose();
   }
 
-  // FIXME hack helper var for joypad aiming
+  // FIXME hack helper var for aiming attack?
   private Vector2 _lastInputDirection;
   public override void _UnhandledInput(InputEvent @event) {
     if (@event.IsActionPressed(Inputs.Attack)) {
-
-      var direction = (@event is InputEventJoypadButton)
-        ? _lastInputDirection
-        : GlobalPosition.DirectionTo(GetGlobalMousePosition());
-      Logic.Input(new PlayerLogic.Input.Attack(direction));
+      Logic.Input(new PlayerLogic.Input.Attack(_lastInputDirection));
     }
   }
   #endregion
@@ -158,8 +154,5 @@ public partial class Player : RigidBody2D, IPlayer {
     _damagedTween.TweenProperty(Whiteout, "modulate:a", 0.0, 0.2);
     HurtAudio.Play();
   }
-
-
-
   #endregion
 }

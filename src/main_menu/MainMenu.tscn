@@ -393,7 +393,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_c6ua2")
 layout_mode = 2
 alignment = 1
 
-[node name="Quaver" type="Label" parent="Container/Margins/HBoxContainer/Credits/VBoxContainer"]
+[node name="Quaver2" type="Label" parent="Container/Margins/HBoxContainer/Credits/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nith8")
 theme_override_font_sizes/font_size = 8
@@ -404,5 +404,12 @@ horizontal_alignment = 1
 layout_mode = 2
 theme = ExtResource("2_nith8")
 theme_override_font_sizes/font_size = 8
-text = "Alternate splash screen by KenneyNL"
+text = "Godot SplashScreens by KenneyNL"
+horizontal_alignment = 1
+
+[node name="InputPrompts" type="Label" parent="Container/Margins/HBoxContainer/Credits/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nith8")
+theme_override_font_sizes/font_size = 8
+text = "Input Prompts Pixel 16x by KenneyNL"
 horizontal_alignment = 1

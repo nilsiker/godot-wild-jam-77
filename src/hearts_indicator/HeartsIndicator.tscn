@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://src/hearts_indicator/HeartsIndicator.cs" id="2_4qe2w"]
 
 [node name="HeartsIndicator" type="AnimatedSprite2D"]
+visible = false
 position = Vector2(62, 39)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("1_4ysfl")

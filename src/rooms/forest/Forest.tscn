@@ -501,17 +501,11 @@ position = Vector2(106, 76)
 [node name="Larva3" parent="." instance=ExtResource("12_5brux")]
 position = Vector2(10, 72)
 
-[node name="Larva6" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(147, 16)
-
 [node name="Larva5" parent="." instance=ExtResource("12_5brux")]
 position = Vector2(-48, 87)
 
 [node name="Larva9" parent="." instance=ExtResource("12_5brux")]
 position = Vector2(-142, 76)
-
-[node name="Larva10" parent="." instance=ExtResource("12_5brux")]
-position = Vector2(-154, -29)
 
 [node name="Larva12" parent="." instance=ExtResource("12_5brux")]
 position = Vector2(5, 116)

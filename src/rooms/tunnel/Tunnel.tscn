@@ -36,6 +36,7 @@ color_ramp = SubResource("Gradient_2yf4g")
 noise = SubResource("FastNoiseLite_50d68")
 
 [node name="RoomTunnel" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_tsgav")
 RoomIdentifier = 4
 

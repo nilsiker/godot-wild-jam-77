@@ -40,7 +40,7 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
     // Bind functions to state outputs here
     Binding
       .Handle((in GameOverScreenLogic.Output.Hide _) => Visible = false)
-      .Handle((in GameOverScreenLogic.Output.Show _) => Visible = true);
+      .Handle((in GameOverScreenLogic.Output.Show _) => Open());
 
     Logic.Set(AppRepo);
     Logic.Set(GameRepo);
@@ -49,13 +49,17 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
   }
   #endregion
 
+  public void Open() {
+    Visible = true;
+    TryAgainButton.GrabFocus();
+  }
+
   #region Godot Lifecycle
   public override void _Notification(int what) => this.Notify(what);
 
   public override void _Ready() {
     ReturnToMainMenuButton.Pressed += OnReturnToMainMenuButtonPressed;
     TryAgainButton.Pressed += OnTryAgainButtonPressed;
-    TryAgainButton.GrabFocus();
   }
 
   public void OnExitTree() {
@@ -73,7 +77,6 @@ public partial class GameOverScreen : PanelContainer, IPanelContainer, IGameOver
   }
 
   #endregion
-
 
   #region Output Callbacks
   #endregion

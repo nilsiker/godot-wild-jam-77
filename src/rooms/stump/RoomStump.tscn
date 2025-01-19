@@ -1,10 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://cguo6kvae15em"]
+[gd_scene load_steps=22 format=3 uid="uid://cguo6kvae15em"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_dh0ra"]
 [ext_resource type="Texture2D" uid="uid://wdk6167jio5p" path="res://src/rooms/stump/stump.png" id="1_tui38"]
 [ext_resource type="Texture2D" uid="uid://cb3gcujmrg38c" path="res://src/game/darkness.png" id="2_6hcmo"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="4_g5s6x"]
 [ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="5_36j2q"]
+[ext_resource type="Texture2D" uid="uid://bb57fdu8cfcdn" path="res://src/ui/input_prompts/tile_0253.png" id="6_fuppm"]
+[ext_resource type="Texture2D" uid="uid://b5a0fwi2ys5ll" path="res://src/ui/input_prompts/tile_0358.png" id="6_sfplm"]
+[ext_resource type="Texture2D" uid="uid://0ge2n8vvu2e1" path="res://src/ui/input_prompts/tile_0392.png" id="7_qv8dp"]
+[ext_resource type="Texture2D" uid="uid://mwbjfjlhr30b" path="res://src/ui/input_prompts/tile_0393.png" id="8_2x2vk"]
+[ext_resource type="Texture2D" uid="uid://bqgu5a6uxvj65" path="res://src/ui/input_prompts/tile_0394.png" id="9_og1ee"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oley0"]
 polygon = PackedVector2Array(26, 85, 6, 90, -20, 90, -53, 77, -67, 63, -72, 54, -76, 31, -80, 33, -73, 76, -40, 92, -12, 97, 19, 94, 27, 87)
@@ -52,6 +57,9 @@ width = 1920
 height = 1080
 in_3d_space = true
 noise = SubResource("FastNoiseLite_2tvih")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lat1w"]
+light_mode = 1
 
 [node name="RoomStump" type="Node2D"]
 z_index = -1
@@ -173,14 +181,67 @@ texture = SubResource("NoiseTexture2D_v4f1i")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-6, -23)
 
-[node name="Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+modulate = Color(0.36, 0.36, 0.36, 1)
+z_index = 100
+offset_left = -141.0
+offset_top = -145.0
+offset_right = 131.0
+offset_bottom = -105.0
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
 z_index = 23
-offset_left = -137.0
-offset_top = -136.0
-offset_right = 127.0
-offset_bottom = -113.0
+material = SubResource("CanvasItemMaterial_lat1w")
+layout_mode = 2
 theme = ExtResource("5_36j2q")
-theme_override_colors/font_color = Color(0.481789, 0.481789, 0.481789, 1)
-text = "Move using WASD or Left Stick"
+text = "Move using "
+
+[node name="W" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_lat1w")
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("6_sfplm")
+stretch_mode = 5
+
+[node name="A" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_lat1w")
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("7_qv8dp")
+stretch_mode = 5
+
+[node name="S" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_lat1w")
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("8_2x2vk")
+stretch_mode = 5
+
+[node name="D" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_lat1w")
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("9_og1ee")
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+z_index = 23
+material = SubResource("CanvasItemMaterial_lat1w")
+layout_mode = 2
+theme = ExtResource("5_36j2q")
+text = " or "
+
+[node name="LeftStick" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_lat1w")
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("6_fuppm")
+stretch_mode = 5
 
 [connection signal="ExitAreaEntered" from="GladeExitArea" to="." method="OnExitAreaEntered"]

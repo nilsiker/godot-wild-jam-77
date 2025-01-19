@@ -24,7 +24,6 @@ public partial class PlayerLogic
     public record struct AnimationFinished(StringName Animation);
     public record struct UpdateHitting(bool IsHitting);
     public record struct UpdateGlobalPosition(Vector2 GlobalPosition);
-    public record struct Aim(Vector2 Direction);
     public record struct Move(Vector2 Direction);
     public record struct Attack(Vector2 Direction);
     public record struct Damage(int Amount, Vector2 Direction);

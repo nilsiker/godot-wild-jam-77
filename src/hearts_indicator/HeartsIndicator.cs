@@ -1,6 +1,5 @@
 namespace Nevergreen;
 
-using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
@@ -22,6 +21,7 @@ public partial class HeartsIndicator : AnimatedSprite2D, IHeartsIndicator {
 
   #region Dependencies
   [Dependency] private IPlayerRepo PlayerRepo => this.DependOn<IPlayerRepo>();
+  [Dependency] private IGameRepo GameRepo => this.DependOn<IGameRepo>();
   #endregion
 
   #region State
@@ -38,7 +38,15 @@ public partial class HeartsIndicator : AnimatedSprite2D, IHeartsIndicator {
     // Bind functions to state outputs here
 
     PlayerRepo.Health.Sync += OnPlayerHealthSync;
+    GameRepo.RoomTransitionRequested += (room) => {
+      if (room == ERoom.Glade) {
+        Visible = true;
+      }
+      else if (room == ERoom.Stump) {
+        Visible = false;
+      }
 
+    };
     Logic.Start();
   }
 
