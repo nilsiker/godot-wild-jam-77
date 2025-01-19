@@ -1,4 +1,4 @@
-namespace Nevergreen;
+namespace Woodblight;
 
 using Godot;
 using Chickensoft.GodotNodeInterfaces;
@@ -6,7 +6,7 @@ using Chickensoft.AutoInject;
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
 using System;
-using Nevergreen.Traits;
+using Woodblight.Traits;
 
 
 public interface IAttacker : INode2D {

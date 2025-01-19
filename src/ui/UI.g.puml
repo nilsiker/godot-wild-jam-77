@@ -1,4 +1,4 @@
 @startuml UILogic
-state "UILogic State" as Nevergreen_UILogic_State
-[*] --> Nevergreen_UILogic_State
+state "UILogic State" as Woodblight_UILogic_State
+[*] --> Woodblight_UILogic_State
 @enduml

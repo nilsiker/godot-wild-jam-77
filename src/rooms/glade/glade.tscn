@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b2c08b2yx8a4g" path="res://src/blockage/Blockage.tscn" id="4_c4264"]
 [ext_resource type="PackedScene" uid="uid://b5716skygfhq" path="res://src/enemy/larva/Larva.tscn" id="5_xyhbt"]
 [ext_resource type="TileSet" uid="uid://dqmlabge34258" path="res://src/terrain_layer/dirt/tileset_dirt.tres" id="6_tc0dh"]
-[ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="7_j8vnw"]
+[ext_resource type="Script" uid="uid://c0sc5eoxo8ttb" path="res://addons/TileMapDual/TileMapDual.gd" id="7_j8vnw"]
 [ext_resource type="Material" uid="uid://gr44uge3fuor" path="res://src/terrain_layer/dirt/material_dirt_layer.tres" id="8_njwvh"]
 [ext_resource type="TileSet" uid="uid://djnl6mio2sk1t" path="res://src/terrain_layer/grass/tileset_grass.tres" id="9_xyjdg"]
 [ext_resource type="PackedScene" uid="uid://tialxh62odlg" path="res://src/tree/Tree.tscn" id="10_jdrs7"]
@@ -798,6 +798,3 @@ blend_mode = 2
 shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_0bggi")
-
-[connection signal="ExitAreaEntered" from="ExitStump" to="." method="OnExitAreaEntered"]
-[connection signal="ExitAreaEntered" from="ExitForest" to="." method="OnExitAreaEntered"]

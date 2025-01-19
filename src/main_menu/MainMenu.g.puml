@@ -1,4 +1,4 @@
 @startuml MainMenuLogic
-state "MainMenuLogic State" as Nevergreen_MainMenuLogic_State
-[*] --> Nevergreen_MainMenuLogic_State
+state "MainMenuLogic State" as Woodblight_MainMenuLogic_State
+[*] --> Woodblight_MainMenuLogic_State
 @enduml

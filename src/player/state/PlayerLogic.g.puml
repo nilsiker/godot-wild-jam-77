@@ -1,35 +1,35 @@
 @startuml PlayerLogic
-state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
-  state "Alive" as Nevergreen_PlayerLogic_State_Alive {
-    state "Attacking" as Nevergreen_PlayerLogic_State_Alive_Attacking
-    state "Idle" as Nevergreen_PlayerLogic_State_Alive_Idle
-    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
+state "PlayerLogic State" as Woodblight_PlayerLogic_State {
+  state "Alive" as Woodblight_PlayerLogic_State_Alive {
+    state "Attacking" as Woodblight_PlayerLogic_State_Alive_Attacking
+    state "Idle" as Woodblight_PlayerLogic_State_Alive_Idle
+    state "Moving" as Woodblight_PlayerLogic_State_Alive_Moving
   }
-  state "Dead" as Nevergreen_PlayerLogic_State_Dead
+  state "Dead" as Woodblight_PlayerLogic_State_Dead
 }
 
-Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State : UpdateGlobalPosition
-Nevergreen_PlayerLogic_State --> Nevergreen_PlayerLogic_State_Alive_Idle : Revive
-Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive : Damage
-Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Alive_Attacking : Attack
-Nevergreen_PlayerLogic_State_Alive --> Nevergreen_PlayerLogic_State_Dead : Die
-Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : AnimationFinished
-Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Attacking : UpdateHitting
-Nevergreen_PlayerLogic_State_Alive_Attacking --> Nevergreen_PlayerLogic_State_Alive_Idle : AnimationFinished
-Nevergreen_PlayerLogic_State_Alive_Idle --> Nevergreen_PlayerLogic_State_Alive_Idle : Move
-Nevergreen_PlayerLogic_State_Alive_Idle --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
-Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Idle : Move
-Nevergreen_PlayerLogic_State_Alive_Moving --> Nevergreen_PlayerLogic_State_Alive_Moving : Move
+Woodblight_PlayerLogic_State --> Woodblight_PlayerLogic_State : UpdateGlobalPosition
+Woodblight_PlayerLogic_State --> Woodblight_PlayerLogic_State_Alive_Idle : Revive
+Woodblight_PlayerLogic_State_Alive --> Woodblight_PlayerLogic_State_Alive : Damage
+Woodblight_PlayerLogic_State_Alive --> Woodblight_PlayerLogic_State_Alive_Attacking : Attack
+Woodblight_PlayerLogic_State_Alive --> Woodblight_PlayerLogic_State_Dead : Die
+Woodblight_PlayerLogic_State_Alive_Attacking --> Woodblight_PlayerLogic_State_Alive_Attacking : AnimationFinished
+Woodblight_PlayerLogic_State_Alive_Attacking --> Woodblight_PlayerLogic_State_Alive_Attacking : UpdateHitting
+Woodblight_PlayerLogic_State_Alive_Attacking --> Woodblight_PlayerLogic_State_Alive_Idle : AnimationFinished
+Woodblight_PlayerLogic_State_Alive_Idle --> Woodblight_PlayerLogic_State_Alive_Idle : Move
+Woodblight_PlayerLogic_State_Alive_Idle --> Woodblight_PlayerLogic_State_Alive_Moving : Move
+Woodblight_PlayerLogic_State_Alive_Moving --> Woodblight_PlayerLogic_State_Alive_Idle : Move
+Woodblight_PlayerLogic_State_Alive_Moving --> Woodblight_PlayerLogic_State_Alive_Moving : Move
 
-Nevergreen_PlayerLogic_State : OnPlayerReset() → Teleport
-Nevergreen_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
-Nevergreen_PlayerLogic_State_Alive : OnDamage → Damaged
-Nevergreen_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
-Nevergreen_PlayerLogic_State_Alive_Attacking : OnExit → FinishedAttacking
-Nevergreen_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → SetHitting
-Nevergreen_PlayerLogic_State_Alive_Idle : OnEnter → AnimationUpdated
-Nevergreen_PlayerLogic_State_Alive_Moving : OnEnter → AnimationUpdated
-Nevergreen_PlayerLogic_State_Alive_Moving : OnMove → FlipSprite, ForceApplied
+Woodblight_PlayerLogic_State : OnPlayerReset() → Teleport
+Woodblight_PlayerLogic_State : OnPlayerTeleportationRequested() → Teleport
+Woodblight_PlayerLogic_State_Alive : OnDamage → Damaged
+Woodblight_PlayerLogic_State_Alive_Attacking : OnEnter → AnimationUpdated, FlipSprite, StartAttacking
+Woodblight_PlayerLogic_State_Alive_Attacking : OnExit → FinishedAttacking
+Woodblight_PlayerLogic_State_Alive_Attacking : OnUpdateHitting → SetHitting
+Woodblight_PlayerLogic_State_Alive_Idle : OnEnter → AnimationUpdated
+Woodblight_PlayerLogic_State_Alive_Moving : OnEnter → AnimationUpdated
+Woodblight_PlayerLogic_State_Alive_Moving : OnMove → FlipSprite, ForceApplied
 
-[*] --> Nevergreen_PlayerLogic_State_Alive_Idle
+[*] --> Woodblight_PlayerLogic_State_Alive_Idle
 @enduml

@@ -1,8 +1,8 @@
-# Nevergreen
+# Woodblight
 
 ![line coverage](badges/line_coverage.svg) ![branch coverage](badges/branch_coverage.svg)
 
-Nevergreen is a game about a forest gnome.
+Woodblight is a game about a forest gnome.
 
 With an axe.
 

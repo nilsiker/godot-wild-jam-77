@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_jls0k"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_o271d"]
 [ext_resource type="TileSet" uid="uid://dqmlabge34258" path="res://src/terrain_layer/dirt/tileset_dirt.tres" id="3_s82nh"]
-[ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="4_7srkx"]
+[ext_resource type="Script" uid="uid://c0sc5eoxo8ttb" path="res://addons/TileMapDual/TileMapDual.gd" id="4_7srkx"]
 [ext_resource type="Material" uid="uid://gr44uge3fuor" path="res://src/terrain_layer/dirt/material_dirt_layer.tres" id="5_c72pk"]
 [ext_resource type="TileSet" uid="uid://djnl6mio2sk1t" path="res://src/terrain_layer/grass/tileset_grass.tres" id="6_yw741"]
 [ext_resource type="Material" uid="uid://c6qeehx41uolp" path="res://src/terrain_layer/grass/material_grass_layer.tres" id="7_4o7sd"]
@@ -550,5 +550,3 @@ script = ExtResource("16_qnn40")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = 2
 color = Color(0.0846899, 0.0846899, 0.0846899, 1)
-
-[connection signal="ExitAreaEntered" from="ExitTunnel" to="." method="OnExitAreaEntered"]

@@ -1,4 +1,4 @@
 @startuml PauseMenuLogic
-state "PauseMenuLogic State" as Nevergreen_PauseMenuLogic_State
-[*] --> Nevergreen_PauseMenuLogic_State
+state "PauseMenuLogic State" as Woodblight_PauseMenuLogic_State
+[*] --> Woodblight_PauseMenuLogic_State
 @enduml

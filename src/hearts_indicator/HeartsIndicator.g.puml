@@ -1,4 +1,4 @@
 @startuml HeartsIndicatorLogic
-state "HeartsIndicatorLogic State" as Nevergreen_HeartsIndicatorLogic_State
-[*] --> Nevergreen_HeartsIndicatorLogic_State
+state "HeartsIndicatorLogic State" as Woodblight_HeartsIndicatorLogic_State
+[*] --> Woodblight_HeartsIndicatorLogic_State
 @enduml

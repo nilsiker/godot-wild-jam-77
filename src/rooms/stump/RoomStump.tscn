@@ -243,5 +243,3 @@ custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("6_fuppm")
 stretch_mode = 5
-
-[connection signal="ExitAreaEntered" from="GladeExitArea" to="." method="OnExitAreaEntered"]

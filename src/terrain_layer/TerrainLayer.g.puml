@@ -1,4 +1,4 @@
 @startuml Logic
-state "Logic State" as Nevergreen_Logic_State
-[*] --> Nevergreen_Logic_State
+state "Logic State" as Woodblight_Logic_State
+[*] --> Woodblight_Logic_State
 @enduml

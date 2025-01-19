@@ -1,11 +1,11 @@
-namespace Nevergreen;
+namespace Woodblight;
 
 using System;
 using Chickensoft.AutoInject;
 using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
-using Nevergreen.Traits;
+using Woodblight.Traits;
 
 
 public interface IEnemy : IRigidBody2D, IDamageable, IStateDebugInfo { }

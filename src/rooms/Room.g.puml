@@ -1,12 +1,12 @@
 @startuml RoomLogic
-state "RoomLogic State" as Nevergreen_RoomLogic_State {
-  state "Infested" as Nevergreen_RoomLogic_State_Infested
-  state "Cleared" as Nevergreen_RoomLogic_State_Cleared
+state "RoomLogic State" as Woodblight_RoomLogic_State {
+  state "Infested" as Woodblight_RoomLogic_State_Infested
+  state "Cleared" as Woodblight_RoomLogic_State_Cleared
 }
 
-Nevergreen_RoomLogic_State_Infested --> Nevergreen_RoomLogic_State_Cleared : Clear
+Woodblight_RoomLogic_State_Infested --> Woodblight_RoomLogic_State_Cleared : Clear
 
-Nevergreen_RoomLogic_State_Cleared : OnEnter → RemoveBlockage
+Woodblight_RoomLogic_State_Cleared : OnEnter → RemoveBlockage
 
-[*] --> Nevergreen_RoomLogic_State_Infested
+[*] --> Woodblight_RoomLogic_State_Infested
 @enduml

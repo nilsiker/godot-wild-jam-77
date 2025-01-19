@@ -1,5 +1,5 @@
 
-namespace Nevergreen.Traits;
+namespace Woodblight.Traits;
 
 using Godot;
 

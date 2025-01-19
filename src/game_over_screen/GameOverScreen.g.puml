@@ -1,11 +1,11 @@
 @startuml GameOverScreenLogic
-state "GameOverScreenLogic State" as Nevergreen_GameOverScreenLogic_State
+state "GameOverScreenLogic State" as Woodblight_GameOverScreenLogic_State
 
-Nevergreen_GameOverScreenLogic_State --> Nevergreen_GameOverScreenLogic_State : ClickToMainMenu
+Woodblight_GameOverScreenLogic_State --> Woodblight_GameOverScreenLogic_State : ClickToMainMenu
 
-Nevergreen_GameOverScreenLogic_State : OnClickToMainMenu → Hide
-Nevergreen_GameOverScreenLogic_State : OnEnter → Hide
-Nevergreen_GameOverScreenLogic_State : OnGameOver() → Show
+Woodblight_GameOverScreenLogic_State : OnClickToMainMenu → Hide
+Woodblight_GameOverScreenLogic_State : OnEnter → Hide
+Woodblight_GameOverScreenLogic_State : OnGameOver() → Show
 
-[*] --> Nevergreen_GameOverScreenLogic_State
+[*] --> Woodblight_GameOverScreenLogic_State
 @enduml

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_vjawc"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_y202c"]
 [ext_resource type="TileSet" uid="uid://dqmlabge34258" path="res://src/terrain_layer/dirt/tileset_dirt.tres" id="3_0g4m4"]
-[ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="4_ioxpr"]
+[ext_resource type="Script" uid="uid://c0sc5eoxo8ttb" path="res://addons/TileMapDual/TileMapDual.gd" id="4_ioxpr"]
 [ext_resource type="Material" uid="uid://gr44uge3fuor" path="res://src/terrain_layer/dirt/material_dirt_layer.tres" id="5_a6m3s"]
 [ext_resource type="TileSet" uid="uid://djnl6mio2sk1t" path="res://src/terrain_layer/grass/tileset_grass.tres" id="6_11o3p"]
 [ext_resource type="Material" uid="uid://c6qeehx41uolp" path="res://src/terrain_layer/grass/material_grass_layer.tres" id="7_3lk5j"]
@@ -867,6 +867,3 @@ libraries = {
 
 [node name="Broodmother" parent="Sprite2D" instance=ExtResource("19_hbstv")]
 position = Vector2(43, 6)
-
-[connection signal="ExitAreaEntered" from="Glade/ExitStump" to="Glade" method="OnExitAreaEntered"]
-[connection signal="ExitAreaEntered" from="Glade/ExitForest" to="Glade" method="OnExitAreaEntered"]

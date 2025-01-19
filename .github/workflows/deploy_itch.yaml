@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: Nevergreen
+  EXPORT_NAME: Woodblight
   PROJECT_PATH: "."
 
 jobs:

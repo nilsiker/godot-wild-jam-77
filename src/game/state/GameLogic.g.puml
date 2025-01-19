@@ -1,27 +1,27 @@
 @startuml GameLogic
-state "GameLogic State" as Nevergreen_GameLogic_State {
-  state "ChangingRoom" as Nevergreen_GameLogic_State_ChangingRoom
-  state "InRoom" as Nevergreen_GameLogic_State_InRoom
-  state "Intro" as Nevergreen_GameLogic_State_Intro
-  state "Outro" as Nevergreen_GameLogic_State_Outro
+state "GameLogic State" as Woodblight_GameLogic_State {
+  state "ChangingRoom" as Woodblight_GameLogic_State_ChangingRoom
+  state "InRoom" as Woodblight_GameLogic_State_InRoom
+  state "Intro" as Woodblight_GameLogic_State_Intro
+  state "Outro" as Woodblight_GameLogic_State_Outro
 }
 
-Nevergreen_GameLogic_State --> Nevergreen_GameLogic_State : TeleportPlayerTo
-Nevergreen_GameLogic_State_ChangingRoom --> Nevergreen_GameLogic_State_InRoom : RoomResolved
-Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_ChangingRoom : TransitionRoom
-Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_InRoom : ClickPause
-Nevergreen_GameLogic_State_InRoom --> Nevergreen_GameLogic_State_Outro : RequestOutro
-Nevergreen_GameLogic_State_Intro --> Nevergreen_GameLogic_State_ChangingRoom : CutsceneFinished
-Nevergreen_GameLogic_State_Outro --> Nevergreen_GameLogic_State_Outro : CutsceneFinished
+Woodblight_GameLogic_State --> Woodblight_GameLogic_State : TeleportPlayerTo
+Woodblight_GameLogic_State_ChangingRoom --> Woodblight_GameLogic_State_InRoom : RoomResolved
+Woodblight_GameLogic_State_InRoom --> Woodblight_GameLogic_State_ChangingRoom : TransitionRoom
+Woodblight_GameLogic_State_InRoom --> Woodblight_GameLogic_State_InRoom : ClickPause
+Woodblight_GameLogic_State_InRoom --> Woodblight_GameLogic_State_Outro : RequestOutro
+Woodblight_GameLogic_State_Intro --> Woodblight_GameLogic_State_ChangingRoom : CutsceneFinished
+Woodblight_GameLogic_State_Outro --> Woodblight_GameLogic_State_Outro : CutsceneFinished
 
-Nevergreen_GameLogic_State : OnGamePaused() → SetPauseMode
-Nevergreen_GameLogic_State : OnGameResumed() → SetPauseMode
-Nevergreen_GameLogic_State_ChangingRoom : OnEnter → SetPauseMode
-Nevergreen_GameLogic_State_ChangingRoom : OnFadeOutFinished() → RoomTransitionRequested
-Nevergreen_GameLogic_State_InRoom : OnClickPause → ShowPauseMenu
-Nevergreen_GameLogic_State_InRoom : OnEnter → SetPauseMode
-Nevergreen_GameLogic_State_Intro : OnEnter → SetPauseMode, StartIntro
-Nevergreen_GameLogic_State_Outro : OnEnter → SetPauseMode, StartOutro
+Woodblight_GameLogic_State : OnGamePaused() → SetPauseMode
+Woodblight_GameLogic_State : OnGameResumed() → SetPauseMode
+Woodblight_GameLogic_State_ChangingRoom : OnEnter → SetPauseMode
+Woodblight_GameLogic_State_ChangingRoom : OnFadeOutFinished() → RoomTransitionRequested
+Woodblight_GameLogic_State_InRoom : OnClickPause → ShowPauseMenu
+Woodblight_GameLogic_State_InRoom : OnEnter → SetPauseMode
+Woodblight_GameLogic_State_Intro : OnEnter → SetPauseMode, StartIntro
+Woodblight_GameLogic_State_Outro : OnEnter → SetPauseMode, StartOutro
 
-[*] --> Nevergreen_GameLogic_State_Intro
+[*] --> Woodblight_GameLogic_State_Intro
 @enduml

@@ -1,4 +1,4 @@
-namespace Nevergreen;
+namespace Woodblight;
 
 public partial class EnemyLogic {
   public partial record State {
