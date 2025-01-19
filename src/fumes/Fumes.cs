@@ -9,9 +9,10 @@ public partial class Fumes : Sprite2D {
   private FastNoiseLite _noise = default!;
   public override void _Ready() => _noise = (FastNoiseLite)((NoiseTexture2D)Texture).Noise;
 
-  public override void _Process(double delta) {
-    var offset = _noise.Offset;
-    offset.Z += (float)delta * _speed;
-    _noise.Offset = offset;
-  }
+  // NOTE This has awful performance on low-end machines.
+  // public override void _Process(double delta) {
+  //   var offset = _noise.Offset;
+  //   offset.Z += (float)delta * _speed;
+  //   _noise.Offset = offset;
+  // }
 }
