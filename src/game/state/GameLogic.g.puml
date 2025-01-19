@@ -1,9 +1,9 @@
 @startuml GameLogic
 state "GameLogic State" as Nevergreen_GameLogic_State {
-  state "Outro" as Nevergreen_GameLogic_State_Outro
-  state "InRoom" as Nevergreen_GameLogic_State_InRoom
   state "ChangingRoom" as Nevergreen_GameLogic_State_ChangingRoom
+  state "InRoom" as Nevergreen_GameLogic_State_InRoom
   state "Intro" as Nevergreen_GameLogic_State_Intro
+  state "Outro" as Nevergreen_GameLogic_State_Outro
 }
 
 Nevergreen_GameLogic_State --> Nevergreen_GameLogic_State : TeleportPlayerTo

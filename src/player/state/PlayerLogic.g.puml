@@ -1,9 +1,9 @@
 @startuml PlayerLogic
 state "PlayerLogic State" as Nevergreen_PlayerLogic_State {
   state "Alive" as Nevergreen_PlayerLogic_State_Alive {
-    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
     state "Attacking" as Nevergreen_PlayerLogic_State_Alive_Attacking
     state "Idle" as Nevergreen_PlayerLogic_State_Alive_Idle
+    state "Moving" as Nevergreen_PlayerLogic_State_Alive_Moving
   }
   state "Dead" as Nevergreen_PlayerLogic_State_Dead
 }

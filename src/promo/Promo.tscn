@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dkrsynfabbxsi"]
+[gd_scene load_steps=34 format=4 uid="uid://dkrsynfabbxsi"]
 
 [ext_resource type="Script" path="res://src/rooms/Room.cs" id="1_vjawc"]
 [ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="2_y202c"]
@@ -48,6 +48,24 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j5j6q"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_21q4f"]
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3, 0.42, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 12]
+}
+
 [sub_resource type="Animation" id="Animation_tqp74"]
 length = 0.84
 loop_mode = 1
@@ -80,8 +98,9 @@ tracks/0/keys = {
 "values": [5, 6, 7, 8]
 }
 
-[sub_resource type="Animation" id="Animation_21q4f"]
-length = 0.55
+[sub_resource type="Animation" id="Animation_ynahf"]
+length = 1.9
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -89,10 +108,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.18, 0.3, 0.42, 0.54),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.48, 0.62, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 11, 12, 12]
+"values": [13, 24, 13, 25, 13, 25]
 }
 
 [sub_resource type="Animation" id="Animation_msjxn"]
@@ -111,22 +130,6 @@ tracks/0/keys = {
 "values": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 }
 
-[sub_resource type="Animation" id="Animation_ynahf"]
-length = 1.9
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.48, 0.62, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [13, 24, 13, 25, 13, 25]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5rowu"]
 _data = {
 "attack": SubResource("Animation_21q4f"),
@@ -143,6 +146,9 @@ y_sort_enabled = true
 position = Vector2(146, 219)
 script = ExtResource("1_vjawc")
 RoomIdentifier = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Glade"]
+color = Color(0.485703, 0.485704, 0.485703, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Glade"]
 position = Vector2(205, -60)
@@ -828,9 +834,10 @@ shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_0bggi")
 
-[node name="Sprite2D" type="Sprite2D" parent="Glade"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(190, -54)
+material = SubResource("CanvasItemMaterial_j5j6q")
+position = Vector2(336, 165)
 texture = ExtResource("18_cxaod")
 hframes = 6
 vframes = 5
@@ -853,12 +860,12 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "3ef383433ae2b63b6be723528f73e680"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Glade/Sprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_5rowu")
 }
 
-[node name="Broodmother" parent="Glade/Sprite2D" instance=ExtResource("19_hbstv")]
+[node name="Broodmother" parent="Sprite2D" instance=ExtResource("19_hbstv")]
 position = Vector2(43, 6)
 
 [connection signal="ExitAreaEntered" from="Glade/ExitStump" to="Glade" method="OnExitAreaEntered"]
