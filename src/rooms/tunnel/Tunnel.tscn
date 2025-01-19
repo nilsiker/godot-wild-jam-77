@@ -124,59 +124,45 @@ position = Vector2(0, 22)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(89, 106)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(137, 117)
 
 [node name="Enemy3" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(174, 85)
 
 [node name="Enemy4" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(-1, 28)
 
 [node name="Enemy5" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(36, 52)
 
 [node name="Enemy6" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(-40, -32)
 
 [node name="Enemy7" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(45, -32)
 
 [node name="Enemy8" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(96, -33)
 
 [node name="Enemy9" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(-115, 105)
 
 [node name="Enemy10" parent="." instance=ExtResource("5_kvynq")]
-visible = false
 position = Vector2(-168, 56)
 
 [node name="Enemy11" parent="." instance=ExtResource("6_oyk18")]
-visible = false
 position = Vector2(-17, 8)
 
 [node name="Enemy12" parent="." instance=ExtResource("6_oyk18")]
-visible = false
 position = Vector2(-174, 102)
 
 [node name="Enemy13" parent="." instance=ExtResource("6_oyk18")]
-visible = false
 position = Vector2(-141, -12)
 
 [node name="Enemy14" parent="." instance=ExtResource("6_oyk18")]
-visible = false
 position = Vector2(-141, -12)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
