@@ -47,9 +47,15 @@ public partial class AppRepo() : IAppRepo {
 
   public void Dispose(bool disposing) {
     MainMenuRequested = null;
+    AppQuitRequested = null;
     GameStartRequested = null;
     GameStarted = null;
-    AppQuitRequested = null;
+    FadeOutRequested = null;
+    FadeInRequested = null;
+    FadeOutFinished = null;
+
+    _useDice.OnCompleted();
+    _useDice.Dispose();
   }
 
   public void Dispose() {

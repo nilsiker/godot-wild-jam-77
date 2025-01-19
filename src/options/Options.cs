@@ -25,8 +25,7 @@ public partial class Options : PanelContainer, IOptions {
   public void OnResolved() {
     MusicSlider.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(1));
     SFXSlider.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(2));
-    AppRepo.UseDice.Sync += (useDice) => MysteryBox.ButtonPressed = useDice;
-
+    AppRepo.UseDice.Sync += OnAppUseDiceSync;
   }
 
   #region Godot Lifecycle
@@ -51,13 +50,14 @@ public partial class Options : PanelContainer, IOptions {
 
   public void OnPhysicsProcess(double delta) { }
 
-  public void OnExitTree() {
+  public void OnExitTree() => AppRepo.UseDice.Sync -= OnAppUseDiceSync;
 
-  }
+  private void OnAppUseDiceSync(bool useDice) => MysteryBox.ButtonPressed = useDice;
   #endregion
 
   #region Input Callbacks
   #endregion
+
 
   #region Output Callbacks
   #endregion
