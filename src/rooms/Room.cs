@@ -101,7 +101,7 @@ public partial class Room : Node2D, IRoom {
     if (RoomIdentifier == ERoom.Tunnel) {
       GameRepo.Win();
     }
-    else {
+    else if (HasNode("Blockage")) {
       GetNode<Node2D>("Blockage")?.QueueFree();
     }
   }

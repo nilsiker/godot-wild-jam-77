@@ -798,3 +798,6 @@ blend_mode = 2
 shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_0bggi")
+
+[connection signal="ExitAreaEntered" from="ExitStump" to="." method="OnExitAreaEntered"]
+[connection signal="ExitAreaEntered" from="ExitForest" to="." method="OnExitAreaEntered"]

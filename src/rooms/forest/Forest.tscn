@@ -550,3 +550,5 @@ script = ExtResource("16_qnn40")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = 2
 color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+
+[connection signal="ExitAreaEntered" from="ExitTunnel" to="." method="OnExitAreaEntered"]

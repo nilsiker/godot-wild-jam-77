@@ -1,22 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://gnfeiowom8ok"]
+[gd_scene load_steps=18 format=3 uid="uid://gnfeiowom8ok"]
 
 [ext_resource type="Script" path="res://src/main_menu/MainMenu.cs" id="1_hxhey"]
 [ext_resource type="PackedScene" uid="uid://bfhb3p4mpq0wq" path="res://src/fumes/Fumes.tscn" id="2_byf5k"]
-[ext_resource type="Script" path="res://src/rooms/Room.cs" id="2_m11ii"]
 [ext_resource type="Theme" uid="uid://cqiwp8yafix7j" path="res://src/fonts/default_theme.tres" id="2_nith8"]
 [ext_resource type="Texture2D" uid="uid://wdk6167jio5p" path="res://src/rooms/stump/stump.png" id="3_860bk"]
 [ext_resource type="PackedScene" uid="uid://734dyqnjav8q" path="res://src/options/Options.tscn" id="4_gejkp"]
-[ext_resource type="Script" path="res://src/rooms/ExitArea.cs" id="4_q7iel"]
 [ext_resource type="Texture2D" uid="uid://chkabj2kx4obn" path="res://src/promo/player.png" id="5_s6aly"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oley0"]
-polygon = PackedVector2Array(26, 85, 6, 90, -20, 90, -53, 77, -67, 63, -72, 54, -76, 31, -80, 33, -73, 76, -40, 92, -12, 97, 19, 94, 27, 87)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wbvgh"]
-polygon = PackedVector2Array(53, 73, 58, 73, 70, 57, 69, 38, 72, 39, 74, 58, 62, 72, 57, 76)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv34k"]
-size = Vector2(45.328, 25.3664)
 
 [sub_resource type="Animation" id="Animation_21q4f"]
 length = 0.55
@@ -136,7 +125,6 @@ script = ExtResource("1_hxhey")
 [node name="RoomStump" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(352, 160)
-script = ExtResource("2_m11ii")
 
 [node name="ColorRect" type="ColorRect" parent="RoomStump"]
 offset_left = -413.0
@@ -145,23 +133,7 @@ offset_right = 221.0
 offset_bottom = 142.0
 color = Color(0, 0, 0, 1)
 
-[node name="PlayerStart0" type="Node2D" parent="RoomStump"]
-position = Vector2(-19, -4)
-
-[node name="PlayerStart1" type="Node2D" parent="RoomStump"]
-position = Vector2(34, 35)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="RoomStump"]
-position = Vector2(-11, -27)
-occluder = SubResource("OccluderPolygon2D_oley0")
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="RoomStump"]
-position = Vector2(3, -21)
-occluder = SubResource("OccluderPolygon2D_wbvgh")
-
-[node name="Stump" type="StaticBody2D" parent="RoomStump"]
-
-[node name="Sprite2D" type="Sprite2D" parent="RoomStump/Stump"]
+[node name="Sprite2D2" type="Sprite2D" parent="RoomStump"]
 position = Vector2(-3, -43)
 texture = ExtResource("3_860bk")
 metadata/_aseprite_wizard_interface_config_ = {
@@ -182,24 +154,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 },
 "slice_section": false
 }
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomStump/Stump"]
-position = Vector2(-3, -43)
-polygon = PackedVector2Array(10, 101, -23, 99, -52, 88, -70, 62, -68, 27, -47, 18, -38, 17, -5, 14, 15, 14, 38, 16, 54, 24, 59, 27, 65, 44, 70, 77, 57, 92, 87, 72, 67, 11, 26, 1, -43, 4, -76, 13, -94, 48, -70, 96, -38, 102, 0, 105, 19, 130, 63, 122, 75, 120, 87, 72, 57, 92, 62, 115, 16.9646, 120.23, 14, 106)
-
-[node name="GladeExitArea" type="Area2D" parent="RoomStump"]
-position = Vector2(26, 77)
-rotation = 0.216278
-script = ExtResource("4_q7iel")
-Room = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomStump/GladeExitArea"]
-position = Vector2(8.45437, -6.79774)
-rotation = -0.427276
-shape = SubResource("RectangleShape2D_hv34k")
-
-[node name="PlayerEntryPosition" type="Node2D" parent="RoomStump/GladeExitArea"]
-position = Vector2(-2.1761, -42.5237)
 
 [node name="Sprite2D" type="Sprite2D" parent="RoomStump"]
 texture_filter = 1
