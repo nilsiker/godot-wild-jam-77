@@ -1,10 +1,10 @@
 @startuml EnemyLogic
 state "EnemyLogic State" as Woodblight_EnemyLogic_State {
   state "Alive" as Woodblight_EnemyLogic_State_Alive {
-    state "Aggroed" as Woodblight_EnemyLogic_State_Alive_Aggroed
     state "KnockedBack" as Woodblight_EnemyLogic_State_Alive_KnockedBack
-    state "Metamorphosis" as Woodblight_EnemyLogic_State_Alive_Metamorphosis
     state "Wandering" as Woodblight_EnemyLogic_State_Alive_Wandering
+    state "Metamorphosis" as Woodblight_EnemyLogic_State_Alive_Metamorphosis
+    state "Aggroed" as Woodblight_EnemyLogic_State_Alive_Aggroed
   }
   state "Dead" as Woodblight_EnemyLogic_State_Dead
 }

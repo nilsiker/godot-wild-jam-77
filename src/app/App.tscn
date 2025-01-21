@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=4 uid="uid://7g0ikydwv3vm"]
 
-[ext_resource type="Script" path="res://src/app/App.cs" id="1_1ypil"]
+[ext_resource type="Script" uid="uid://sq84twrm4ifr" path="res://src/app/App.cs" id="1_1ypil"]
 [ext_resource type="PackedScene" uid="uid://cywpu6lxdjhuu" path="res://src/game/Game.tscn" id="1_6cyag"]
-[ext_resource type="Script" path="res://src/ui/UI.cs" id="3_3p1uv"]
+[ext_resource type="Script" uid="uid://85r3nr3i7l5g" path="res://src/ui/UI.cs" id="3_3p1uv"]
 [ext_resource type="PackedScene" uid="uid://gnfeiowom8ok" path="res://src/main_menu/MainMenu.tscn" id="3_juyav"]
 
 [sub_resource type="Animation" id="Animation_3o22p"]
@@ -42,9 +42,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05mnn"]
 _data = {
-"RESET": SubResource("Animation_3o22p"),
-"fade_in": SubResource("Animation_a4rk1"),
-"fade_out": SubResource("Animation_gx0jh")
+&"RESET": SubResource("Animation_3o22p"),
+&"fade_in": SubResource("Animation_a4rk1"),
+&"fade_out": SubResource("Animation_gx0jh")
 }
 
 [sub_resource type="OggPacketSequence" id="OggPacketSequence_25hau"]
@@ -64,7 +64,7 @@ _gameScene = ExtResource("1_6cyag")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_05mnn")
+&"": SubResource("AnimationLibrary_05mnn")
 }
 
 [node name="Blacksplash" type="ColorRect" parent="."]

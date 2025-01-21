@@ -1,9 +1,9 @@
 @startuml GameLogic
 state "GameLogic State" as Woodblight_GameLogic_State {
-  state "ChangingRoom" as Woodblight_GameLogic_State_ChangingRoom
-  state "InRoom" as Woodblight_GameLogic_State_InRoom
-  state "Intro" as Woodblight_GameLogic_State_Intro
   state "Outro" as Woodblight_GameLogic_State_Outro
+  state "InRoom" as Woodblight_GameLogic_State_InRoom
+  state "ChangingRoom" as Woodblight_GameLogic_State_ChangingRoom
+  state "Intro" as Woodblight_GameLogic_State_Intro
 }
 
 Woodblight_GameLogic_State --> Woodblight_GameLogic_State : TeleportPlayerTo

@@ -1,11 +1,11 @@
 @startuml AppLogic
 state "AppLogic State" as Woodblight_AppLogic_State {
+  state "LeavingGame" as Woodblight_AppLogic_State_LeavingGame
+  state "InMainMenu" as Woodblight_AppLogic_State_InMainMenu
+  state "StartingNewGame" as Woodblight_AppLogic_State_StartingNewGame
+  state "LeavingMenu" as Woodblight_AppLogic_State_LeavingMenu
   state "ClosingApplication" as Woodblight_AppLogic_State_ClosingApplication
   state "InGame" as Woodblight_AppLogic_State_InGame
-  state "InMainMenu" as Woodblight_AppLogic_State_InMainMenu
-  state "LeavingGame" as Woodblight_AppLogic_State_LeavingGame
-  state "LeavingMenu" as Woodblight_AppLogic_State_LeavingMenu
-  state "StartingNewGame" as Woodblight_AppLogic_State_StartingNewGame
 }
 
 Woodblight_AppLogic_State --> Woodblight_AppLogic_State : FadeOutFinished

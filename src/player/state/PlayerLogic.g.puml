@@ -1,9 +1,9 @@
 @startuml PlayerLogic
 state "PlayerLogic State" as Woodblight_PlayerLogic_State {
   state "Alive" as Woodblight_PlayerLogic_State_Alive {
+    state "Moving" as Woodblight_PlayerLogic_State_Alive_Moving
     state "Attacking" as Woodblight_PlayerLogic_State_Alive_Attacking
     state "Idle" as Woodblight_PlayerLogic_State_Alive_Idle
-    state "Moving" as Woodblight_PlayerLogic_State_Alive_Moving
   }
   state "Dead" as Woodblight_PlayerLogic_State_Dead
 }
